@@ -147,6 +147,13 @@ section {
   transition: var(--transition-base);
   white-space: nowrap;
   cursor: pointer;
+  min-height: 48px;
+  min-width: 48px;
+}
+
+.btn-ez:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 .btn-ez-primary {
@@ -155,7 +162,8 @@ section {
   box-shadow: var(--shadow-sm);
 }
 
-.btn-ez-primary:hover {
+.btn-ez-primary:hover,
+.btn-ez-primary:focus {
   background: var(--color-secondary);
   color: var(--color-white);
   transform: translateY(-3px);
@@ -168,7 +176,8 @@ section {
   border-color: var(--color-border);
 }
 
-.btn-ez-outline:hover {
+.btn-ez-outline:hover,
+.btn-ez-outline:focus {
   border-color: var(--color-primary);
   background: var(--color-primary);
   color: var(--color-white);
@@ -179,6 +188,7 @@ section {
 .btn-ez-sm {
   padding: 11px 24px;
   font-size: 14px;
+  min-height: 44px;
 }
 
 .btn-ez-light {
@@ -186,7 +196,8 @@ section {
   color: var(--color-primary);
 }
 
-.btn-ez-light:hover {
+.btn-ez-light:hover,
+.btn-ez-light:focus {
   background: var(--color-light);
   transform: translateY(-3px);
 }
@@ -214,17 +225,20 @@ section {
   display: flex;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
 }
 
 .topbar-welcome i {
   color: #ffffff;
   font-size: 13px;
+  flex-shrink: 0;
 }
 
 .topbar-links {
   display: flex;
   align-items: center;
   gap: 26px;
+  flex-wrap: wrap;
 }
 
 .topbar-links a {
@@ -233,17 +247,27 @@ section {
   gap: 6px;
   color: rgba(255, 255, 255, 0.92);
   font-weight: 400;
+  padding: 8px 4px;
+  min-height: 44px;
+  transition: var(--transition-base);
 }
 
-.topbar-links a:hover {
+.topbar-links a:hover,
+.topbar-links a:focus {
   color: #ffffff;
   opacity: 0.85;
+}
+
+.topbar-links a:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
 }
 
 .topbar-divider {
   width: 1px;
   height: 14px;
   background: rgba(255, 255, 255, 0.25);
+  flex-shrink: 0;
 }
 
 .topbar-social {
@@ -253,18 +277,27 @@ section {
 }
 
 .topbar-social a {
-  width: 26px;
-  height: 26px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 12.5px;
+  transition: var(--transition-base);
+  min-height: 44px;
+  min-width: 44px;
 }
 
-.topbar-social a:hover {
+.topbar-social a:hover,
+.topbar-social a:focus {
   background: rgba(255, 255, 255, 0.25);
+}
+
+.topbar-social a:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
 }
 
 /* ==========================================================================
@@ -354,12 +387,19 @@ section {
   border-radius: 50px;
   position: relative;
   white-space: nowrap;
+  transition: var(--transition-base);
 }
 
 .nav-menu .nav-link:hover,
+.nav-menu .nav-link:focus,
 .nav-menu .nav-item.active .nav-link {
   color: var(--color-primary);
   background: rgba(var(--color-primary-rgb), 0.06);
+}
+
+.nav-menu .nav-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 .dropdown-menu-custom {
@@ -375,11 +415,18 @@ section {
   padding: 10px 16px;
   font-size: 14px;
   font-weight: 400;
+  transition: var(--transition-base);
 }
 
-.dropdown-menu-custom .dropdown-item:hover {
+.dropdown-menu-custom .dropdown-item:hover,
+.dropdown-menu-custom .dropdown-item:focus {
   background: rgba(var(--color-primary-rgb), 0.07);
   color: var(--color-primary);
+}
+
+.dropdown-menu-custom .dropdown-item:focus-visible {
+  outline: 1px solid var(--color-primary);
+  outline-offset: -1px;
 }
 
 .navbar-cta {
@@ -389,14 +436,29 @@ section {
 .navbar-toggler-custom {
   border: none;
   background: var(--color-primary);
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   font-size: 20px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: var(--transition-base);
+  min-height: 48px;
+}
+
+.navbar-toggler-custom:hover,
+.navbar-toggler-custom:focus {
+  background: var(--color-secondary);
+  transform: scale(1.05);
+}
+
+.navbar-toggler-custom:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 /* ==========================================================================
@@ -469,6 +531,16 @@ section {
   display: flex;
   align-items: center;
   gap: 20px;
+}
+
+@media (max-width: 991px) {
+  .hero-quote-card {
+    position: relative;
+    left: 0;
+    bottom: auto;
+    top: auto;
+    margin-top: 20px;
+  }
 }
 
 .hero-quote-card i {
@@ -890,11 +962,20 @@ section {
   font-size: 14px;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.8);
+  padding: 8px 4px;
+  display: inline-block;
+  transition: var(--transition-base);
 }
 
-.footer-links a:hover {
+.footer-links a:hover,
+.footer-links a:focus {
   color: #fff;
-  padding-left: 4px;
+  padding-left: 8px;
+}
+
+.footer-links a:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
 }
 
 .footer-social {
@@ -904,8 +985,8 @@ section {
 }
 
 .footer-social a {
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
   display: flex;
@@ -913,11 +994,20 @@ section {
   justify-content: center;
   font-size: 15px;
   color: #fff;
+  transition: var(--transition-base);
+  min-height: 44px;
+  min-width: 44px;
 }
 
-.footer-social a:hover {
+.footer-social a:hover,
+.footer-social a:focus {
   background: #fff;
   color: var(--color-primary);
+}
+
+.footer-social a:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
 }
 
 .footer-bottom {
@@ -937,8 +1027,20 @@ section {
   gap: 22px;
 }
 
-.footer-bottom-links a:hover {
+.footer-bottom-links a {
+  padding: 8px 4px;
+  display: inline-block;
+  transition: var(--transition-base);
+}
+
+.footer-bottom-links a:hover,
+.footer-bottom-links a:focus {
   color: #fff;
+}
+
+.footer-bottom-links a:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
 }
 
 /* ==========================================================================
