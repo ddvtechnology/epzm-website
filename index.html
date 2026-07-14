@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escola Presbiteriana Zenaide Magalhães | Educação Cristã em São Bento do Una - PE</title>
+  <meta name="description" content="Escola Presbiteriana Zenaide Magalhães — educação cristã, excelência acadêmica e formação integral para crianças e adolescentes em São Bento do Una, Pernambuco.">
+  <meta name="keywords" content="escola presbiteriana, escola cristã, São Bento do Una - PE, educação infantil, ensino fundamental, sistema mackenzie">
+  <meta name="author" content="Escola Presbiteriana Zenaide Magalhães">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Escola Presbiteriana Zenaide Magalhães">
+  <meta property="og:description" content="Integrando a criança com Deus, a família e a sociedade.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo/icon-logo.png">
+
+  <!-- Poppins (self-hosted, no external font CDN dependency) -->
+  <link rel="stylesheet" href="css/fonts.css">
+
+  <!-- Bootstrap 5 (self-hosted) -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons (self-hosted) -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-icons/font/bootstrap-icons.min.css">
+
+  <!-- AOS - Animate On Scroll (self-hosted) -->
+  <link rel="stylesheet" href="assets/vendor/aos/aos.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- =========================================================
+       TOPBAR
+  ========================================================== -->
+  <div class="topbar">
+    <div class="container-custom">
+      <div class="topbar-welcome">
+        <i class="bi bi-heart-fill"></i>
+        <span>Seja bem-vindo à Escola Presbiteriana Zenaide Magalhães!</span>
+      </div>
+      <div class="topbar-links">
+        <a href="#"><i class="bi bi-mortarboard-fill"></i><span class="topbar-label">Portal do Aluno</span></a>
+        <a href="#"><i class="bi bi-person-workspace"></i><span class="topbar-label">Portal do Professor</span></a>
+        <a href="#"><i class="bi bi-briefcase-fill"></i><span class="topbar-label">Trabalhe Conosco</span></a>
+        <div class="topbar-divider d-none d-md-block"></div>
+        <a href="tel:+558799712427"><i class="bi bi-whatsapp"></i><span class="topbar-label">(87) 99971-2427</span></a>
+        <div class="topbar-social">
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       NAVBAR
+  ========================================================== -->
+  <header>
+    <nav class="main-navbar" id="mainNavbar">
+      <div class="container-custom">
+
+        <a href="#inicio" class="navbar-brand-custom">
+          <img src="assets/logo/logo.png" alt="Logotipo Escola Presbiteriana Zenaide Magalhães">
+        </a>
+
+        <ul class="nav-menu d-none d-xxl-flex list-unstyled mb-0">
+          <li class="nav-item active"><a class="nav-link" href="#inicio">Início</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">A Escola</a>
+            <ul class="dropdown-menu dropdown-menu-custom">
+              <li><a class="dropdown-item" href="#a-escola">Quem Somos</a></li>
+              <li><a class="dropdown-item" href="#a-escola">Nossa História</a></li>
+              <li><a class="dropdown-item" href="#mackenzie">Sistema de Ensino</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Segmentos</a>
+            <ul class="dropdown-menu dropdown-menu-custom">
+              <li><a class="dropdown-item" href="#segmentos">Educação Infantil</a></li>
+              <li><a class="dropdown-item" href="#segmentos">Fundamental I</a></li>
+              <li><a class="dropdown-item" href="#segmentos">Fundamental II</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#proposta">Proposta Pedagógica</a></li>
+          <li class="nav-item"><a class="nav-link" href="#mackenzie">Sistema Mackenzie</a></li>
+          <li class="nav-item"><a class="nav-link" href="#eventos">Eventos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#equipe">Equipe</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-3">
+          <a href="#matriculas" class="btn-ez btn-ez-primary btn-ez-sm d-none d-xxl-inline-flex">Matrículas Abertas</a>
+          <button class="navbar-toggler-custom d-xxl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Abrir menu">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Offcanvas Menu -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+    <div class="offcanvas-header">
+      <span class="brand-text">
+        <span class="brand-top">Escola Presbiteriana</span>
+        <span class="brand-main" id="mobileMenuLabel">Zenaide Magalhães</span>
+      </span>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="list-unstyled d-flex flex-column gap-1">
+        <li><a class="nav-link fw-medium" href="#inicio">Início</a></li>
+        <li><a class="nav-link fw-medium" href="#a-escola">A Escola</a></li>
+        <li><a class="nav-link fw-medium" href="#segmentos">Segmentos</a></li>
+        <li><a class="nav-link fw-medium" href="#proposta">Proposta Pedagógica</a></li>
+        <li><a class="nav-link fw-medium" href="#mackenzie">Sistema Mackenzie</a></li>
+        <li><a class="nav-link fw-medium" href="#eventos">Eventos</a></li>
+        <li><a class="nav-link fw-medium" href="#equipe">Equipe</a></li>
+        <li><a class="nav-link fw-medium" href="#contato">Contato</a></li>
+      </ul>
+      <a href="#matriculas" class="btn-ez btn-ez-primary w-100 mt-4">Matrículas Abertas</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+    <section class="hero" id="inicio">
+      <div class="container-custom">
+        <div class="hero-row">
+
+          <div class="hero-col-text" data-aos="fade-right">
+            <h1 class="hero-title">Integrando a criança com Deus, a família e a sociedade.</h1>
+            <p class="hero-text">Educação cristã, excelência acadêmica e formação integral para preparar crianças e adolescentes para a vida.</p>
+            <div class="hero-buttons">
+              <a href="#a-escola" class="btn-ez btn-ez-primary">
+                Conheça Nossa Escola <i class="bi bi-arrow-right"></i>
+              </a>
+              <a href="https://wa.me/558799712427" target="_blank" rel="noopener" class="btn-ez btn-ez-outline">
+                <i class="bi bi-whatsapp"></i> Agende uma Visita
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-visual" data-aos="fade-left">
+            <div class="hero-visual-frame">
+              <!-- Illustrative placeholder graphic (royalty-free style) representing students -->
+              <img src="assets/img/hero-alunos.jpeg" alt="Alunos sorrindo em sala de aula" loading="lazy">
+            </div>
+            <div class="hero-quote-card" data-aos="fade-up" data-aos-delay="150">
+              <i class="bi bi-quote"></i>
+              <div>
+                <blockquote>&ldquo;Ensina a criança no caminho em que deve andar, e ainda quando for velho não se desviará dele.&rdquo;</blockquote>
+                <cite>Provérbios 22:6</cite>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         DIFERENCIAIS
+    ========================================================== -->
+    <section class="diferenciais">
+      <div class="container-custom">
+        <div class="diferenciais-grid">
+
+          <div class="diferencial-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="diferencial-icon"><i class="bi bi-heart"></i></div>
+            <h3>Educação Cristã</h3>
+            <p>Fundamentada em princípios cristãos e valores que formam o caráter.</p>
+          </div>
+
+          <div class="diferencial-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="diferencial-icon"><i class="bi bi-people"></i></div>
+            <h3>Formação Integral</h3>
+            <p>Desenvolvimento acadêmico, emocional, social e espiritual de forma equilibrada.</p>
+          </div>
+
+          <div class="diferencial-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="diferencial-icon"><i class="bi bi-mortarboard"></i></div>
+            <h3>Excelência Acadêmica</h3>
+            <p>Ensino de qualidade com o Sistema Mackenzie de Ensino e resultados comprovados.</p>
+          </div>
+
+          <div class="diferencial-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="diferencial-icon"><i class="bi bi-hand-thumbs-up"></i></div>
+            <h3>Parceria com a Família</h3>
+            <p>Caminhamos juntos com as famílias na missão de educar e transformar vidas.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         QUEM SOMOS
+    ========================================================== -->
+    <section class="quem-somos" id="a-escola">
+      <div class="container-custom">
+        <div class="quem-somos-row">
+
+          <div class="quem-somos-text" data-aos="fade-right">
+            <span class="eyebrow">Quem Somos</span>
+            <h2 class="section-title">Há mais de 20 anos educando com propósito e transformando vidas.</h2>
+            <p class="section-text mb-4">Desde 2000, a Escola Presbiteriana Zenaide Magalhães tem como missão oferecer educação de qualidade, valores cristãos e formação integral para preparar nossos alunos para os desafios do mundo contemporâneo.</p>
+            <a href="#" class="btn-ez btn-ez-primary">Conheça Nossa História <i class="bi bi-arrow-right"></i></a>
+          </div>
+
+          <div class="quem-somos-visual" data-aos="fade-left">
+            <div class="quem-somos-image">
+              <img src="assets/img/fachada-escola.jpeg" alt="Fachada da Escola Presbiteriana Zenaide Magalhães" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+
+            <div class="stats-stack">
+              <div class="stat-card" data-aos="zoom-in" data-aos-delay="0">
+                <span class="stat-number">650+</span>
+                <span class="stat-label">Alunos</span>
+              </div>
+              <div class="stat-card" data-aos="zoom-in" data-aos-delay="100">
+                <span class="stat-number">45+</span>
+                <span class="stat-label">Professores</span>
+              </div>
+              <div class="stat-card" data-aos="zoom-in" data-aos-delay="200">
+                <span class="stat-number">+20</span>
+                <span class="stat-label">Anos de História</span>
+              </div>
+              <div class="stat-card" data-aos="zoom-in" data-aos-delay="300">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Compromisso</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SISTEMA MACKENZIE
+    ========================================================== -->
+    <section class="mackenzie" id="mackenzie">
+      <div class="container-custom">
+        <div class="mackenzie-card" data-aos="fade-up">
+          <div class="mackenzie-logo">M</div>
+          <div class="mackenzie-content">
+            <span class="eyebrow">Sistema de Ensino</span>
+            <h3>Sistema Mackenzie de Ensino</h3>
+            <p>Tradição, inovação e excelência acadêmica em cada etapa da aprendizagem.</p>
+            <a href="#" class="btn-ez btn-ez-outline btn-ez-sm">Conheça Mais <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SEGMENTOS
+    ========================================================== -->
+    <section class="segmentos" id="segmentos">
+      <div class="container-custom">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <span class="eyebrow justify-content-center">Segmentos</span>
+          <h2 class="section-title">Uma jornada educacional completa</h2>
+        </div>
+
+        <div class="segmentos-grid">
+          <div class="segmento-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="segmento-icon"><i class="bi bi-emoji-smile"></i></div>
+            <h4>Educação Infantil</h4>
+            <p>Ambiente acolhedor e seguro para crescer e aprender brincando.</p>
+          </div>
+          <div class="segmento-card" data-aos="fade-up" data-aos-delay="80">
+            <div class="segmento-icon"><i class="bi bi-backpack2"></i></div>
+            <h4>Fundamental I <small class="d-block text-secondary fw-normal">(1º ao 5º ano)</small></h4>
+            <p>Base sólida para formar alunos confiantes e protagonistas.</p>
+          </div>
+          <div class="segmento-card" data-aos="fade-up" data-aos-delay="160">
+            <div class="segmento-icon"><i class="bi bi-book"></i></div>
+            <h4>Fundamental II <small class="d-block text-secondary fw-normal">(6º ao 9º ano)</small></h4>
+            <p>Preparação acadêmica e humana para novos desafios.</p>
+          </div>
+          <div class="segmento-card" data-aos="fade-up" data-aos-delay="240">
+            <div class="segmento-icon"><i class="bi bi-award"></i></div>
+            <h4>Sistema Mackenzie</h4>
+            <p>Material didático completo e metodologia reconhecida nacionalmente.</p>
+          </div>
+          <div class="segmento-card" data-aos="fade-up" data-aos-delay="320">
+            <div class="segmento-icon"><i class="bi bi-laptop"></i></div>
+            <h4>Portal Sponte</h4>
+            <p>Gestão escolar moderna e comunicação eficiente com as famílias.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CTA FINAL
+    ========================================================== -->
+    <section class="cta-final" id="matriculas">
+      <div class="container-custom">
+        <div class="cta-card" data-aos="zoom-in">
+          <div class="cta-content">
+            <span class="eyebrow">Matrículas Abertas</span>
+            <h2>Garanta já a vaga do seu filho para o próximo ano letivo!</h2>
+            <p>Vagas limitadas por turma. Fale com nossa equipe pedagógica e conheça de perto a nossa estrutura.</p>
+            <a href="#contato" class="btn-ez btn-ez-light">Fazer Matrícula <i class="bi bi-arrow-right"></i></a>
+          </div>
+          <div class="cta-visual">
+            <img src="assets/img/estudante-cta.png" alt="Estudante da escola" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+  <footer class="footer" id="contato">
+    <div class="container-custom">
+      <div class="footer-grid">
+
+        <div class="footer-col">
+          <div class="footer-brand">
+            <img src="assets/logo/logo.png" alt="Logotipo Escola Presbiteriana Zenaide Magalhães">
+          </div>
+          <p class="footer-desc">Integrando a criança com Deus, a família e a sociedade desde 2000.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contato</h5>
+          <div class="footer-contact-item">
+            <i class="bi bi-geo-alt-fill"></i>
+            <span>Rua Projetada, 123 - Centro<br>São Bento do Una - PE, CEP: 55370-000</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="bi bi-whatsapp"></i>
+            <span>(87) 99971-2427</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="bi bi-envelope-fill"></i>
+            <span>contato@epzm.com.br</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Institucional</h5>
+          <ul class="list-unstyled footer-links">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#a-escola">A Escola</a></li>
+            <li><a href="#segmentos">Segmentos</a></li>
+            <li><a href="#mackenzie">Sistema Mackenzie</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Portais</h5>
+          <ul class="list-unstyled footer-links">
+            <li><a href="#">Portal do Aluno</a></li>
+            <li><a href="#">Portal do Professor</a></li>
+            <li><a href="#">Trabalhe Conosco</a></li>
+            <li><a href="#">Fale Conosco</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; <span id="currentYear">2026</span> Escola Presbiteriana Zenaide Magalhães. Todos os direitos reservados.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Política de Privacidade</a>
+          <a href="#">LGPD</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap Bundle (includes Popper) -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- AOS -->
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <!-- Custom JS -->
+  <script src="js/script.js"></script>
+</body>
+</html>
