@@ -352,22 +352,49 @@
    gap: 30px;
   }
 
+  /* Mobile: stack visual and stats vertically with consistent sizing */
+  .quem-somos-visual {
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+   align-items: stretch;
+  }
+
   .quem-somos-image {
-   min-height: 250px;
+   width: 100%;
+   min-height: 160px; /* controlled height to avoid disproportion */
+   border-radius: var(--radius-lg);
+   overflow: hidden;
+  }
+
+  .quem-somos-image img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   display: block;
   }
 
   .stats-stack {
+   display: flex;
    flex-direction: column;
-   gap: 14px;
+   gap: 12px;
+   justify-content: center;
   }
 
   .stat-card {
-   flex: 1 1 100%;
-   padding: 18px 16px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   background: var(--color-light);
+   border-radius: var(--radius-md);
+   padding: 14px 16px;
+   min-height: 86px; /* keeps cards visually balanced with image */
   }
 
   .stat-number {
-   font-size: 24px;
+   font-size: 22px;
+   font-weight: 700;
+   color: var(--color-primary);
   }
 
   .stat-label {
