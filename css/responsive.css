@@ -67,6 +67,9 @@
   .hero-visual {
    order: -1;
    margin-bottom: 20px;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
   }
 
   .hero-text {
@@ -74,13 +77,13 @@
   }
 
   .hero-quote-card {
-   left: 0;
-   right: 0;
+   position: static;
+   left: auto;
+   right: auto;
    bottom: auto;
-   top: 100%;
+   top: auto;
    max-width: none;
    margin-top: 20px;
-   position: relative;
    transform: none;
   }
 
@@ -206,10 +209,15 @@
 
   .topbar-links a {
    gap: 4px;
+   min-width: 44px;
+   width: 44px;
+   height: 44px;
+   justify-content: center;
+   padding: 0;
   }
 
   .topbar-links a i {
-   font-size: 13px;
+   font-size: 18px;
   }
 
   .topbar-links a span {
@@ -226,6 +234,15 @@
 
   .topbar-social {
    gap: 10px;
+  }
+
+  .topbar-social a {
+   width: 44px;
+   height: 44px;
+  }
+
+  .topbar-social a i {
+   font-size: 16px;
   }
 
   .main-navbar {
