@@ -70,6 +70,7 @@
    display: flex;
    flex-direction: column;
    gap: 20px;
+   padding-bottom: 100px;
   }
 
   .hero-text {
@@ -77,13 +78,13 @@
   }
 
   .hero-quote-card {
-   position: static;
-   left: auto;
+   position: absolute;
+   left: 0;
+   bottom: -28px;
    right: auto;
-   bottom: auto;
-   top: auto;
-   max-width: none;
-   margin-top: 20px;
+   max-width: min(420px, calc(100% - 24px));
+   width: 100%;
+   margin-top: 0;
    transform: none;
   }
 
@@ -207,16 +208,27 @@
    gap: 12px;
   }
 
-  .topbar-links a {
-   gap: 4px;
-   min-width: 44px;
+  .topbar-links a,
+  .topbar-social a {
    width: 44px;
    height: 44px;
-   justify-content: center;
+   min-width: 44px;
    padding: 0;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 50%;
+   background: rgba(255, 255, 255, 0.12);
+   color: rgba(255, 255, 255, 0.92);
+   transition: var(--transition-base);
   }
 
-  .topbar-links a i {
+  .topbar-links a {
+   gap: 0;
+  }
+
+  .topbar-links a i,
+  .topbar-social a i {
    font-size: 18px;
   }
 
@@ -234,15 +246,6 @@
 
   .topbar-social {
    gap: 10px;
-  }
-
-  .topbar-social a {
-   width: 44px;
-   height: 44px;
-  }
-
-  .topbar-social a i {
-   font-size: 16px;
   }
 
   .main-navbar {
@@ -425,6 +428,7 @@
   .mackenzie-card {
    padding: 30px 22px;
    gap: 20px;
+   flex-wrap: wrap;
   }
 
   .mackenzie-logo {
@@ -450,6 +454,10 @@
   .segmentos-grid {
    grid-template-columns: 1fr;
    gap: 14px;
+  }
+
+  .segmento-card {
+   min-height: auto;
   }
 
   .segmento-card {
@@ -498,6 +506,10 @@
 
   .footer {
    padding: 50px 0 0;
+  }
+
+  .footer-grid {
+   align-items: start;
   }
 
   .footer-grid {
@@ -577,9 +589,53 @@
    font-size: 14px;
   }
 
+  .main-navbar .container-custom {
+   flex-wrap: wrap;
+   align-items: center;
+  }
+
+  .hero-visual,
+  .hero-visual-frame {
+   width: 100%;
+   max-width: 100%;
+  }
+
+  .hero-visual-frame {
+   aspect-ratio: 4 / 3.4;
+  }
+
+  .hero-visual-frame img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   display: block;
+  }
+
   .hero-quote-card {
+   width: 100%;
+   max-width: 100%;
    padding: 16px 18px;
    gap: 10px;
+  }
+
+  .cta-visual img {
+   width: 100%;
+   max-width: 260px;
+   margin: 0 auto;
+  }
+
+  .segmentos-grid {
+   grid-template-columns: 1fr;
+   gap: 16px;
+  }
+
+  .diferenciais-grid {
+   grid-template-columns: 1fr;
+   gap: 12px;
+  }
+
+  .diferencial-card {
+   padding: 18px 14px;
   }
 
   .hero-quote-card i {
