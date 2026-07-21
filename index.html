@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Escola Presbiteriana Zenaide Magalhães | Educação Cristã em São Bento do Una - PE</title>
-  <meta name="description" content="Escola Presbiteriana Zenaide Magalhães — educação cristã, excelência acadêmica e formação integral para crianças e adolescentes em São Bento do Una, Pernambuco.">
-  <meta name="keywords" content="escola presbiteriana, escola cristã, São Bento do Una - PE, educação infantil, ensino fundamental, sistema mackenzie">
+  <meta name="description"
+    content="Escola Presbiteriana Zenaide Magalhães — educação cristã, excelência acadêmica e formação integral para crianças e adolescentes em São Bento do Una, Pernambuco.">
+  <meta name="keywords"
+    content="escola presbiteriana, escola cristã, São Bento do Una - PE, educação infantil, ensino fundamental, sistema mackenzie">
   <meta name="author" content="Escola Presbiteriana Zenaide Magalhães">
 
   <!-- Open Graph -->
@@ -32,26 +35,30 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
+
 <body>
 
   <!-- =========================================================
        TOPBAR
   ========================================================== -->
+  <!-- =========================================================
+       TOPBAR
+  ========================================================== -->
   <div class="topbar">
     <div class="container-custom">
-      <div class="topbar-welcome">
+      <div class="topbar-welcome d-none d-lg-flex">
         <i class="bi bi-heart-fill"></i>
         <span>Seja bem-vindo à Escola Presbiteriana Zenaide Magalhães!</span>
       </div>
       <div class="topbar-links">
-        <a href="#"><i class="bi bi-mortarboard-fill"></i><span class="topbar-label">Portal do Aluno</span></a>
-        <a href="#"><i class="bi bi-person-workspace"></i><span class="topbar-label">Portal do Professor</span></a>
-        <a href="#"><i class="bi bi-briefcase-fill"></i><span class="topbar-label">Trabalhe Conosco</span></a>
+        <a href="#" class="topbar-item" title="Portal do Aluno"><i class="bi bi-mortarboard-fill"></i><span class="topbar-label">Portal do Aluno</span></a>
+        <a href="#" class="topbar-item" title="Portal do Professor"><i class="bi bi-person-workspace"></i><span class="topbar-label">Portal do Professor</span></a>
+        <a href="#" class="topbar-item" title="Trabalhe Conosco"><i class="bi bi-briefcase-fill"></i><span class="topbar-label">Trabalhe Conosco</span></a>
         <div class="topbar-divider d-none d-md-block"></div>
-        <a href="tel:+558799712427"><i class="bi bi-whatsapp"></i><span class="topbar-label">(87) 99971-2427</span></a>
+        <a href="tel:+558799712427" class="topbar-item topbar-phone" title="WhatsApp / Atendimento"><i class="bi bi-whatsapp"></i><span class="topbar-label">(87) 99971-2427</span></a>
         <div class="topbar-social">
-          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram" title="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="Facebook" title="Facebook"><i class="bi bi-facebook"></i></a>
         </div>
       </div>
     </div>
@@ -68,7 +75,7 @@
           <img src="assets/logo/logo.png" alt="Logotipo Escola Presbiteriana Zenaide Magalhães">
         </a>
 
-        <ul class="nav-menu d-none d-xxl-flex list-unstyled mb-0">
+        <ul class="nav-menu d-none d-xl-flex list-unstyled mb-0">
           <li class="nav-item active"><a class="nav-link" href="#inicio">Início</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">A Escola</a>
@@ -94,8 +101,9 @@
         </ul>
 
         <div class="d-flex align-items-center gap-3">
-          <a href="#matriculas" class="btn-ez btn-ez-primary btn-ez-sm d-none d-xxl-inline-flex">Matrículas Abertas</a>
-          <button class="navbar-toggler-custom d-xxl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Abrir menu">
+          <a href="#matriculas" class="btn-ez btn-ez-primary btn-ez-sm d-none d-xl-inline-flex">Matrículas Abertas</a>
+          <button class="navbar-toggler-custom d-xl-none" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Abrir menu">
             <i class="bi bi-list"></i>
           </button>
         </div>
@@ -105,26 +113,90 @@
   </header>
 
   <!-- Mobile Offcanvas Menu -->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
-    <div class="offcanvas-header">
-      <span class="brand-text">
-        <span class="brand-top">Escola Presbiteriana</span>
-        <span class="brand-main" id="mobileMenuLabel">Zenaide Magalhães</span>
-      </span>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+  <div class="offcanvas offcanvas-end mobile-offcanvas" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+    <div class="offcanvas-header border-bottom">
+      <a href="#inicio" class="d-flex align-items-center gap-2 text-decoration-none">
+        <img src="assets/logo/logo.png" alt="Escola Presbiteriana Zenaide Magalhães" class="offcanvas-logo">
+      </a>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
     </div>
-    <div class="offcanvas-body">
-      <ul class="list-unstyled d-flex flex-column gap-1">
-        <li><a class="nav-link fw-medium" href="#inicio">Início</a></li>
-        <li><a class="nav-link fw-medium" href="#a-escola">A Escola</a></li>
-        <li><a class="nav-link fw-medium" href="#segmentos">Segmentos</a></li>
-        <li><a class="nav-link fw-medium" href="#proposta">Proposta Pedagógica</a></li>
-        <li><a class="nav-link fw-medium" href="#mackenzie">Sistema Mackenzie</a></li>
-        <li><a class="nav-link fw-medium" href="#eventos">Eventos</a></li>
-        <li><a class="nav-link fw-medium" href="#equipe">Equipe</a></li>
-        <li><a class="nav-link fw-medium" href="#contato">Contato</a></li>
+    <div class="offcanvas-body d-flex flex-column justify-content-between">
+      <ul class="mobile-nav-list list-unstyled mb-3">
+        <li><a class="mobile-nav-link active" href="#inicio"><i class="bi bi-house-door me-2"></i>Início</a></li>
+
+        <!-- Collapsible A Escola -->
+        <li class="mobile-nav-item">
+          <a class="mobile-nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+            href="#collapseAEscola" role="button" aria-expanded="false" aria-controls="collapseAEscola">
+            <span><i class="bi bi-building me-2"></i>A Escola</span>
+            <i class="bi bi-chevron-down collapse-icon"></i>
+          </a>
+          <div class="collapse mobile-submenu" id="collapseAEscola">
+            <ul class="list-unstyled ps-3 py-2">
+              <li><a class="mobile-sub-link" href="#a-escola"><i class="bi bi-info-circle me-2"></i>Quem Somos</a></li>
+              <li><a class="mobile-sub-link" href="#a-escola"><i class="bi bi-clock-history me-2"></i>Nossa História</a>
+              </li>
+              <li><a class="mobile-sub-link" href="#mackenzie"><i class="bi bi-journal-bookmark me-2"></i>Sistema de
+                  Ensino</a></li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Collapsible Segmentos -->
+        <li class="mobile-nav-item">
+          <a class="mobile-nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+            href="#collapseSegmentos" role="button" aria-expanded="false" aria-controls="collapseSegmentos">
+            <span><i class="bi bi-grid me-2"></i>Segmentos</span>
+            <i class="bi bi-chevron-down collapse-icon"></i>
+          </a>
+          <div class="collapse mobile-submenu" id="collapseSegmentos">
+            <ul class="list-unstyled ps-3 py-2">
+              <li><a class="mobile-sub-link" href="#segmentos"><i class="bi bi-emoji-smile me-2"></i>Educação
+                  Infantil</a></li>
+              <li><a class="mobile-sub-link" href="#segmentos"><i class="bi bi-backpack2 me-2"></i>Fundamental I</a>
+              </li>
+              <li><a class="mobile-sub-link" href="#segmentos"><i class="bi bi-book me-2"></i>Fundamental II</a></li>
+            </ul>
+          </div>
+        </li>
+
+        <li><a class="mobile-nav-link" href="#proposta"><i class="bi bi-lightbulb me-2"></i>Proposta Pedagógica</a></li>
+        <li><a class="mobile-nav-link" href="#mackenzie"><i class="bi bi-award me-2"></i>Sistema Mackenzie</a></li>
+        <li><a class="mobile-nav-link" href="#eventos"><i class="bi bi-calendar-event me-2"></i>Eventos</a></li>
+        <li><a class="mobile-nav-link" href="#equipe"><i class="bi bi-people me-2"></i>Equipe</a></li>
+        <li><a class="mobile-nav-link" href="#contato"><i class="bi bi-envelope me-2"></i>Contato</a></li>
       </ul>
-      <a href="#matriculas" class="btn-ez btn-ez-primary w-100 mt-4">Matrículas Abertas</a>
+
+      <div class="mobile-offcanvas-footer pt-3 border-top">
+        <!-- Padronização das Redes Sociais no Sidebar -->
+        <div class="mobile-social-bar mb-3">
+          <span class="mobile-social-title">Siga-nos:</span>
+          <div class="mobile-social-links">
+            <a href="https://wa.me/5587999712427" target="_blank" rel="noopener" aria-label="WhatsApp" class="mobile-social-icon icon-wa" title="WhatsApp">
+              <i class="bi bi-whatsapp"></i>
+            </a>
+            <a href="#" target="_blank" rel="noopener" aria-label="Instagram" class="mobile-social-icon icon-ig" title="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a href="#" target="_blank" rel="noopener" aria-label="Facebook" class="mobile-social-icon icon-fb" title="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="#" target="_blank" rel="noopener" aria-label="YouTube" class="mobile-social-icon icon-yt" title="YouTube">
+              <i class="bi bi-youtube"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="mobile-quick-actions mb-3">
+          <a href="https://wa.me/5587999712427" target="_blank" rel="noopener" class="mobile-action-btn btn-wa">
+            <i class="bi bi-whatsapp"></i> WhatsApp
+          </a>
+          <a href="tel:+5587999712427" class="mobile-action-btn btn-tel">
+            <i class="bi bi-telephone"></i> Ligar
+          </a>
+        </div>
+        <a href="#matriculas" class="btn-ez btn-ez-primary w-100">Matrículas Abertas</a>
+      </div>
     </div>
   </div>
 
@@ -138,7 +210,8 @@
 
           <div class="hero-col-text" data-aos="fade-right">
             <h1 class="hero-title">Integrando a criança com Deus, a família e a sociedade.</h1>
-            <p class="hero-text">Educação cristã, excelência acadêmica e formação integral para preparar crianças e adolescentes para a vida.</p>
+            <p class="hero-text">Educação cristã, excelência acadêmica e formação integral para preparar crianças e
+              adolescentes para a vida.</p>
             <div class="hero-buttons">
               <a href="#a-escola" class="btn-ez btn-ez-primary">
                 Conheça Nossa Escola <i class="bi bi-arrow-right"></i>
@@ -157,7 +230,8 @@
             <div class="hero-quote-card" data-aos="fade-up" data-aos-delay="150">
               <i class="bi bi-quote"></i>
               <div>
-                <blockquote>&ldquo;Ensina a criança no caminho em que deve andar, e ainda quando for velho não se desviará dele.&rdquo;</blockquote>
+                <blockquote>&ldquo;Ensina a criança no caminho em que deve andar, e ainda quando for velho não se
+                  desviará dele.&rdquo;</blockquote>
                 <cite>Provérbios 22:6</cite>
               </div>
             </div>
@@ -212,13 +286,16 @@
           <div class="quem-somos-text" data-aos="fade-right">
             <span class="eyebrow">Quem Somos</span>
             <h2 class="section-title">Há mais de 20 anos educando com propósito e transformando vidas.</h2>
-            <p class="section-text mb-4">Desde 2000, a Escola Presbiteriana Zenaide Magalhães tem como missão oferecer educação de qualidade, valores cristãos e formação integral para preparar nossos alunos para os desafios do mundo contemporâneo.</p>
+            <p class="section-text mb-4">Desde 2000, a Escola Presbiteriana Zenaide Magalhães tem como missão oferecer
+              educação de qualidade, valores cristãos e formação integral para preparar nossos alunos para os desafios
+              do mundo contemporâneo.</p>
             <a href="#" class="btn-ez btn-ez-primary">Conheça Nossa História <i class="bi bi-arrow-right"></i></a>
           </div>
 
           <div class="quem-somos-visual" data-aos="fade-left">
             <div class="quem-somos-image">
-              <img src="assets/img/fachada-escola.jpeg" alt="Fachada da Escola Presbiteriana Zenaide Magalhães" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+              <img src="assets/img/fachada-escola.jpeg" alt="Fachada da Escola Presbiteriana Zenaide Magalhães"
+                loading="lazy" style="width:100%;height:100%;object-fit:cover;">
             </div>
 
             <div class="stats-stack">
@@ -345,15 +422,16 @@
           <h5>Contato</h5>
           <div class="footer-contact-item">
             <i class="bi bi-geo-alt-fill"></i>
-            <span>Rua Projetada, 123 - Centro<br>São Bento do Una - PE, CEP: 55370-000</span>
+            <span><a href="https://maps.google.com/?q=São+Bento+do+Una+PE" target="_blank" rel="noopener">Rua Projetada,
+                123 - Centro<br>São Bento do Una - PE, CEP: 55370-000</a></span>
           </div>
           <div class="footer-contact-item">
             <i class="bi bi-whatsapp"></i>
-            <span>(87) 99971-2427</span>
+            <span><a href="https://wa.me/5587999712427" target="_blank" rel="noopener">(87) 99971-2427</a></span>
           </div>
           <div class="footer-contact-item">
             <i class="bi bi-envelope-fill"></i>
-            <span>contato@epzm.com.br</span>
+            <span><a href="mailto:contato@epzm.com.br">contato@epzm.com.br</a></span>
           </div>
         </div>
 
@@ -373,14 +451,15 @@
             <li><a href="#">Portal do Aluno</a></li>
             <li><a href="#">Portal do Professor</a></li>
             <li><a href="#">Trabalhe Conosco</a></li>
-            <li><a href="#">Fale Conosco</a></li>
+            <li><a href="#contato">Fale Conosco</a></li>
           </ul>
         </div>
 
       </div>
 
       <div class="footer-bottom">
-        <span>&copy; <span id="currentYear">2026</span> Escola Presbiteriana Zenaide Magalhães. Todos os direitos reservados.</span>
+        <span>&copy; <span id="currentYear">2026</span> Escola Presbiteriana Zenaide Magalhães. Todos os direitos
+          reservados.</span>
         <div class="footer-bottom-links">
           <a href="#">Política de Privacidade</a>
           <a href="#">LGPD</a>
@@ -388,6 +467,13 @@
       </div>
     </div>
   </footer>
+
+  <!-- Botões Flutuantes (WhatsApp e Voltar ao Topo) -->
+  <div class="floating-buttons-wrapper">
+    <button type="button" id="backToTopBtn" class="btn-floating btn-back-to-top" aria-label="Voltar ao topo">
+      <i class="bi bi-arrow-up"></i>
+    </button>
+  </div>
 
   <!-- Bootstrap Bundle (includes Popper) -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -398,4 +484,5 @@
   <!-- Custom JS -->
   <script src="js/script.js"></script>
 </body>
+
 </html>

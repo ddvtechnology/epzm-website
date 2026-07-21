@@ -2,7 +2,7 @@
    Responsive rules — mobile-first overrides
    ========================================================================== */
 
-/* Large desktops / laptops */
+/* Large desktops / laptops (max-width: 1399px) */
 @media (max-width: 1399px) {
   .diferenciais-grid {
     gap: 20px;
@@ -12,7 +12,7 @@
   }
 }
 
-/* Tablets landscape */
+/* Desktop médio / Tablets landscape (max-width: 1199px) */
 @media (max-width: 1199px) {
   .hero-row {
     gap: 40px;
@@ -22,32 +22,71 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .cta-visual svg {
-    width: 170px;
+  .cta-visual img {
+    width: 280px;
   }
 }
 
-/* Tablets portrait */
+/* Tablets portrait (max-width: 991px) */
 @media (max-width: 991px) {
   .section-padding {
     padding: 70px 0;
+  }
+
+  .topbar-welcome {
+    display: none !important;
+  }
+
+  .topbar .container-custom {
+    justify-content: center;
+  }
+
+  .topbar-links {
+    gap: 8px;
   }
 
   .topbar-links span.topbar-label {
     display: none;
   }
 
-  .topbar-welcome span {
-    display: none;
+  /* Padronização uniforme de TODOS os ícones da topbar (Portais, WhatsApp e Redes) */
+  .topbar-links a.topbar-item {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: #ffffff;
+    transition: var(--transition-base);
+  }
+
+  .topbar-links a.topbar-item:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .topbar-social {
+    gap: 8px;
+  }
+
+  .topbar-social a {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.15);
   }
 
   .hero-row {
     grid-template-columns: 1fr;
+    gap: 30px;
   }
 
   .hero-visual {
     order: -1;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
   }
 
   .hero-text {
@@ -57,12 +96,14 @@
   .hero-quote-card {
     left: 16px;
     right: 16px;
-    bottom: -30px;
+    bottom: -24px;
     max-width: none;
+    padding: 20px 24px;
   }
 
   .diferenciais-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 
   .quem-somos-row {
@@ -75,12 +116,13 @@
   }
 
   .stats-stack {
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
   .stat-card {
-    flex: 1 1 calc(50% - 10px);
+    width: 100%;
   }
 
   .mackenzie-card {
@@ -95,6 +137,7 @@
 
   .segmentos-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
   }
 
   .cta-card {
@@ -111,6 +154,7 @@
 
   .cta-visual {
     justify-self: center;
+    margin-top: 20px;
   }
 
   .footer-grid {
@@ -119,26 +163,36 @@
   }
 }
 
-/* Mobile */
+/* Smartphones em geral (max-width: 767px) */
 @media (max-width: 767px) {
   .container-custom {
-    padding: 0 18px;
+    padding: 0 20px;
+  }
+
+  .topbar {
+    padding: 8px 0;
   }
 
   .topbar .container-custom {
-    justify-content: center;
+    justify-content: center !important;
+    align-items: center !important;
   }
 
   .topbar-links {
-    gap: 16px;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto;
+    gap: 10px;
   }
 
-  .topbar-links a span {
-    display: none;
+  .topbar-social a {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
   }
 
   .navbar-brand-custom img {
-    height: 44px;
+    height: 46px;
   }
 
   .main-navbar.is-scrolled .navbar-brand-custom img {
@@ -153,87 +207,216 @@
     font-size: 9px;
   }
 
-  .navbar-cta {
-    display: none;
+  .hero {
+    padding: 30px 0 70px;
   }
 
-  .hero {
-    padding: 40px 0 90px;
+  .hero-title {
+    font-size: clamp(26px, 6vw, 34px);
+    margin-bottom: 16px;
+  }
+
+  .hero-text {
+    font-size: 15.5px;
+    margin-bottom: 26px;
   }
 
   .hero-buttons {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
   }
 
   .hero-buttons .btn-ez {
     width: 100%;
   }
 
+  .hero-visual {
+    margin-bottom: 36px;
+  }
+
   .hero-quote-card {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
-    gap: 12px;
+    gap: 14px;
+    padding: 16px 18px;
+    left: 10px;
+    right: 10px;
+    bottom: -20px;
+  }
+
+  .hero-quote-card i {
+    font-size: 22px;
+  }
+
+  .hero-quote-card blockquote {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .hero-quote-card cite {
+    font-size: 11.5px;
+  }
+
+  .diferenciais {
+    padding: 60px 0 30px;
   }
 
   .diferenciais-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .diferencial-card {
+    padding: 24px 20px;
+  }
+
+  .quem-somos {
+    padding: 60px 0;
   }
 
   .stats-stack {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
   .stat-card {
-    flex: 1 1 100%;
+    padding: 18px 14px;
+  }
+
+  .stat-number {
+    font-size: 24px;
+  }
+
+  .stat-label {
+    font-size: 11.5px;
+  }
+
+  .mackenzie {
+    padding-bottom: 60px;
+  }
+
+  .mackenzie-card {
+    padding: 32px 20px;
+    gap: 24px;
   }
 
   .mackenzie-logo {
-    width: 84px;
-    height: 84px;
-    font-size: 36px;
+    width: 76px;
+    height: 76px;
+    font-size: 32px;
+  }
+
+  .segmentos {
+    padding: 60px 0;
   }
 
   .segmentos-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
-  .segmentos {
-    padding-top: 70px;
-    padding-bottom: 70px;
+  .segmento-card {
+    padding: 24px 20px;
+  }
+
+  .cta-final {
+    padding: 60px 0;
   }
 
   .cta-card {
-    padding: 36px 22px;
+    padding: 36px 20px;
+  }
+
+  .cta-visual img {
+    width: 220px;
+    max-width: 100%;
+  }
+
+  .footer {
+    padding-top: 50px;
   }
 
   .footer-grid {
     grid-template-columns: 1fr;
-    gap: 34px;
+    gap: 30px;
+    padding-bottom: 36px;
   }
 
   .footer-bottom {
     flex-direction: column;
     text-align: center;
     justify-content: center;
+    gap: 16px;
   }
 
   .footer-bottom-links {
     justify-content: center;
   }
-}
 
-/* Small phones */
-@media (max-width: 420px) {
-  .hero-title {
-    font-size: 28px;
+  .floating-buttons-wrapper {
+    bottom: 20px;
+    right: 16px;
   }
 
-  .section-title {
+  .btn-floating {
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+  }
+
+  .btn-back-to-top {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+/* Smartphones compactos (max-width: 420px) */
+@media (max-width: 420px) {
+  .hero-title {
     font-size: 24px;
   }
 
+  .section-title {
+    font-size: 22px;
+  }
+
+  .hero-quote-card {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin-top: 14px;
+  }
+
+  .stat-number {
+    font-size: 22px;
+  }
+
+  .stat-label {
+    font-size: 10.5px;
+  }
+
   .mackenzie-card {
-    padding: 30px 20px;
+    padding: 26px 16px;
+  }
+
+  .mobile-offcanvas {
+    width: 90vw;
+  }
+}
+
+/* Enforce touch-safe hovers */
+@media (hover: hover) {
+  .diferencial-card:hover {
+    transform: translateY(-8px);
+  }
+  .stat-card:hover {
+    background: var(--color-primary);
+  }
+  .segmento-card:hover {
+    transform: translateY(-8px);
   }
 }

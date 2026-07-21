@@ -1,6 +1,6 @@
 /**
  * Escola Presbiteriana Zenaide Magalhães
- * Main JavaScript — navbar behavior, AOS init, small UX helpers
+ * Main JavaScript — navbar behavior, AOS init, mobile offcanvas, back-to-top
  */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -65,13 +65,18 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* -----------------------------------------------------------
-     Close mobile offcanvas after clicking a link
+     Close mobile offcanvas after clicking a navigation link
   ----------------------------------------------------------- */
   const offcanvasEl = document.getElementById('mobileMenu');
   if (offcanvasEl && window.bootstrap) {
     const offcanvasInstance = bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl);
-    offcanvasEl.querySelectorAll('a.nav-link, a.dropdown-item, a.btn-ez').forEach((el) => {
-      el.addEventListener('click', () => offcanvasInstance.hide());
+    offcanvasEl.querySelectorAll('a[href^="#"]').forEach((el) => {
+      el.addEventListener('click', function () {
+        // Do not close offcanvas if clicking accordion trigger
+        if (!this.hasAttribute('data-bs-toggle')) {
+          offcanvasInstance.hide();
+        }
+      });
     });
   }
 
@@ -80,6 +85,8 @@ document.addEventListener('DOMContentLoaded', function () {
   ----------------------------------------------------------- */
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
+      if (this.hasAttribute('data-bs-toggle')) return; // Ignore collapse toggles
+
       const targetId = this.getAttribute('href');
       if (targetId.length > 1) {
         const target = document.querySelector(targetId);
@@ -92,6 +99,27 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+  /* -----------------------------------------------------------
+     Back-to-Top Button logic
+  ----------------------------------------------------------- */
+  const backToTopBtn = document.getElementById('backToTopBtn');
+  if (backToTopBtn) {
+    function handleBackToTopVisibility() {
+      if (window.scrollY > 350) {
+        backToTopBtn.classList.add('is-visible');
+      } else {
+        backToTopBtn.classList.remove('is-visible');
+      }
+    }
+
+    handleBackToTopVisibility();
+    window.addEventListener('scroll', handleBackToTopVisibility, { passive: true });
+
+    backToTopBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   /* -----------------------------------------------------------
      Current year in footer
