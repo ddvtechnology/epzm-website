@@ -81,14 +81,14 @@
   }
 
   .topbar-links a.topbar-item.btn-portal-estudante {
-    background: #FFC107 !important;
-    color: #0F172A !important;
+    background: #F59E0B !important;
+    color: #FFFFFF !important;
     padding: 0;
-    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.45);
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.45);
   }
 
   .topbar-links a.topbar-item.btn-portal-estudante i {
-    color: #0F172A !important;
+    color: #FFFFFF !important;
   }
 
   .topbar-links a.topbar-item.btn-portal-professor {

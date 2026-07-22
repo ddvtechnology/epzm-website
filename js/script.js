@@ -18,16 +18,15 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* -----------------------------------------------------------
-     Navbar: shrink + blur on scroll
+     Navbar: shrink + blur on scroll (com histerese anti-trepidação)
   ----------------------------------------------------------- */
   const navbar = document.querySelector('.main-navbar');
-  const SCROLL_THRESHOLD = 40;
 
   function handleNavbarScroll() {
     if (!navbar) return;
-    if (window.scrollY > SCROLL_THRESHOLD) {
+    if (window.scrollY > 50) {
       navbar.classList.add('is-scrolled');
-    } else {
+    } else if (window.scrollY < 15) {
       navbar.classList.remove('is-scrolled');
     }
   }
@@ -88,6 +87,12 @@ document.addEventListener('DOMContentLoaded', function () {
       if (this.hasAttribute('data-bs-toggle')) return; // Ignore collapse toggles
 
       const targetId = this.getAttribute('href');
+      if (targetId === '#inicio') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
       if (targetId.length > 1) {
         const target = document.querySelector(targetId);
         if (target) {

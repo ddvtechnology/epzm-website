@@ -273,28 +273,28 @@ section {
   opacity: 0.85;
 }
 
-/* Botão Destaque Portal do Estudante (Amarelo Dourado #FFC107 com texto escuro) */
+/* Botão Destaque Portal do Estudante (Amarelo Dourado Harmonioso #F59E0B com texto branco) */
 .topbar-links a.btn-portal-estudante {
-  background: #FFC107;
-  color: #0F172A !important;
-  font-weight: 700;
+  background: #F59E0B;
+  color: #FFFFFF !important;
+  font-weight: 600;
   padding: 5px 14px;
   border-radius: 50px;
-  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.45);
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
   transition: var(--transition-base);
 }
 
 .topbar-links a.btn-portal-estudante i {
-  color: #0F172A;
+  color: #FFFFFF;
   font-size: 14px;
 }
 
 .topbar-links a.btn-portal-estudante:hover {
-  background: #e0a800;
-  color: #000000 !important;
+  background: #d97706;
+  color: #FFFFFF !important;
   opacity: 1;
   transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(255, 193, 7, 0.6);
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.55);
 }
 
 /* Botão Destaque Portal do Professor (Roxo #280047 com texto branco) */
@@ -363,7 +363,7 @@ header,
 .main-navbar {
   background: var(--color-white);
   padding: 0;
-  height: var(--navbar-height);
+  height: 76px;
   display: flex;
   align-items: center;
   width: 100%;
@@ -372,9 +372,9 @@ header,
 }
 
 .main-navbar.is-scrolled {
-  height: var(--navbar-height-scrolled);
+  height: 76px;
   box-shadow: var(--shadow-md);
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom-color: var(--color-border);
@@ -395,13 +395,13 @@ header,
 }
 
 .navbar-brand-custom img {
-  height: 70px;
+  height: 52px;
   width: auto;
   transition: var(--transition-base);
 }
 
 .main-navbar.is-scrolled .navbar-brand-custom img {
-  height: 40px;
+  height: 52px;
 }
 
 .brand-text {
