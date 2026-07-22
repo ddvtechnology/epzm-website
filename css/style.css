@@ -1057,6 +1057,11 @@ button:focus-visible {
 .mobile-offcanvas {
   max-width: 320px;
   width: 85vw;
+  z-index: 10050 !important;
+}
+
+.offcanvas-backdrop {
+  z-index: 10040 !important;
 }
 
 .offcanvas-logo {
