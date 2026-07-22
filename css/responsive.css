@@ -80,20 +80,19 @@
     transform: translateY(-2px);
   }
 
-  /* Exibir botões sutis do Portal do Estudante e Portal do Professor no Mobile */
+  /* Exibir botões completos e destacados do Portal do Estudante e Portal do Professor no Mobile */
   .topbar-links a.topbar-item.btn-portal-estudante,
   .topbar-links a.topbar-item.btn-portal-professor {
     width: auto;
     height: auto;
     border-radius: 50px;
-    padding: 4px 10px;
-    font-size: 11px;
+    padding: 5px 12px;
+    font-size: 11.5px;
     font-weight: 600;
     display: inline-flex !important;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
     white-space: nowrap;
-    box-shadow: none !important;
   }
 
   .topbar-links a.topbar-item.btn-portal-estudante .topbar-label,
@@ -104,21 +103,23 @@
   .topbar-links a.topbar-item.btn-portal-estudante {
     background: #F59E0B !important;
     color: #FFFFFF !important;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.45);
   }
 
   .topbar-links a.topbar-item.btn-portal-estudante i {
     color: #FFFFFF !important;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .topbar-links a.topbar-item.btn-portal-professor {
     background: #280047 !important;
     color: #FFFFFF !important;
+    box-shadow: 0 2px 8px rgba(40, 0, 71, 0.45);
   }
 
   .topbar-links a.topbar-item.btn-portal-professor i {
     color: #FFFFFF !important;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .topbar-social {

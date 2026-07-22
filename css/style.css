@@ -273,46 +273,52 @@ section {
   opacity: 0.85;
 }
 
-/* Botão Sutil Portal do Estudante (Amarelo Dourado #F59E0B com texto branco) */
+/* Botão Destaque Portal do Estudante (Amarelo Dourado Harmonioso #F59E0B com texto branco) */
 .topbar-links a.btn-portal-estudante {
   background: #F59E0B;
   color: #FFFFFF !important;
   font-weight: 600;
-  padding: 4px 12px;
+  padding: 5px 14px;
   border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
   transition: var(--transition-base);
 }
 
 .topbar-links a.btn-portal-estudante i {
   color: #FFFFFF;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .topbar-links a.btn-portal-estudante:hover {
   background: #d97706;
   color: #FFFFFF !important;
-  opacity: 0.9;
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.55);
 }
 
-/* Botão Sutil Portal do Professor (Roxo #280047 com texto branco) */
+/* Botão Destaque Portal do Professor (Roxo #280047 com texto branco) */
 .topbar-links a.btn-portal-professor {
   background: #280047;
   color: #FFFFFF !important;
   font-weight: 600;
-  padding: 4px 12px;
+  padding: 5px 14px;
   border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(40, 0, 71, 0.4);
   transition: var(--transition-base);
 }
 
 .topbar-links a.btn-portal-professor i {
   color: #FFFFFF;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .topbar-links a.btn-portal-professor:hover {
   background: #3c006b;
   color: #FFFFFF !important;
-  opacity: 0.9;
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(40, 0, 71, 0.55);
 }
 
 .topbar-divider {
