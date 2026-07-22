@@ -240,6 +240,30 @@ section {
   opacity: 0.85;
 }
 
+/* Botão Destaque Portal do Professor (Roxo Nobre/Acadêmico com texto branco) */
+.topbar-links a.btn-portal-professor {
+  background: #5C2D91;
+  color: #FFFFFF !important;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(92, 45, 145, 0.35);
+  transition: var(--transition-base);
+}
+
+.topbar-links a.btn-portal-professor i {
+  color: #FFFFFF;
+  font-size: 14px;
+}
+
+.topbar-links a.btn-portal-professor:hover {
+  background: #4A2377;
+  color: #FFFFFF !important;
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(92, 45, 145, 0.45);
+}
+
 .topbar-divider {
   width: 1px;
   height: 14px;

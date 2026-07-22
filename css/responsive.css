@@ -7,6 +7,7 @@
   .diferenciais-grid {
     gap: 20px;
   }
+
   .segmentos-grid {
     gap: 16px;
   }
@@ -66,6 +67,13 @@
   .topbar-links a.topbar-item:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
+  }
+
+  .topbar-links a.topbar-item.btn-portal-professor {
+    background: #280047 !important;
+    color: #FFFFFF !important;
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(92, 45, 145, 0.4);
   }
 
   .topbar-social {
@@ -413,9 +421,11 @@
   .diferencial-card:hover {
     transform: translateY(-8px);
   }
+
   .stat-card:hover {
     background: var(--color-primary);
   }
+
   .segmento-card:hover {
     transform: translateY(-8px);
   }
