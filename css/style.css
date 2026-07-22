@@ -42,7 +42,7 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
 }
 
@@ -52,7 +52,7 @@ body {
   font-weight: 400;
   line-height: 1.65;
   background-color: var(--color-white);
-  overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
   position: relative;
 }
@@ -181,6 +181,39 @@ section {
   font-size: 14px;
 }
 
+/* Botão Destaque Responsivo MATRÍCULA E REMATRÍCULA ONLINE - 2027 */
+.btn-header-matricula,
+.btn-mobile-matricula {
+  white-space: normal !important;
+  text-align: center;
+  line-height: 1.25;
+  font-weight: 700;
+  border-radius: 50px;
+  word-wrap: break-word;
+}
+
+.btn-header-matricula {
+  font-size: 11.5px;
+  padding: 8px 18px;
+  max-width: 240px;
+  letter-spacing: 0.3px;
+}
+
+.btn-header-matricula .btn-subtext,
+.btn-mobile-matricula .btn-subtext {
+  font-size: 10.5px;
+  font-weight: 600;
+  opacity: 0.95;
+  letter-spacing: 0.8px;
+  display: inline-block;
+}
+
+.btn-mobile-matricula {
+  font-size: 12.5px;
+  padding: 10px 16px;
+  width: 100%;
+}
+
 .btn-ez-light {
   background: var(--color-white);
   color: var(--color-primary);
@@ -240,14 +273,38 @@ section {
   opacity: 0.85;
 }
 
-/* Botão Destaque Portal do Professor (Roxo Nobre/Acadêmico com texto branco) */
+/* Botão Destaque Portal do Estudante (Amarelo Dourado #FFC107 com texto escuro) */
+.topbar-links a.btn-portal-estudante {
+  background: #FFC107;
+  color: #0F172A !important;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.45);
+  transition: var(--transition-base);
+}
+
+.topbar-links a.btn-portal-estudante i {
+  color: #0F172A;
+  font-size: 14px;
+}
+
+.topbar-links a.btn-portal-estudante:hover {
+  background: #e0a800;
+  color: #000000 !important;
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(255, 193, 7, 0.6);
+}
+
+/* Botão Destaque Portal do Professor (Roxo #280047 com texto branco) */
 .topbar-links a.btn-portal-professor {
-  background: #5C2D91;
+  background: #280047;
   color: #FFFFFF !important;
   font-weight: 600;
   padding: 5px 14px;
   border-radius: 50px;
-  box-shadow: 0 2px 8px rgba(92, 45, 145, 0.35);
+  box-shadow: 0 2px 8px rgba(40, 0, 71, 0.4);
   transition: var(--transition-base);
 }
 
@@ -257,11 +314,11 @@ section {
 }
 
 .topbar-links a.btn-portal-professor:hover {
-  background: #4A2377;
+  background: #3c006b;
   color: #FFFFFF !important;
   opacity: 1;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(92, 45, 145, 0.45);
+  box-shadow: 0 4px 14px rgba(40, 0, 71, 0.55);
 }
 
 .topbar-divider {
@@ -295,15 +352,21 @@ section {
    Navbar
    ========================================================================== */
 
+header,
+.site-header-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1050;
+  width: 100%;
+}
+
 .main-navbar {
   background: var(--color-white);
   padding: 0;
   height: var(--navbar-height);
   display: flex;
   align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  width: 100%;
   transition: var(--transition-base);
   border-bottom: 1px solid transparent;
 }

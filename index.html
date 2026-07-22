@@ -39,32 +39,37 @@
 <body>
 
   <!-- =========================================================
-       TOPBAR
+       HEADER (TOPBAR + NAVBAR FIXAS)
   ========================================================== -->
-  <div class="topbar">
-    <div class="container-custom">
-      <div class="topbar-welcome d-none d-lg-flex">
-        <i class="bi bi-heart-fill"></i>
-        <span>Seja bem-vindo à Escola Presbiteriana Zenaide Magalhães!</span>
-      </div>
-      <div class="topbar-links">
-        <a href="#" class="topbar-item" title="Portal do Aluno"><i class="bi bi-mortarboard-fill"></i><span class="topbar-label">Portal do Aluno</span></a>
-        <a href="https://www.sponteeducacional.net.br/Default.aspx" target="_blank" rel="noopener" class="topbar-item btn-portal-professor" title="Portal do Professor"><i class="bi bi-person-workspace"></i><span class="topbar-label">Portal do Professor</span></a>
-        <a href="#" class="topbar-item" title="Trabalhe Conosco"><i class="bi bi-briefcase-fill"></i><span class="topbar-label">Trabalhe Conosco</span></a>
-        <div class="topbar-divider d-none d-md-block"></div>
-        <a href="tel:+558799712427" class="topbar-item topbar-phone" title="WhatsApp / Atendimento"><i class="bi bi-whatsapp"></i><span class="topbar-label">(87) 99971-2427</span></a>
-        <div class="topbar-social">
-          <a href="#" aria-label="Instagram" title="Instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" aria-label="Facebook" title="Facebook"><i class="bi bi-facebook"></i></a>
+  <header class="site-header-sticky">
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="container-custom">
+        <div class="topbar-welcome d-none d-lg-flex">
+          <i class="bi bi-heart-fill"></i>
+          <span>Seja bem-vindo à Escola Presbiteriana Zenaide Magalhães!</span>
+        </div>
+        <div class="topbar-links">
+          <a href="#" class="topbar-item btn-portal-estudante" title="Portal do Estudante"><i class="bi bi-mortarboard-fill"></i><span class="topbar-label">Portal do Estudante</span></a>
+          <a href="https://www.sponteeducacional.net.br/Default.aspx" target="_blank" rel="noopener"
+            class="topbar-item btn-portal-professor" title="Portal do Professor"><i
+              class="bi bi-person-workspace"></i><span class="topbar-label">Portal do Professor</span></a>
+          <a href="#" class="topbar-item" title="Trabalhe Conosco"><i class="bi bi-briefcase-fill"></i><span
+              class="topbar-label">Trabalhe Conosco</span></a>
+          <div class="topbar-divider d-none d-md-block"></div>
+          <a href="tel:+558799712427" class="topbar-item topbar-phone" title="WhatsApp / Atendimento"><i
+              class="bi bi-whatsapp"></i><span class="topbar-label">(87) 99971-2427</span></a>
+          <div class="topbar-social">
+            <a href="https://www.instagram.com/escolazenaidemagalhaes?igsh=MXUzbzU1NHZmdHBydw==" target="_blank"
+              rel="noopener" aria-label="Instagram" title="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/escolazenaidemagalhaes.sbu/" target="_blank" rel="noopener"
+              aria-label="Facebook" title="Facebook"><i class="bi bi-facebook"></i></a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- =========================================================
-       NAVBAR
-  ========================================================== -->
-  <header>
+    <!-- NAVBAR -->
     <nav class="main-navbar" id="mainNavbar">
       <div class="container-custom">
 
@@ -75,30 +80,39 @@
         <ul class="nav-menu d-none d-xl-flex list-unstyled mb-0">
           <li class="nav-item active"><a class="nav-link" href="#inicio">Início</a></li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">A Escola</a>
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sobre Nós</a>
             <ul class="dropdown-menu dropdown-menu-custom">
-              <li><a class="dropdown-item" href="#a-escola">Quem Somos</a></li>
               <li><a class="dropdown-item" href="#a-escola">Nossa História</a></li>
-              <li><a class="dropdown-item" href="#mackenzie">Sistema de Ensino</a></li>
+              <li><a class="dropdown-item" href="#a-escola">Missão, Visão e Valores</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Segmentos</a>
             <ul class="dropdown-menu dropdown-menu-custom">
+              <li><a class="dropdown-item" href="#segmentos">Hotelzinho (2 até 6 anos)</a></li>
               <li><a class="dropdown-item" href="#segmentos">Educação Infantil</a></li>
-              <li><a class="dropdown-item" href="#segmentos">Fundamental I</a></li>
-              <li><a class="dropdown-item" href="#segmentos">Fundamental II</a></li>
+              <li><a class="dropdown-item" href="#segmentos">Fundamental I (1º ao 5º ano)</a></li>
+              <li><a class="dropdown-item" href="#segmentos">Fundamental II (6º ao 9º ano)</a></li>
             </ul>
           </li>
           <li class="nav-item"><a class="nav-link" href="#proposta">Proposta Pedagógica</a></li>
-          <li class="nav-item"><a class="nav-link" href="#mackenzie">Sistema Mackenzie</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sistema de Ensino</a>
+            <ul class="dropdown-menu dropdown-menu-custom">
+              <li><a class="dropdown-item" href="https://mackensina.mackenzie.br/login">Sistema de Ensino Mackenzie</a>
+              </li>
+              <li><a class="dropdown-item" href="#" target="_blank" rel="noopener">Livros Digitais</a></li>
+            </ul>
+          </li>
           <li class="nav-item"><a class="nav-link" href="#eventos">Eventos</a></li>
           <li class="nav-item"><a class="nav-link" href="#equipe">Equipe</a></li>
           <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
         </ul>
 
         <div class="d-flex align-items-center gap-3">
-          <a href="#matriculas" class="btn-ez btn-ez-primary btn-ez-sm d-none d-xl-inline-flex">Matrículas Abertas</a>
+          <a href="#matriculas" class="btn-ez btn-ez-primary btn-header-matricula d-none d-xl-inline-flex">
+            <span>MATRÍCULA E REMATRÍCULA<br><small class="btn-subtext">ONLINE - 2027</small></span>
+          </a>
           <button class="navbar-toggler-custom d-xl-none" type="button" data-bs-toggle="offcanvas"
             data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Abrir menu">
             <i class="bi bi-list"></i>
@@ -121,20 +135,19 @@
       <ul class="mobile-nav-list list-unstyled mb-3">
         <li><a class="mobile-nav-link active" href="#inicio"><i class="bi bi-house-door me-2"></i>Início</a></li>
 
-        <!-- Collapsible A Escola -->
+        <!-- Collapsible Sobre Nós -->
         <li class="mobile-nav-item">
           <a class="mobile-nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
-            href="#collapseAEscola" role="button" aria-expanded="false" aria-controls="collapseAEscola">
-            <span><i class="bi bi-building me-2"></i>A Escola</span>
+            href="#collapseSobreNos" role="button" aria-expanded="false" aria-controls="collapseSobreNos">
+            <span><i class="bi bi-building me-2"></i>Sobre Nós</span>
             <i class="bi bi-chevron-down collapse-icon"></i>
           </a>
-          <div class="collapse mobile-submenu" id="collapseAEscola">
+          <div class="collapse mobile-submenu" id="collapseSobreNos">
             <ul class="list-unstyled ps-3 py-2">
-              <li><a class="mobile-sub-link" href="#a-escola"><i class="bi bi-info-circle me-2"></i>Quem Somos</a></li>
               <li><a class="mobile-sub-link" href="#a-escola"><i class="bi bi-clock-history me-2"></i>Nossa História</a>
               </li>
-              <li><a class="mobile-sub-link" href="#mackenzie"><i class="bi bi-journal-bookmark me-2"></i>Sistema de
-                  Ensino</a></li>
+              <li><a class="mobile-sub-link" href="#a-escola"><i class="bi bi-compass me-2"></i>Missão, Visão e
+                  Valores</a></li>
             </ul>
           </div>
         </li>
@@ -148,17 +161,37 @@
           </a>
           <div class="collapse mobile-submenu" id="collapseSegmentos">
             <ul class="list-unstyled ps-3 py-2">
+              <li><a class="mobile-sub-link" href="#segmentos"><i class="bi bi-house-heart me-2"></i>Hotelzinho (2 até 6
+                  anos)</a></li>
               <li><a class="mobile-sub-link" href="#segmentos"><i class="bi bi-emoji-smile me-2"></i>Educação
                   Infantil</a></li>
-              <li><a class="mobile-sub-link" href="#segmentos"><i class="bi bi-backpack2 me-2"></i>Fundamental I</a>
-              </li>
-              <li><a class="mobile-sub-link" href="#segmentos"><i class="bi bi-book me-2"></i>Fundamental II</a></li>
+              <li><a class="mobile-sub-link" href="#segmentos"><i class="bi bi-backpack2 me-2"></i>Fundamental I (1º ao
+                  5º ano)</a></li>
+              <li><a class="mobile-sub-link" href="#segmentos"><i class="bi bi-book me-2"></i>Fundamental II (6º ao 9º
+                  ano)</a></li>
             </ul>
           </div>
         </li>
 
         <li><a class="mobile-nav-link" href="#proposta"><i class="bi bi-lightbulb me-2"></i>Proposta Pedagógica</a></li>
-        <li><a class="mobile-nav-link" href="#mackenzie"><i class="bi bi-award me-2"></i>Sistema Mackenzie</a></li>
+
+        <!-- Collapsible Sistema de Ensino -->
+        <li class="mobile-nav-item">
+          <a class="mobile-nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+            href="#collapseSistemaEnsino" role="button" aria-expanded="false" aria-controls="collapseSistemaEnsino">
+            <span><i class="bi bi-journal-bookmark me-2"></i>Sistema de Ensino</span>
+            <i class="bi bi-chevron-down collapse-icon"></i>
+          </a>
+          <div class="collapse mobile-submenu" id="collapseSistemaEnsino">
+            <ul class="list-unstyled ps-3 py-2">
+              <li><a class="mobile-sub-link" href="https://mackensina.mackenzie.br/login"><i
+                    class="bi bi-award me-2"></i>Sistema de Ensino Mackenzie</a></li>
+              <li><a class="mobile-sub-link" href="#" target="_blank" rel="noopener"><i
+                    class="bi bi-book-half me-2"></i>Livros Digitais</a></li>
+            </ul>
+          </div>
+        </li>
+
         <li><a class="mobile-nav-link" href="#eventos"><i class="bi bi-calendar-event me-2"></i>Eventos</a></li>
         <li><a class="mobile-nav-link" href="#equipe"><i class="bi bi-people me-2"></i>Equipe</a></li>
         <li><a class="mobile-nav-link" href="#contato"><i class="bi bi-envelope me-2"></i>Contato</a></li>
@@ -169,16 +202,20 @@
         <div class="mobile-social-bar mb-3">
           <span class="mobile-social-title">Siga-nos:</span>
           <div class="mobile-social-links">
-            <a href="https://wa.me/5587999712427" target="_blank" rel="noopener" aria-label="WhatsApp" class="mobile-social-icon icon-wa" title="WhatsApp">
+            <a href="https://wa.me/5587999712427" target="_blank" rel="noopener" aria-label="WhatsApp"
+              class="mobile-social-icon icon-wa" title="WhatsApp">
               <i class="bi bi-whatsapp"></i>
             </a>
-            <a href="#" target="_blank" rel="noopener" aria-label="Instagram" class="mobile-social-icon icon-ig" title="Instagram">
+            <a href="https://www.instagram.com/escolazenaidemagalhaes?igsh=MXUzbzU1NHZmdHBydw==" target="_blank"
+              rel="noopener" aria-label="Instagram" class="mobile-social-icon icon-ig" title="Instagram">
               <i class="bi bi-instagram"></i>
             </a>
-            <a href="#" target="_blank" rel="noopener" aria-label="Facebook" class="mobile-social-icon icon-fb" title="Facebook">
+            <a href="https://www.facebook.com/escolazenaidemagalhaes.sbu/" target="_blank" rel="noopener"
+              aria-label="Facebook" class="mobile-social-icon icon-fb" title="Facebook">
               <i class="bi bi-facebook"></i>
             </a>
-            <a href="#" target="_blank" rel="noopener" aria-label="YouTube" class="mobile-social-icon icon-yt" title="YouTube">
+            <a href="#" target="_blank" rel="noopener" aria-label="YouTube" class="mobile-social-icon icon-yt"
+              title="YouTube">
               <i class="bi bi-youtube"></i>
             </a>
           </div>
@@ -192,7 +229,9 @@
             <i class="bi bi-telephone"></i> Ligar
           </a>
         </div>
-        <a href="#matriculas" class="btn-ez btn-ez-primary w-100">Matrículas Abertas</a>
+        <a href="#matriculas" class="btn-ez btn-ez-primary w-100 btn-mobile-matricula">
+          <span>MATRÍCULA E REMATRÍCULA<br><small class="btn-subtext">ONLINE - 2027</small></span>
+        </a>
       </div>
     </div>
   </div>
@@ -281,7 +320,7 @@
         <div class="quem-somos-row">
 
           <div class="quem-somos-text" data-aos="fade-right">
-            <span class="eyebrow">Quem Somos</span>
+            <span class="eyebrow">Sobre Nós</span>
             <h2 class="section-title">Há mais de 20 anos educando com propósito e transformando vidas.</h2>
             <p class="section-text mb-4">Desde 2000, a Escola Presbiteriana Zenaide Magalhães tem como missão oferecer
               educação de qualidade, valores cristãos e formação integral para preparar nossos alunos para os desafios
@@ -297,11 +336,11 @@
 
             <div class="stats-stack">
               <div class="stat-card" data-aos="zoom-in" data-aos-delay="0">
-                <span class="stat-number">650+</span>
+                <span class="stat-number">+650</span>
                 <span class="stat-label">Alunos</span>
               </div>
               <div class="stat-card" data-aos="zoom-in" data-aos-delay="100">
-                <span class="stat-number">45+</span>
+                <span class="stat-number">+45</span>
                 <span class="stat-label">Professores</span>
               </div>
               <div class="stat-card" data-aos="zoom-in" data-aos-delay="200">
@@ -328,7 +367,7 @@
           <div class="mackenzie-logo">M</div>
           <div class="mackenzie-content">
             <span class="eyebrow">Sistema de Ensino</span>
-            <h3>Sistema Mackenzie de Ensino</h3>
+            <h3>Sistema de Ensino Mackenzie</h3>
             <p>Tradição, inovação e excelência acadêmica em cada etapa da aprendizagem.</p>
             <a href="#" class="btn-ez btn-ez-outline btn-ez-sm">Conheça Mais <i class="bi bi-arrow-right"></i></a>
           </div>
@@ -348,29 +387,40 @@
 
         <div class="segmentos-grid">
           <div class="segmento-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="segmento-icon"><i class="bi bi-house-heart"></i></div>
+            <h4>Hotelzinho <small class="d-block text-secondary fw-normal">Período da Tarde (12h às 18h) • 02 até 06
+                anos</small></h4>
+            <p>Cuidado, afeto e desenvolvimento integral no turno vespertino.</p>
+          </div>
+          <div class="segmento-card" data-aos="fade-up" data-aos-delay="80">
             <div class="segmento-icon"><i class="bi bi-emoji-smile"></i></div>
             <h4>Educação Infantil</h4>
             <p>Ambiente acolhedor e seguro para crescer e aprender brincando.</p>
           </div>
-          <div class="segmento-card" data-aos="fade-up" data-aos-delay="80">
+          <div class="segmento-card" data-aos="fade-up" data-aos-delay="160">
             <div class="segmento-icon"><i class="bi bi-backpack2"></i></div>
             <h4>Fundamental I <small class="d-block text-secondary fw-normal">(1º ao 5º ano)</small></h4>
             <p>Base sólida para formar alunos confiantes e protagonistas.</p>
           </div>
-          <div class="segmento-card" data-aos="fade-up" data-aos-delay="160">
+          <div class="segmento-card" data-aos="fade-up" data-aos-delay="240">
             <div class="segmento-icon"><i class="bi bi-book"></i></div>
             <h4>Fundamental II <small class="d-block text-secondary fw-normal">(6º ao 9º ano)</small></h4>
             <p>Preparação acadêmica e humana para novos desafios.</p>
           </div>
-          <div class="segmento-card" data-aos="fade-up" data-aos-delay="240">
+          <div class="segmento-card" data-aos="fade-up" data-aos-delay="320">
             <div class="segmento-icon"><i class="bi bi-award"></i></div>
-            <h4>Sistema Mackenzie</h4>
+            <h4>Sistema de Ensino Mackenzie</h4>
             <p>Material didático completo e metodologia reconhecida nacionalmente.</p>
           </div>
-          <div class="segmento-card" data-aos="fade-up" data-aos-delay="320">
-            <div class="segmento-icon"><i class="bi bi-laptop"></i></div>
-            <h4>Portal Sponte</h4>
-            <p>Gestão escolar moderna e comunicação eficiente com as famílias.</p>
+          <div class="segmento-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="segmento-icon"><i class="bi bi-person-badge"></i></div>
+            <h4>Portal do Estudante</h4>
+            <p>Acesso rápido a boletins, horários, notas e rotina escolar.</p>
+          </div>
+          <div class="segmento-card" data-aos="fade-up" data-aos-delay="480">
+            <div class="segmento-icon"><i class="bi bi-journal-check"></i></div>
+            <h4>Agenda Digital Sponte Plus</h4>
+            <p>Comunicação instantânea, avisos e rotina diária na palma da mão.</p>
           </div>
         </div>
       </div>
@@ -409,8 +459,10 @@
           </div>
           <p class="footer-desc">Integrando a criança com Deus, a família e a sociedade desde 2000.</p>
           <div class="footer-social">
-            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/escolazenaidemagalhaes?igsh=MXUzbzU1NHZmdHBydw==" target="_blank"
+              rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/escolazenaidemagalhaes.sbu/" target="_blank" rel="noopener"
+              aria-label="Facebook"><i class="bi bi-facebook"></i></a>
             <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
           </div>
         </div>
@@ -419,8 +471,10 @@
           <h5>Contato</h5>
           <div class="footer-contact-item">
             <i class="bi bi-geo-alt-fill"></i>
-            <span><a href="https://maps.google.com/?q=São+Bento+do+Una+PE" target="_blank" rel="noopener">Rua Projetada,
-                123 - Centro<br>São Bento do Una - PE, CEP: 55370-000</a></span>
+            <span><a
+                href="https://maps.google.com/?q=Rua+Gercina+Cintra+Valen%C3%A7a+100A+Loteamento+Jo%C3%A3o+Paulo+II+S%C3%A3o+Bento+do+Una+PE+55373-338"
+                target="_blank" rel="noopener">Rua Gercina Cintra Valença, 100A<br>Loteamento João Paulo II — CEP:
+                55373-338<br>São Bento do Una - PE</a></span>
           </div>
           <div class="footer-contact-item">
             <i class="bi bi-whatsapp"></i>
@@ -436,17 +490,20 @@
           <h5>Institucional</h5>
           <ul class="list-unstyled footer-links">
             <li><a href="#inicio">Início</a></li>
-            <li><a href="#a-escola">A Escola</a></li>
+            <li><a href="#a-escola">Sobre Nós</a></li>
             <li><a href="#segmentos">Segmentos</a></li>
-            <li><a href="#mackenzie">Sistema Mackenzie</a></li>
+            <li><a href="https://mackensina.mackenzie.br/login">Sistema de Ensino</a></li>
+            <li><a href="#" target="_blank" rel="noopener">Livros Digitais</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h5>Portais</h5>
+          <h5>Portais & Sistemas</h5>
           <ul class="list-unstyled footer-links">
-            <li><a href="#">Portal do Aluno</a></li>
-            <li><a href="https://www.sponteeducacional.net.br/Default.aspx" target="_blank" rel="noopener">Portal do Professor</a></li>
+            <li><a href="#">Portal do Estudante</a></li>
+            <li><a href="https://www.sponteeducacional.net.br/Default.aspx" target="_blank" rel="noopener">Portal do
+                Professor</a></li>
+            <li><a href="#">Agenda Digital Sponte Plus</a></li>
             <li><a href="#">Trabalhe Conosco</a></li>
             <li><a href="#contato">Fale Conosco</a></li>
           </ul>

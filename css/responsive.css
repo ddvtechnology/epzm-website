@@ -4,6 +4,17 @@
 
 /* Large desktops / laptops (max-width: 1399px) */
 @media (max-width: 1399px) {
+  .btn-header-matricula {
+    font-size: 11px;
+    padding: 6px 14px;
+    max-width: 210px;
+  }
+
+  .nav-menu .nav-link {
+    font-size: 13px;
+    padding: 8px 7px !important;
+  }
+
   .diferenciais-grid {
     gap: 20px;
   }
@@ -69,11 +80,22 @@
     transform: translateY(-2px);
   }
 
+  .topbar-links a.topbar-item.btn-portal-estudante {
+    background: #FFC107 !important;
+    color: #0F172A !important;
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.45);
+  }
+
+  .topbar-links a.topbar-item.btn-portal-estudante i {
+    color: #0F172A !important;
+  }
+
   .topbar-links a.topbar-item.btn-portal-professor {
     background: #280047 !important;
     color: #FFFFFF !important;
     padding: 0;
-    box-shadow: 0 2px 8px rgba(92, 45, 145, 0.4);
+    box-shadow: 0 2px 8px rgba(40, 0, 71, 0.45);
   }
 
   .topbar-social {
