@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-bs-theme="light">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
+  <meta name="theme-color" content="#0F5A45">
   <title>Escola Presbiteriana Zenaide Magalhães | Educação Cristã em São Bento do Una - PE</title>
   <meta name="description"
     content="Escola Presbiteriana Zenaide Magalhães — educação cristã, excelência acadêmica e formação integral para crianças e adolescentes em São Bento do Una, Pernambuco.">
@@ -52,9 +55,29 @@
         <div class="topbar-links">
           <a href="#" class="topbar-item btn-portal-estudante" title="Portal do Estudante"><i
               class="bi bi-mortarboard-fill"></i><span class="topbar-label">Portal do Estudante</span></a>
-          <a href="https://www.sponteeducacional.net.br/Default.aspx" target="_blank" rel="noopener"
-            class="topbar-item btn-portal-professor" title="Portal do Professor"><i
-              class="bi bi-person-workspace"></i><span class="topbar-label">Portal do Professor</span></a>
+
+          <!-- PORTAL DO PROFESSOR DROPDOWN -->
+          <div class="dropdown d-inline-block">
+            <a href="#" class="topbar-item btn-portal-professor dropdown-toggle" data-bs-toggle="dropdown"
+              aria-expanded="false" title="Portal do Professor">
+              <i class="bi bi-person-workspace"></i><span class="topbar-label">Portal do Professor</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-custom shadow border-0">
+              <li>
+                <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                  href="https://www.sponteeducacional.net.br/Default.aspx" target="_blank" rel="noopener">
+                  <i class="bi bi-laptop text-primary"></i> Sponte Educacional
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                  href="https://planeje.escolazenaidemagalhaes.com.br" target="_blank" rel="noopener">
+                  <i class="bi bi-journal-plus text-primary"></i> Planeje+
+                </a>
+              </li>
+            </ul>
+          </div>
+
           <a href="#" class="topbar-item" title="Trabalhe Conosco"><i class="bi bi-briefcase-fill"></i><span
               class="topbar-label">Trabalhe Conosco</span></a>
           <div class="topbar-divider d-none d-md-block"></div>
@@ -84,7 +107,7 @@
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sobre Nós</a>
             <ul class="dropdown-menu dropdown-menu-custom">
               <li><a class="dropdown-item" href="#a-escola">Nossa História</a></li>
-              <li><a class="dropdown-item" href="#a-escola">Missão, Visão e Valores</a></li>
+              <li><a class="dropdown-item" href="#missao-visao-valores">Missão, Visão e Valores</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -100,10 +123,10 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sistema de Ensino</a>
             <ul class="dropdown-menu dropdown-menu-custom">
-              <li><a class="dropdown-item" href="https://mackensina.mackenzie.br/login" target="_blank">Sistema de
-                  Ensino Mackenzie</a>
-              </li>
-              <li><a class="dropdown-item" href="#">Livros Digitais</a></li>
+              <li><a class="dropdown-item" href="https://mackensina.mackenzie.br/login" target="_blank"
+                  rel="noopener">Sistema de Ensino Mackenzie</a></li>
+              <li><a class="dropdown-item" href="https://mackensina.mackenzie.br/login" target="_blank"
+                  rel="noopener">Livros Digitais</a></li>
             </ul>
           </li>
           <li class="nav-item"><a class="nav-link" href="#eventos">Eventos</a></li>
@@ -148,8 +171,8 @@
             <ul class="list-unstyled ps-3 py-2">
               <li><a class="mobile-sub-link" href="#a-escola"><i class="bi bi-clock-history me-2"></i>Nossa História</a>
               </li>
-              <li><a class="mobile-sub-link" href="#a-escola"><i class="bi bi-compass me-2"></i>Missão, Visão e
-                  Valores</a></li>
+              <li><a class="mobile-sub-link" href="#missao-visao-valores"><i class="bi bi-compass me-2"></i>Missão,
+                  Visão e Valores</a></li>
             </ul>
           </div>
         </li>
@@ -186,10 +209,27 @@
           </a>
           <div class="collapse mobile-submenu" id="collapseSistemaEnsino">
             <ul class="list-unstyled ps-3 py-2">
-              <li><a class="mobile-sub-link" href="https://mackensina.mackenzie.br/login"><i
-                    class="bi bi-award me-2"></i>Sistema de Ensino Mackenzie</a></li>
-              <li><a class="mobile-sub-link" href="#" target="_blank" rel="noopener"><i
-                    class="bi bi-book-half me-2"></i>Livros Digitais</a></li>
+              <li><a class="mobile-sub-link" href="https://mackensina.mackenzie.br/login" target="_blank"
+                  rel="noopener"><i class="bi bi-award me-2"></i>Sistema de Ensino Mackenzie</a></li>
+              <li><a class="mobile-sub-link" href="https://mackensina.mackenzie.br/login" target="_blank"
+                  rel="noopener"><i class="bi bi-book-half me-2"></i>Livros Digitais</a></li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Collapsible Portal do Professor -->
+        <li class="mobile-nav-item">
+          <a class="mobile-nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+            href="#collapsePortalProfessor" role="button" aria-expanded="false" aria-controls="collapsePortalProfessor">
+            <span><i class="bi bi-person-workspace me-2"></i>Portal do Professor</span>
+            <i class="bi bi-chevron-down collapse-icon"></i>
+          </a>
+          <div class="collapse mobile-submenu" id="collapsePortalProfessor">
+            <ul class="list-unstyled ps-3 py-2">
+              <li><a class="mobile-sub-link" href="https://www.sponteeducacional.net.br/Default.aspx" target="_blank"
+                  rel="noopener"><i class="bi bi-laptop me-2"></i>Sponte Educacional</a></li>
+              <li><a class="mobile-sub-link" href="https://planeje.escolazenaidemagalhaes.com.br" target="_blank"
+                  rel="noopener"><i class="bi bi-journal-plus me-2"></i>Planeje+</a></li>
             </ul>
           </div>
         </li>
@@ -243,7 +283,7 @@
         <div class="hero-row">
 
           <div class="hero-col-text" data-aos="fade-right">
-            <h1 class="hero-title">Integrando a criança com Deus, a família e a sociedade.</h1>
+            <h1 class="hero-title">Integrando o ser humano a Deus, à família e à sociedade.</h1>
             <p class="hero-text">Educação cristã, excelência acadêmica e formação integral para preparar crianças e
               adolescentes para a vida.</p>
             <div class="hero-buttons">
@@ -260,13 +300,13 @@
             <div class="hero-visual-frame">
               <!-- Illustrative placeholder graphic (royalty-free style) representing students -->
               <img src="assets/img/hero-alunos.jpeg" alt="Alunos sorrindo em sala de aula" loading="lazy">
-            </div>
-            <div class="hero-quote-card" data-aos="fade-up" data-aos-delay="150">
-              <i class="bi bi-quote"></i>
-              <div>
-                <blockquote>&ldquo;Ensina a criança no caminho em que deve andar, e ainda quando for velho não se
-                  desviará dele.&rdquo;</blockquote>
-                <cite>Provérbios 22:6</cite>
+              <div class="hero-quote-card">
+                <i class="bi bi-quote"></i>
+                <div>
+                  <blockquote>&ldquo;Ensina a criança no caminho em que deve andar, e ainda quando for velho não se
+                    desviará dele.&rdquo;</blockquote>
+                  <cite>— Provérbios 22:6</cite>
+                </div>
               </div>
             </div>
           </div>
@@ -311,19 +351,21 @@
     </section>
 
     <!-- =========================================================
-         QUEM SOMOS
+         QUEM SOMOS E MISSÃO, VISÃO E VALORES
     ========================================================== -->
     <section class="quem-somos" id="a-escola">
       <div class="container-custom">
-        <div class="quem-somos-row">
 
+        <!-- Linha Principal Sobre Nós -->
+        <div class="quem-somos-row mb-5">
           <div class="quem-somos-text" data-aos="fade-right">
             <span class="eyebrow">Sobre Nós</span>
             <h2 class="section-title">Há mais de 20 anos educando com propósito e transformando vidas.</h2>
-            <p class="section-text mb-4">Desde 2000, a Escola Presbiteriana Zenaide Magalhães tem como missão oferecer
-              educação de qualidade, valores cristãos e formação integral para preparar nossos alunos para os desafios
-              do mundo contemporâneo.</p>
-            <a href="#" class="btn-ez btn-ez-primary">Conheça Nossa História <i class="bi bi-arrow-right"></i></a>
+            <p class="section-text mb-4">Desde 2000, a Escola Presbiteriana Zenaide Magalhães oferece educação de
+              qualidade, valores cristãos e formação integral para preparar nossos alunos para os desafios do mundo
+              contemporâneo.</p>
+            <a href="#missao-visao-valores" class="btn-ez btn-ez-primary">Conheça Nossa Missão <i
+                class="bi bi-arrow-down"></i></a>
           </div>
 
           <div class="quem-somos-visual" data-aos="fade-left">
@@ -351,8 +393,103 @@
               </div>
             </div>
           </div>
-
         </div>
+
+        <!-- SUB-SEÇÃO: MISSÃO, VISÃO E VALORES -->
+        <div class="mvv-container pt-5 border-top" id="missao-visao-valores">
+          <div class="text-center mb-5" data-aos="fade-up">
+            <span class="eyebrow justify-content-center">Identidade Institucional</span>
+            <h2 class="section-title">Missão, Visão e Valores</h2>
+          </div>
+
+          <!-- Missão & Visão -->
+          <div class="row g-4 mb-5">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="mvv-card h-100 p-4 p-md-5 rounded-4 bg-white border shadow-sm">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div
+                    class="mvv-icon-box bg-primary text-white rounded-3 p-3 fs-3 d-inline-flex align-items-center justify-content-center">
+                    <i class="bi bi-compass"></i>
+                  </div>
+                  <div>
+                    <span class="eyebrow-small text-muted text-uppercase">Nosso Propósito</span>
+                    <h3 class="h4 mb-0 fw-bold text-primary">Missão</h3>
+                  </div>
+                </div>
+                <p class="section-text text-secondary mb-0 lead fs-6">
+                  Educar o ser humano, criado à imagem de Deus, integrando-o à família e à sociedade, em ambiente de fé
+                  cristã reformada.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+              <div class="mvv-card h-100 p-4 p-md-5 rounded-4 bg-white border shadow-sm">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <div
+                    class="mvv-icon-box bg-primary text-white rounded-3 p-3 fs-3 d-inline-flex align-items-center justify-content-center">
+                    <i class="bi bi-eye"></i>
+                  </div>
+                  <div>
+                    <span class="eyebrow-small text-muted text-uppercase">Onde Queremos Chegar</span>
+                    <h3 class="h4 mb-0 fw-bold text-primary">Visão</h3>
+                  </div>
+                </div>
+                <p class="section-text text-secondary mb-0 lead fs-6">
+                  Ser reconhecida como instituição confessional presbiteriana de excelência em São Bento do Una e
+                  região, formando cidadãos de fé, caráter e conhecimento.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Valores -->
+          <div class="valores-wrapper p-4 p-md-5 rounded-4 bg-light border" data-aos="fade-up" data-aos-delay="300">
+            <div class="text-center mb-4">
+              <span class="eyebrow justify-content-center mb-1">Fundamentos</span>
+              <h3 class="h4 fw-bold text-primary mb-0">Valores Que Nos Guiam</h3>
+            </div>
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3 text-center">
+              <div class="col">
+                <div class="valor-card p-3 rounded-4 bg-white border h-100 shadow-sm">
+                  <div class="valor-icon text-primary fs-2 mb-2"><i class="bi bi-plus-circle-fill"></i></div>
+                  <h4 class="h6 fw-bold text-dark mb-0">Fé em Deus</h4>
+                </div>
+              </div>
+              <div class="col">
+                <div class="valor-card p-3 rounded-4 bg-white border h-100 shadow-sm">
+                  <div class="valor-icon text-primary fs-2 mb-2"><i class="bi bi-heart-fill"></i></div>
+                  <h4 class="h6 fw-bold text-dark mb-0">Amor</h4>
+                </div>
+              </div>
+              <div class="col">
+                <div class="valor-card p-3 rounded-4 bg-white border h-100 shadow-sm">
+                  <div class="valor-icon text-primary fs-2 mb-2"><i class="bi bi-shield-check"></i></div>
+                  <h4 class="h6 fw-bold text-dark mb-0">Ética</h4>
+                </div>
+              </div>
+              <div class="col">
+                <div class="valor-card p-3 rounded-4 bg-white border h-100 shadow-sm">
+                  <div class="valor-icon text-primary fs-2 mb-2"><i class="bi bi-star-fill"></i></div>
+                  <h4 class="h6 fw-bold text-dark mb-0">Excelência</h4>
+                </div>
+              </div>
+              <div class="col">
+                <div class="valor-card p-3 rounded-4 bg-white border h-100 shadow-sm">
+                  <div class="valor-icon text-primary fs-2 mb-2"><i class="bi bi-people-fill"></i></div>
+                  <h4 class="h6 fw-bold text-dark mb-0">Família</h4>
+                </div>
+              </div>
+              <div class="col">
+                <div class="valor-card p-3 rounded-4 bg-white border h-100 shadow-sm">
+                  <div class="valor-icon text-primary fs-2 mb-2"><i class="bi bi-globe-americas"></i></div>
+                  <h4 class="h6 fw-bold text-dark mb-0">Comunidade</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -423,6 +560,56 @@
           </div>
         </div>
       </div>
+    <!-- =========================================================
+         NOSSA EQUIPE PREVIEW
+    ========================================================== -->
+    <section class="equipe-section" id="equipe">
+      <div class="container-custom">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <span class="eyebrow-handwritten">Nossa equipe</span>
+          <h2 class="section-title text-center">Quem cuida do seu filho todos os dias</h2>
+        </div>
+
+        <div class="equipe-grid">
+          <div class="equipe-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="equipe-avatar">
+              <img src="assets/img/equipe-1.png" alt="Maria Eduarda Santos" loading="lazy">
+            </div>
+            <h3 class="equipe-nome">Maria Eduarda Santos</h3>
+            <p class="equipe-cargo">Diretora Geral</p>
+          </div>
+
+          <div class="equipe-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="equipe-avatar">
+              <img src="assets/img/equipe-2.png" alt="José Carlos Lima" loading="lazy">
+            </div>
+            <h3 class="equipe-nome">José Carlos Lima</h3>
+            <p class="equipe-cargo">Diretor Pedagógico</p>
+          </div>
+
+          <div class="equipe-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="equipe-avatar">
+              <img src="assets/img/equipe-3.png" alt="Ana Beatriz Costa" loading="lazy">
+            </div>
+            <h3 class="equipe-nome">Ana Beatriz Costa</h3>
+            <p class="equipe-cargo">Coordenadora da Educação Infantil</p>
+          </div>
+
+          <div class="equipe-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="equipe-avatar">
+              <img src="assets/img/equipe-4.png" alt="Fernanda Oliveira Melo" loading="lazy">
+            </div>
+            <h3 class="equipe-nome">Fernanda Oliveira Melo</h3>
+            <p class="equipe-cargo">Coordenadora do Fundamental II</p>
+          </div>
+        </div>
+
+        <div class="text-center mt-5" data-aos="fade-up">
+          <a href="equipe.html" class="btn-ez-outline-dark">
+            Conheça toda a equipe <i class="bi bi-arrow-right ms-2"></i>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- =========================================================
@@ -452,11 +639,11 @@
     <div class="container-custom">
       <div class="footer-grid">
 
-        <div class="footer-col">
+        <div class="footer-col footer-brand-col">
           <div class="footer-brand">
             <img src="assets/logo/logo.png" alt="Logotipo Escola Presbiteriana Zenaide Magalhães">
           </div>
-          <p class="footer-desc">Integrando a criança com Deus, a família e a sociedade desde 2000.</p>
+          <p class="footer-desc">“Integrando o ser humano a Deus, à família e à sociedade”</p>
           <div class="footer-social">
             <a href="https://www.instagram.com/escolazenaidemagalhaes?igsh=MXUzbzU1NHZmdHBydw==" target="_blank"
               rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
@@ -471,7 +658,7 @@
           <div class="footer-contact-item">
             <i class="bi bi-geo-alt-fill"></i>
             <span><a
-                href="https://maps.google.com/?q=Rua+Gercina+Cintra+Valen%C3%A7a+100A+Loteamento+Jo%C3%A3o+Paulo+II+S%C3%A3o+Bento+do+Una+PE+55373-338"
+                href="https://maps.app.goo.gl/mA72nAE25KxtMBfV8"
                 target="_blank" rel="noopener">Rua Gercina Cintra Valença, 100A<br>Loteamento João Paulo II — CEP:
                 55373-338<br>São Bento do Una - PE</a></span>
           </div>
@@ -490,9 +677,11 @@
           <ul class="list-unstyled footer-links">
             <li><a href="#inicio">Início</a></li>
             <li><a href="#a-escola">Sobre Nós</a></li>
+            <li><a href="#missao-visao-valores">Missão, Visão e Valores</a></li>
             <li><a href="#segmentos">Segmentos</a></li>
-            <li><a href="https://mackensina.mackenzie.br/login">Sistema de Ensino</a></li>
-            <li><a href="#" target="_blank" rel="noopener">Livros Digitais</a></li>
+            <li><a href="https://mackensina.mackenzie.br/login" target="_blank" rel="noopener">Sistema de Ensino</a>
+            </li>
+            <li><a href="https://mackensina.mackenzie.br/login" target="_blank" rel="noopener">Livros Digitais</a></li>
           </ul>
         </div>
 
@@ -501,7 +690,9 @@
           <ul class="list-unstyled footer-links">
             <li><a href="#">Portal do Estudante</a></li>
             <li><a href="https://www.sponteeducacional.net.br/Default.aspx" target="_blank" rel="noopener">Portal do
-                Professor</a></li>
+                Professor (Sponte)</a></li>
+            <li><a href="https://planeje.escolazenaidemagalhaes.com.br" target="_blank" rel="noopener">Portal do
+                Professor (Planeje+)</a></li>
             <li><a href="#">Agenda Digital Sponte Plus</a></li>
             <li><a href="#">Trabalhe Conosco</a></li>
             <li><a href="#contato">Fale Conosco</a></li>
