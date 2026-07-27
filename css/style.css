@@ -652,10 +652,9 @@ header,
   bottom: 20px;
   left: 20px;
   right: 20px;
-  background: rgba(15, 90, 69, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: #FFFFFF;
+  background-color: #0F5A45 !important;
+  background: #0F5A45 !important;
+  color: #FFFFFF !important;
   border-radius: var(--radius-md);
   padding: 14px 22px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
@@ -663,6 +662,14 @@ header,
   align-items: center;
   gap: 14px;
   z-index: 10;
+  forced-color-adjust: none !important;
+}
+
+.hero-quote-card *,
+.hero-quote-card blockquote,
+.hero-quote-card cite,
+.hero-quote-card i {
+  color: #FFFFFF !important;
 }
 
 .hero-quote-card i {
@@ -1689,12 +1696,25 @@ h6,
 
   .diferencial-card,
   .segmento-card,
-  .stat-card,
-  .hero-quote-card {
+  .stat-card {
     background-color: #FFFFFF !important;
     color: #2D2D2D !important;
     border-color: #E5E5E5 !important;
     forced-color-adjust: none !important;
+  }
+
+  .hero-quote-card {
+    background-color: #0F5A45 !important;
+    background: #0F5A45 !important;
+    color: #FFFFFF !important;
+    forced-color-adjust: none !important;
+  }
+
+  .hero-quote-card *,
+  .hero-quote-card blockquote,
+  .hero-quote-card cite,
+  .hero-quote-card i {
+    color: #FFFFFF !important;
   }
 
   .diferencial-card p,
