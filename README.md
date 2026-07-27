@@ -122,4 +122,4 @@ Se a imagem gerada tiver fundo transparente (PNG), o resultado ficará idêntico
 - Cores: edite as variáveis em `css/style.css` (`:root`)
 - Textos: edite diretamente no `index.html`
 - Links de redes sociais, telefone e e-mail: procure por `href="#"` no `index.html` e substitua pelos links reais
-- WhatsApp: o botão "Agende uma Visita" já aponta para `https://wa.me/558799712427` — atualize o número se necessário
+- WhatsApp: os botões de atendimento apontam para `https://wa.me/558196772053` e chamadas para `tel:+558196772053`
