@@ -61,7 +61,7 @@
     display: none;
   }
 
-  /* Padronização uniforme de TODOS os ícones da topbar (Portais, WhatsApp e Redes) */
+  /* Ícones da Topbar */
   .topbar-links .dropdown {
     display: inline-flex;
     align-items: center;
@@ -603,7 +603,7 @@
   }
 }
 
-/* Enforce touch-safe hovers */
+/* Hover para desktop */
 @media (hover: hover) {
   .diferencial-card:hover {
     transform: translateY(-8px);

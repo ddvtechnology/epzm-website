@@ -263,7 +263,7 @@ section {
   font-size: 14px;
 }
 
-/* Botão Destaque Responsivo MATRÍCULA E REMATRÍCULA ONLINE - 2027 */
+/* Botão Matrícula */
 .btn-header-matricula,
 .btn-mobile-matricula {
   white-space: normal !important;
@@ -355,7 +355,7 @@ section {
   opacity: 0.85;
 }
 
-/* Botão Destaque Portal do Estudante (Amarelo Dourado Harmonioso #F59E0B com texto branco) */
+/* Portal do Estudante */
 .topbar-links a.btn-portal-estudante {
   background: #F59E0B;
   color: #FFFFFF !important;
@@ -377,7 +377,7 @@ section {
   transform: translateY(-2px);
 }
 
-/* Botão Destaque Portal do Professor (Roxo #280047 com texto branco) */
+/* Portal do Professor */
 .topbar-links a.btn-portal-professor {
   background: #280047;
   color: #FFFFFF !important;
