@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0A3629">
+  <title>Painel Administrativo — Escola Presbiteriana Zenaide Magalhães</title>
+
+  <link rel="icon" type="image/png" href="../assets/logo/icon-logo.png">
+  <link rel="stylesheet" href="../css/fonts.css">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/vendor/bootstrap-icons/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+  <!-- =========================================================
+       TELA DE LOGIN
+  ========================================================== -->
+  <section id="loginView" class="admin-login-wrapper">
+    <div class="admin-login-card">
+      <div class="text-center mb-4">
+        <img src="../assets/logo/logo.png" alt="Escola Presbiteriana Zenaide Magalhães" class="admin-login-logo">
+        <h1 class="h4 fw-bold mt-3 mb-1">Painel Administrativo</h1>
+        <p class="text-muted small mb-0">Gestão do portal institucional da EPZM</p>
+      </div>
+
+      <div id="configWarningAlert" class="alert alert-warning small d-none" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-1"></i>
+        <strong>Supabase ainda não configurado.</strong><br>
+        Preencha a URL e a chave pública em <code>js/supabase-config.js</code>.
+      </div>
+
+      <div id="loginAlert" class="alert alert-danger small d-none" role="alert"></div>
+      <div id="loginSuccessAlert" class="alert alert-success small d-none" role="alert"></div>
+
+      <form id="loginForm" novalidate>
+        <div class="mb-3">
+          <label for="loginEmail" class="form-label fw-medium small">E-mail</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+            <input type="email" class="form-control" id="loginEmail" placeholder="gestor@escolazenaidemagalhaes.com.br"
+              autocomplete="email" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="loginPassword" class="form-label fw-medium small">Senha</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+            <input type="password" class="form-control" id="loginPassword" placeholder="Digite sua senha"
+              autocomplete="current-password" required>
+            <button type="button" class="btn btn-outline-secondary" id="togglePasswordBtn" aria-label="Mostrar senha">
+              <i class="bi bi-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end mb-4">
+          <a href="esqueci-senha.html" class="small text-decoration-none fw-medium">
+            Esqueci minha senha
+          </a>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold" id="loginSubmitBtn">
+          Entrar no Painel
+        </button>
+      </form>
+
+      <div class="text-center mt-4 pt-3 border-top">
+        <a href="../index.html" class="text-muted small text-decoration-none">
+          <i class="bi bi-arrow-left me-1"></i>Voltar para o site público
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       WORKSPACE ADMINISTRATIVO (AUTENTICADO)
+  ========================================================== -->
+  <div id="dashboardView" class="admin-app d-none">
+
+    <!-- Sidebar Executiva -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="admin-sidebar-brand">
+        <div class="brand-logo-pill">
+          <img src="../assets/logo/logo.png" alt="EPZM">
+        </div>
+        <button type="button" class="btn-sidebar-close d-lg-none" id="closeSidebarBtn" aria-label="Fechar menu">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <nav class="admin-nav" aria-label="Menu administrativo">
+        <div class="nav-group-label">Principal</div>
+        <button type="button" class="admin-nav-item active" data-tab="visao-geral">
+          <i class="bi bi-grid-1x2"></i><span>Visão Geral</span>
+        </button>
+
+        <div class="nav-group-label">Conteúdo</div>
+        <button type="button" class="admin-nav-item" data-tab="equipe">
+          <i class="bi bi-people"></i><span>Equipe &amp; Servidores</span>
+          <span class="nav-count" id="navCountEquipe">0</span>
+        </button>
+        <button type="button" class="admin-nav-item" data-tab="noticias">
+          <i class="bi bi-newspaper"></i><span>Notícias &amp; Eventos</span>
+          <span class="nav-count" id="navCountNoticias">0</span>
+        </button>
+
+        <div class="nav-group-label">Site</div>
+        <button type="button" class="admin-nav-item" data-tab="aparencia">
+          <i class="bi bi-palette2"></i><span>Aparência do Site</span>
+        </button>
+        <button type="button" class="admin-nav-item" data-tab="escola">
+          <i class="bi bi-building-gear"></i><span>Dados da Escola</span>
+        </button>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <a href="../index.html" target="_blank" rel="noopener" class="sidebar-site-link mb-2">
+          <i class="bi bi-box-arrow-up-right"></i>
+          <span>Abrir site ao vivo</span>
+        </a>
+        <div class="sidebar-user-card">
+          <div class="sidebar-user-avatar" id="loggedUserInitials">AD</div>
+          <div class="overflow-hidden flex-grow-1">
+            <div class="sidebar-user-name text-truncate" id="loggedUserName">Administrador</div>
+            <div class="sidebar-user-email text-truncate" id="loggedUserEmail">Sessão ativa</div>
+          </div>
+          <button type="button" class="btn-sidebar-logout" id="logoutBtn" title="Sair da conta" aria-label="Sair">
+            <i class="bi bi-box-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="admin-sidebar-backdrop d-lg-none" id="sidebarBackdrop"></div>
+
+    <!-- Área de Trabalho -->
+    <div class="admin-main">
+      <!-- Topbar minimalista -->
+      <header class="admin-topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button type="button" class="btn-icon-ghost d-lg-none" id="openSidebarBtn" aria-label="Abrir menu">
+            <i class="bi bi-list fs-5"></i>
+          </button>
+          <div class="topbar-breadcrumb">
+            <span class="text-muted">Painel EPZM</span>
+            <i class="bi bi-chevron-right mx-2 text-muted" style="font-size: 11px;"></i>
+            <span class="fw-semibold" id="currentTabTitle">Visão Geral</span>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <button type="button" class="btn-subtle" id="startTourBtn" title="Ver tutorial interativo passo a passo">
+            <i class="bi bi-compass"></i>
+            <span class="d-none d-sm-inline">Tour Guiado</span>
+          </button>
+          <button type="button" class="btn-subtle" id="refreshAllBtn" title="Sincronizar dados">
+            <i class="bi bi-arrow-clockwise"></i>
+            <span class="d-none d-sm-inline">Sincronizar</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="admin-content">
+
+        <!-- =====================================================
+             1. VISÃO GERAL
+        ====================================================== -->
+        <section class="admin-tab-panel" id="tab-visao-geral">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title" id="welcomeGreeting">Visão Geral</h1>
+              <p class="page-subtitle" id="welcomeDate">Resumo de acessos e status atual do website institucional.</p>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button type="button" class="btn btn-outline-primary btn-sm px-3" id="quickNewEquipeBtn">
+                <i class="bi bi-person-plus me-1"></i>Novo Servidor
+              </button>
+              <button type="button" class="btn btn-primary btn-sm px-3" id="quickNewNoticiaBtn">
+                <i class="bi bi-plus-lg me-1"></i>Nova Publicação
+              </button>
+            </div>
+          </div>
+
+          <!-- KPI Strip -->
+          <div class="kpi-grid mb-4">
+            <div class="kpi-card">
+              <div class="kpi-top">
+                <span class="kpi-label">Acessos (30 dias)</span>
+                <span class="kpi-icon"><i class="bi bi-graph-up-arrow"></i></span>
+              </div>
+              <div class="kpi-value" id="metricAcessos30d">0</div>
+              <div class="kpi-foot"><span id="metricAcessosHoje">0</span> hoje · <span id="metricAcessos7d">0</span> nos últimos 7 dias</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-top">
+                <span class="kpi-label">Equipe Ativa</span>
+                <span class="kpi-icon"><i class="bi bi-people"></i></span>
+              </div>
+              <div class="kpi-value" id="metricEquipeAtivos">0</div>
+              <div class="kpi-foot"><span id="metricEquipeHome">0</span> / 4 em destaque na Home</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-top">
+                <span class="kpi-label">Publicações</span>
+                <span class="kpi-icon"><i class="bi bi-newspaper"></i></span>
+              </div>
+              <div class="kpi-value" id="metricNoticiasPublicadas">0</div>
+              <div class="kpi-foot"><span id="metricNoticiasRascunhos">0</span> rascunhos aguardando publicação</div>
+            </div>
+          </div>
+
+          <!-- Bento Grid: Analytics -->
+          <div class="row g-4">
+            <div class="col-xl-8">
+              <div class="surface-card h-100">
+                <div class="surface-card-header">
+                  <div>
+                    <h2 class="surface-title">Tendência de Acessos</h2>
+                    <p class="surface-desc">Visitas anônimas dos últimos 7 dias (em conformidade com a LGPD)</p>
+                  </div>
+                  <span class="pill-tag pill-neutral"><i class="bi bi-shield-check me-1"></i>Retenção 30 dias</span>
+                </div>
+                <div class="access-chart" id="accessChartBars"></div>
+              </div>
+            </div>
+
+            <div class="col-xl-4">
+              <div class="surface-card h-100">
+                <div class="surface-card-header">
+                  <div>
+                    <h2 class="surface-title">Páginas mais acessadas</h2>
+                    <p class="surface-desc">Distribuição nos últimos 30 dias</p>
+                  </div>
+                </div>
+                <div id="accessTopPages" class="d-flex flex-column gap-3"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =====================================================
+             2. EQUIPE & SERVIDORES
+        ====================================================== -->
+        <section class="admin-tab-panel d-none" id="tab-equipe">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Equipe &amp; Servidores</h1>
+              <p class="page-subtitle">Cadastre, reordene e escolha até 4 destaques exibidos na página inicial.</p>
+            </div>
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+              <span class="pill-tag pill-primary" id="equipeDestaqueCounter">
+                <i class="bi bi-star-fill me-1"></i>Home: 0 / 4
+              </span>
+              <button type="button" class="btn btn-primary btn-sm px-3" id="newEquipeBtn">
+                <i class="bi bi-person-plus me-1"></i>Novo Servidor
+              </button>
+            </div>
+          </div>
+
+          <div class="surface-card p-0 overflow-hidden">
+            <div class="table-toolbar">
+              <div class="segmented-control" id="equipeCategoryTabs" role="tablist">
+                <button type="button" class="seg-btn active" data-cat="all">Todos</button>
+                <button type="button" class="seg-btn" data-cat="direcao">Direção</button>
+                <button type="button" class="seg-btn" data-cat="coordenacao">Coordenação</button>
+                <button type="button" class="seg-btn" data-cat="docentes">Docentes</button>
+              </div>
+              <div class="search-field">
+                <i class="bi bi-search"></i>
+                <input type="search" id="equipeSearchInput" placeholder="Buscar por nome ou cargo...">
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table pro-table align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>Profissional</th>
+                    <th>Categoria</th>
+                    <th>Ordem</th>
+                    <th class="text-center">Destaque Home</th>
+                    <th class="text-center">Visível</th>
+                    <th class="text-end">Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="equipeTableBody"></tbody>
+              </table>
+            </div>
+
+            <div id="equipeTableEmpty" class="empty-state d-none">
+              <div class="empty-state-icon"><i class="bi bi-people"></i></div>
+              <h3>Nenhum profissional encontrado</h3>
+              <p>Adicione um servidor ou ajuste o filtro acima para visualizar a lista.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- =====================================================
+             3. NOTÍCIAS & EVENTOS
+        ====================================================== -->
+        <section class="admin-tab-panel d-none" id="tab-noticias">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Notícias &amp; Eventos</h1>
+              <p class="page-subtitle">Publique novidades, eventos e comunicados ou salve como rascunho.</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm px-3" id="newNoticiaBtn">
+              <i class="bi bi-plus-lg me-1"></i>Nova Publicação
+            </button>
+          </div>
+
+          <div class="surface-card p-0 overflow-hidden">
+            <div class="table-toolbar">
+              <div class="segmented-control" id="noticiasCategoryTabs" role="tablist">
+                <button type="button" class="seg-btn active" data-cat="all">Todas</button>
+                <button type="button" class="seg-btn" data-cat="noticia">Notícias</button>
+                <button type="button" class="seg-btn" data-cat="evento">Eventos</button>
+                <button type="button" class="seg-btn" data-cat="comunicado">Comunicados</button>
+                <button type="button" class="seg-btn" data-cat="rascunho">Rascunhos</button>
+              </div>
+              <div class="search-field">
+                <i class="bi bi-search"></i>
+                <input type="search" id="noticiasAdminSearch" placeholder="Buscar por título...">
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table pro-table align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>Publicação</th>
+                    <th>Categoria</th>
+                    <th>Data</th>
+                    <th class="text-center">Publicado</th>
+                    <th class="text-end">Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="noticiasTableBody"></tbody>
+              </table>
+            </div>
+
+            <div id="noticiasTableEmpty" class="empty-state d-none">
+              <div class="empty-state-icon"><i class="bi bi-newspaper"></i></div>
+              <h3>Nenhuma publicação encontrada</h3>
+              <p>Crie a primeira notícia ou evento da escola clicando em "Nova Publicação".</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- =====================================================
+             4. APARÊNCIA DO SITE (UNIFICADO: AVISO + IMAGENS + SEÇÕES)
+        ====================================================== -->
+        <section class="admin-tab-panel d-none" id="tab-aparencia">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Aparência do Site</h1>
+              <p class="page-subtitle">Personalize o aviso no topo, as imagens principais e quais seções aparecem na página inicial.</p>
+            </div>
+          </div>
+
+          <div class="settings-layout">
+            <!-- Sub-navegação lateral fixa -->
+            <div class="settings-subnav" id="aparenciaSubnav">
+              <button type="button" class="settings-subnav-btn active" data-pane="pane-aviso">
+                <i class="bi bi-megaphone"></i>
+                <div>
+                  <div class="subnav-title">Aviso no Topo</div>
+                  <div class="subnav-desc">Faixa fixa de comunicado</div>
+                </div>
+              </button>
+              <button type="button" class="settings-subnav-btn" data-pane="pane-imagens">
+                <i class="bi bi-images"></i>
+                <div>
+                  <div class="subnav-title">Imagens Principais</div>
+                  <div class="subnav-desc">Hero, Fachada e Matrículas</div>
+                </div>
+              </button>
+              <button type="button" class="settings-subnav-btn" data-pane="pane-secoes">
+                <i class="bi bi-layout-text-window-reverse"></i>
+                <div>
+                  <div class="subnav-title">Seções &amp; Chamadas</div>
+                  <div class="subnav-desc">Visibilidade e botões da Home</div>
+                </div>
+              </button>
+            </div>
+
+            <!-- Conteúdo da Aparência -->
+            <div class="settings-canvas">
+
+              <!-- PANE 1: AVISO NO TOPO -->
+              <div class="aparencia-pane" id="pane-aviso">
+                <div class="surface-card">
+                  <div class="surface-card-header">
+                    <div>
+                      <h2 class="surface-title">Faixa de Aviso Fixo no Topo</h2>
+                      <p class="surface-desc">Exibida no topo de todas as páginas enquanto estiver ativa (sem botão de fechar).</p>
+                    </div>
+                    <div class="form-check form-switch m-0">
+                      <input class="form-check-input config-dirty-field" type="checkbox" id="cfgAvisoAtivo">
+                      <label class="form-check-label small fw-semibold" for="cfgAvisoAtivo">Ativo</label>
+                    </div>
+                  </div>
+
+                  <!-- Preview real da barra -->
+                  <div class="preview-browser-shell mb-4">
+                    <div class="preview-browser-dots"><span></span><span></span><span></span><small>Pré-visualização do topo do site</small></div>
+                    <div id="cfgAvisoPreview" class="aviso-live-preview aviso-ambar">
+                      <i class="bi bi-megaphone-fill me-2"></i>
+                      <span id="cfgAvisoPreviewText">Ative o aviso e escreva uma mensagem para visualizar aqui.</span>
+                    </div>
+                  </div>
+
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label for="cfgAvisoTexto" class="form-label small fw-medium">Mensagem do aviso</label>
+                      <input type="text" class="form-control config-dirty-field" id="cfgAvisoTexto" maxlength="160"
+                        placeholder="Ex.: Matrículas 2027 abertas! Garanta já a vaga do seu filho.">
+                    </div>
+                    <div class="col-md-5">
+                      <label for="cfgAvisoLink" class="form-label small fw-medium">Link do botão "Saiba mais" (opcional)</label>
+                      <input type="text" class="form-control config-dirty-field" id="cfgAvisoLink" placeholder="Ex.: #matriculas ou https://...">
+                    </div>
+                    <div class="col-md-7">
+                      <label class="form-label small fw-medium d-block">Cor de destaque (escolha uma cor pronta ou personalizada)</label>
+                      <input type="hidden" id="cfgAvisoCor" value="#D97706" class="config-dirty-field">
+                      <div class="color-swatch-group" id="avisoColorSwatches">
+                        <button type="button" class="color-swatch active" data-color="#D97706" title="Âmbar"><span class="swatch-dot" style="background:#D97706"></span></button>
+                        <button type="button" class="color-swatch" data-color="#0F5A45" title="Verde EPZM"><span class="swatch-dot" style="background:#0F5A45"></span></button>
+                        <button type="button" class="color-swatch" data-color="#4C1D95" title="Roxo"><span class="swatch-dot" style="background:#4C1D95"></span></button>
+                        <button type="button" class="color-swatch" data-color="#1D4ED8" title="Azul"><span class="swatch-dot" style="background:#1D4ED8"></span></button>
+                        <button type="button" class="color-swatch" data-color="#DC2626" title="Vermelho Alerta"><span class="swatch-dot" style="background:#DC2626"></span></button>
+                        <button type="button" class="color-swatch" data-color="#9F1239" title="Vinho"><span class="swatch-dot" style="background:#9F1239"></span></button>
+                        <button type="button" class="color-swatch" data-color="#059669" title="Esmeralda"><span class="swatch-dot" style="background:#059669"></span></button>
+                        <button type="button" class="color-swatch" data-color="#1E293B" title="Grafite"><span class="swatch-dot" style="background:#1E293B"></span></button>
+                        <label class="color-custom-pill" for="cfgAvisoColorPicker" title="Escolher qualquer cor personalizada">
+                          <input type="color" id="cfgAvisoColorPicker" value="#D97706">
+                          <span id="cfgAvisoColorHex">#D97706</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PANE 2: IMAGENS PRINCIPAIS -->
+              <div class="aparencia-pane d-none" id="pane-imagens">
+                <div class="row g-4" id="siteImagesGrid"></div>
+              </div>
+
+              <!-- PANE 3: SEÇÕES & BOTÕES DA HOME -->
+              <div class="aparencia-pane d-none" id="pane-secoes">
+                <div class="surface-card mb-4">
+                  <div class="surface-card-header">
+                    <div>
+                      <h2 class="surface-title">Seções da Página Inicial</h2>
+                      <p class="surface-desc">Ative ou oculte blocos inteiros da Home sem quebrar a estrutura da página.</p>
+                    </div>
+                  </div>
+
+                  <div class="toggle-list">
+                    <label class="toggle-row" for="cfgSecDiferenciais">
+                      <div>
+                        <div class="toggle-row-title">Proposta Pedagógica (Diferenciais)</div>
+                        <div class="toggle-row-desc">4 pilares logo abaixo do banner principal</div>
+                      </div>
+                      <div class="form-check form-switch m-0">
+                        <input class="form-check-input config-dirty-field" type="checkbox" id="cfgSecDiferenciais" checked>
+                      </div>
+                    </label>
+                    <label class="toggle-row" for="cfgSecMackenzie">
+                      <div>
+                        <div class="toggle-row-title">Sistema de Ensino Mackenzie</div>
+                        <div class="toggle-row-desc">Card institucional do material didático</div>
+                      </div>
+                      <div class="form-check form-switch m-0">
+                        <input class="form-check-input config-dirty-field" type="checkbox" id="cfgSecMackenzie" checked>
+                      </div>
+                    </label>
+                    <label class="toggle-row" for="cfgSecSegmentos">
+                      <div>
+                        <div class="toggle-row-title">Segmentos de Ensino</div>
+                        <div class="toggle-row-desc">Hotelzinho, Infantil, Fundamental I e II</div>
+                      </div>
+                      <div class="form-check form-switch m-0">
+                        <input class="form-check-input config-dirty-field" type="checkbox" id="cfgSecSegmentos" checked>
+                      </div>
+                    </label>
+                    <label class="toggle-row" for="cfgSecEventos">
+                      <div>
+                        <div class="toggle-row-title">Notícias &amp; Eventos</div>
+                        <div class="toggle-row-desc">Últimas publicações em destaque na Home</div>
+                      </div>
+                      <div class="form-check form-switch m-0">
+                        <input class="form-check-input config-dirty-field" type="checkbox" id="cfgSecEventos" checked>
+                      </div>
+                    </label>
+                    <label class="toggle-row" for="cfgSecEquipe">
+                      <div>
+                        <div class="toggle-row-title">Nossa Equipe</div>
+                        <div class="toggle-row-desc">Prévia com até 4 servidores em destaque</div>
+                      </div>
+                      <div class="form-check form-switch m-0">
+                        <input class="form-check-input config-dirty-field" type="checkbox" id="cfgSecEquipe" checked>
+                      </div>
+                    </label>
+                    <label class="toggle-row" for="cfgSecMatriculas">
+                      <div>
+                        <div class="toggle-row-title">Banner Final de Matrículas</div>
+                        <div class="toggle-row-desc">Bloco verde de chamada antes do rodapé</div>
+                      </div>
+                      <div class="form-check form-switch m-0">
+                        <input class="form-check-input config-dirty-field" type="checkbox" id="cfgSecMatriculas" checked>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="surface-card">
+                  <div class="surface-card-header">
+                    <div>
+                      <h2 class="surface-title">Botão de Matrícula</h2>
+                      <p class="surface-desc">Controle a visibilidade, o texto, o ano letivo e o destino do botão de matrícula.</p>
+                    </div>
+                    <div class="form-check form-switch m-0">
+                      <input class="form-check-input config-dirty-field" type="checkbox" id="cfgBtnMatriculaVisivel" checked>
+                      <label class="form-check-label small fw-medium" for="cfgBtnMatriculaVisivel">Exibir botão Matrícula</label>
+                    </div>
+                  </div>
+
+                  <div class="row g-3">
+                    <div class="col-md-5">
+                      <label for="cfgTextoBtnMatricula" class="form-label small fw-medium">Texto do Botão de Matrícula</label>
+                      <input type="text" class="form-control config-dirty-field" id="cfgTextoBtnMatricula" maxlength="32" placeholder="MATRÍCULA E REMATRÍCULA">
+                    </div>
+                    <div class="col-md-2">
+                      <label for="cfgAnoMatricula" class="form-label small fw-medium">Ano</label>
+                      <input type="text" class="form-control config-dirty-field" id="cfgAnoMatricula" maxlength="10" placeholder="2027">
+                    </div>
+                    <div class="col-md-5">
+                      <label for="cfgLinkMatricula" class="form-label small fw-medium">Destino de "Fazer Matrícula"</label>
+                      <input type="text" class="form-control config-dirty-field" id="cfgLinkMatricula" placeholder="#contato ou https://wa.me/...">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- =====================================================
+             5. DADOS DA ESCOLA (LAYOUT 2 COLUNAS ESTILO STRIPE/VERCEL)
+        ====================================================== -->
+        <section class="admin-tab-panel d-none" id="tab-escola">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Dados da Escola</h1>
+              <p class="page-subtitle">Atualize canais de atendimento, números institucionais e redes sociais exibidos no site.</p>
+            </div>
+          </div>
+
+          <!-- Bloco 1: Contato & LGPD -->
+          <div class="settings-split-row">
+            <div class="settings-split-info">
+              <h2 class="surface-title">Atendimento &amp; LGPD</h2>
+              <p class="surface-desc">Esses dados alimentam a barra superior, os botões de WhatsApp, o rodapé e as páginas de Privacidade e LGPD.</p>
+            </div>
+            <div class="surface-card">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="cfgWhatsappExibicao" class="form-label small fw-medium">WhatsApp (texto exibido)</label>
+                  <input type="text" class="form-control config-dirty-field" id="cfgWhatsappExibicao" placeholder="(81) 9677-2053">
+                </div>
+                <div class="col-md-6">
+                  <label for="cfgWhatsappNumero" class="form-label small fw-medium">WhatsApp (somente números com 55)</label>
+                  <input type="text" class="form-control config-dirty-field" id="cfgWhatsappNumero" placeholder="558196772053">
+                </div>
+                <div class="col-md-6">
+                  <label for="cfgEmailContato" class="form-label small fw-medium">E-mail institucional</label>
+                  <input type="email" class="form-control config-dirty-field" id="cfgEmailContato" placeholder="contato@epzm.com.br">
+                </div>
+                <div class="col-md-6">
+                  <label for="cfgEmailDpo" class="form-label small fw-medium">E-mail do Encarregado LGPD (DPO)</label>
+                  <input type="email" class="form-control config-dirty-field" id="cfgEmailDpo" placeholder="contato@epzm.com.br">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bloco 2: Números da Escola -->
+          <div class="settings-split-row">
+            <div class="settings-split-info">
+              <h2 class="surface-title">Números em Destaque</h2>
+              <p class="surface-desc">Indicadores exibidos nos 4 cards da seção "Sobre Nós" na página inicial.</p>
+            </div>
+            <div class="surface-card">
+              <div class="row g-3">
+                <div class="col-6 col-md-3">
+                  <label for="cfgStatAlunos" class="form-label small fw-medium">Alunos</label>
+                  <input type="text" class="form-control config-dirty-field" id="cfgStatAlunos" placeholder="+650">
+                </div>
+                <div class="col-6 col-md-3">
+                  <label for="cfgStatProfessores" class="form-label small fw-medium">Professores</label>
+                  <input type="text" class="form-control config-dirty-field" id="cfgStatProfessores" placeholder="+45">
+                </div>
+                <div class="col-6 col-md-3">
+                  <label for="cfgStatAnos" class="form-label small fw-medium">Anos</label>
+                  <input type="text" class="form-control config-dirty-field" id="cfgStatAnos" placeholder="+20">
+                </div>
+                <div class="col-6 col-md-3">
+                  <label for="cfgStatCompromisso" class="form-label small fw-medium">Compromisso</label>
+                  <input type="text" class="form-control config-dirty-field" id="cfgStatCompromisso" placeholder="100%">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bloco 3: Redes Sociais e Links do Rodapé -->
+          <div class="settings-split-row">
+            <div class="settings-split-info">
+              <h2 class="surface-title">Redes Sociais &amp; Rodapé</h2>
+              <p class="surface-desc">Deixe qualquer rede social em branco para ocultar automaticamente o ícone no site.</p>
+            </div>
+            <div class="surface-card">
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <label for="cfgLinkInstagram" class="form-label small fw-medium"><i class="bi bi-instagram me-1"></i>Instagram</label>
+                  <input type="url" class="form-control config-dirty-field" id="cfgLinkInstagram" placeholder="https://instagram.com/...">
+                </div>
+                <div class="col-md-4">
+                  <label for="cfgLinkFacebook" class="form-label small fw-medium"><i class="bi bi-facebook me-1"></i>Facebook</label>
+                  <input type="url" class="form-control config-dirty-field" id="cfgLinkFacebook" placeholder="https://facebook.com/...">
+                </div>
+                <div class="col-md-4">
+                  <label for="cfgLinkYoutube" class="form-label small fw-medium"><i class="bi bi-youtube me-1"></i>YouTube</label>
+                  <input type="url" class="form-control config-dirty-field" id="cfgLinkYoutube" placeholder="Vazio para ocultar">
+                </div>
+                <div class="col-12">
+                  <label for="cfgLinkTrabalheConosco" class="form-label small fw-medium">Link / E-mail "Trabalhe Conosco"</label>
+                  <input type="text" class="form-control config-dirty-field" id="cfgLinkTrabalheConosco" placeholder="mailto:contato@epzm.com.br ou https://...">
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <!-- BARRA FLUTUANTE DE ALTERAÇÕES NÃO SALVAS (ESTILO SHOPIFY / LINEAR) -->
+    <div id="unsavedSaveBar" class="unsaved-save-bar d-none" role="region" aria-live="polite">
+      <div class="unsaved-bar-inner">
+        <div class="d-flex align-items-center gap-2">
+          <span class="unsaved-dot"></span>
+          <span class="small fw-medium text-white">Você tem alterações não salvas</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <button type="button" class="btn btn-sm btn-unsaved-discard" id="discardConfigBtn">Descartar</button>
+          <button type="button" class="btn btn-sm btn-unsaved-save" id="saveConfigGlobalBtn">Salvar alterações</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL: CRIAR / EDITAR SERVIDOR
+  ========================================================== -->
+  <div class="modal fade" id="equipeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <form class="modal-content" id="equipeForm">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="equipeModalTitle">Novo Servidor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="equipeId">
+          <input type="hidden" id="equipeFotoUrlAtual">
+          <input type="hidden" id="equipeFotoCaminhoAtual">
+
+          <div class="text-center mb-3">
+            <img id="equipeFotoPreview" src="../assets/img/equipe-1.png" alt="Preview" class="admin-avatar-preview mb-2">
+            <div>
+              <label for="equipeFotoInput" class="btn btn-outline-primary btn-sm">
+                <i class="bi bi-upload me-1"></i>Escolher Foto
+              </label>
+              <input type="file" id="equipeFotoInput" class="d-none" accept="image/jpeg,image/png,image/webp">
+              <div class="form-text" id="equipeFotoInfo">Selecione uma foto nítida do profissional.</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="equipeNome" class="form-label small fw-medium">Nome completo *</label>
+            <input type="text" class="form-control" id="equipeNome" maxlength="120" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="equipeCargo" class="form-label small fw-medium">Cargo / Disciplina *</label>
+            <input type="text" class="form-control" id="equipeCargo" maxlength="120" required>
+          </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-md-7">
+              <label for="equipeCategoria" class="form-label small fw-medium">Categoria *</label>
+              <select class="form-select" id="equipeCategoria" required>
+                <option value="direcao">Direção &amp; Gestão</option>
+                <option value="coordenacao">Coordenação Pedagógica</option>
+                <option value="docentes">Corpo Docente</option>
+              </select>
+            </div>
+            <div class="col-md-5">
+              <label for="equipeOrdem" class="form-label small fw-medium">Posição</label>
+              <input type="number" class="form-control" id="equipeOrdem" min="0" value="1">
+            </div>
+          </div>
+
+          <div class="form-check form-switch mb-1">
+            <input class="form-check-input" type="checkbox" id="equipeDestaqueHome">
+            <label class="form-check-label small" for="equipeDestaqueHome">Destacar na página inicial (máx. 4)</label>
+          </div>
+          <div class="small text-warning-emphasis mb-3 d-none" id="equipeDestaqueHelp" style="font-size: 12px;"></div>
+
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="equipeAtivo" checked>
+            <label class="form-check-label small" for="equipeAtivo">Ativo (visível no site público)</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary btn-sm" id="equipeSaveBtn">Salvar Servidor</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL: CRIAR / EDITAR NOTÍCIA / EVENTO
+  ========================================================== -->
+  <div class="modal fade" id="noticiaAdminModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <form class="modal-content" id="noticiaForm">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="noticiaAdminModalTitle">Nova Publicação</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="noticiaId">
+          <input type="hidden" id="noticiaCapaUrlAtual">
+          <input type="hidden" id="noticiaCapaCaminhoAtual">
+
+          <div class="mb-3">
+            <label for="noticiaTitulo" class="form-label small fw-medium">Título *</label>
+            <input type="text" class="form-control" id="noticiaTitulo" maxlength="180" required>
+          </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-md-5">
+              <label for="noticiaSlug" class="form-label small fw-medium">Link amigável (slug) *</label>
+              <input type="text" class="form-control" id="noticiaSlug" pattern="^[a-z0-9]+(?:-[a-z0-9]+)*$" required>
+            </div>
+            <div class="col-md-4">
+              <label for="noticiaCategoria" class="form-label small fw-medium">Categoria *</label>
+              <select class="form-select" id="noticiaCategoria" required>
+                <option value="noticia">Notícia</option>
+                <option value="evento">Evento</option>
+                <option value="comunicado">Comunicado</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="noticiaData" class="form-label small fw-medium">Data *</label>
+              <input type="date" class="form-control" id="noticiaData" required>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label small fw-medium">Imagem de Capa (opcional)</label>
+            <div class="admin-cover-preview-wrap mb-2 d-none" id="noticiaCapaPreviewWrap">
+              <img id="noticiaCapaPreview" src="" alt="Preview da capa">
+              <button type="button" class="btn btn-sm btn-danger admin-remove-cover-btn" id="removeNoticiaCoverBtn" title="Remover capa">
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+            <div>
+              <label for="noticiaCapaInput" class="btn btn-outline-primary btn-sm">
+                <i class="bi bi-image me-1"></i>Selecionar Capa
+              </label>
+              <input type="file" id="noticiaCapaInput" class="d-none" accept="image/jpeg,image/png,image/webp">
+              <div class="form-text" id="noticiaCapaInfo">Recomendado imagem na horizontal.</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="noticiaResumo" class="form-label small fw-medium">Resumo curto (exibido nos cards) *</label>
+            <textarea class="form-control" id="noticiaResumo" rows="2" maxlength="400" required></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="noticiaConteudo" class="form-label small fw-medium">Conteúdo completo *</label>
+            <textarea class="form-control" id="noticiaConteudo" rows="6" required
+              placeholder="Escreva o texto completo. Use uma linha em branco para separar parágrafos."></textarea>
+          </div>
+
+          <div class="d-flex flex-wrap gap-4">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="noticiaDestaqueHome" checked>
+              <label class="form-check-label small" for="noticiaDestaqueHome">Destacar na página inicial</label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="noticiaPublicado" checked>
+              <label class="form-check-label small" for="noticiaPublicado">Publicar imediatamente</label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-outline-primary btn-sm" id="noticiaPreviewBtn">
+            <i class="bi bi-eye me-1"></i>Pré-visualizar
+          </button>
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary btn-sm" id="noticiaSaveBtn">Salvar Publicação</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: PRÉ-VISUALIZAR NOTÍCIA -->
+  <div class="modal fade" id="noticiaPreviewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="d-flex align-items-center gap-2">
+            <span class="pill-tag pill-primary" id="previewNoticiaBadge">Notícia</span>
+            <span class="text-muted small" id="previewNoticiaDate"></span>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <h3 class="h4 fw-bold mb-3" id="previewNoticiaTitle"></h3>
+          <div id="previewNoticiaCoverWrap" class="admin-cover-preview-wrap mb-3 d-none">
+            <img id="previewNoticiaCover" src="" alt="Capa">
+          </div>
+          <div id="previewNoticiaBody" class="small" style="line-height: 1.8;"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Voltar à edição</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL: CONFIRMAR EXCLUSÃO
+  ========================================================== -->
+  <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold text-danger">Confirmar exclusão</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="small text-muted mb-0" id="confirmDeleteText">Tem certeza que deseja excluir este item?</p>
+        </div>
+        <div class="modal-footer border-0 pt-0">
+          <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger btn-sm" id="confirmDeleteBtn">Excluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="adminToastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase-config.js"></script>
+  <script src="../js/image-optimizer.js"></script>
+  <script src="admin.js"></script>
+  <script src="tour.js"></script>
+</body>
+
+</html>

@@ -39,7 +39,7 @@
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 
-<body>
+<body data-page-key="inicio">
 
   <!-- =========================================================
        HEADER (TOPBAR + NAVBAR FIXAS)
@@ -53,16 +53,20 @@
           <span>Seja bem-vindo à Escola Presbiteriana Zenaide Magalhães!</span>
         </div>
         <div class="topbar-links">
-          <a href="javascript:void(0)" onclick="return false;" class="topbar-item btn-portal-estudante" title="Portal do Estudante" style="cursor: default;"><i
-              class="bi bi-mortarboard-fill"></i><span class="topbar-label">Portal do Estudante</span></a>
+          <div class="d-inline-flex align-items-center gap-2" data-dynamic-topbar-buttons>
+            <a href="javascript:void(0)" onclick="return false;" data-config-portal-estudante data-toggle-item="portal-estudante" class="topbar-item btn-portal-estudante" title="Portal do Estudante" style="cursor: default;"><i
+                class="bi bi-mortarboard-fill"></i><span class="topbar-label">Portal do Estudante</span></a>
+            <a href="mailto:contato@epzm.com.br?subject=Trabalhe%20Conosco" data-config-trabalhe-conosco data-toggle-item="trabalhe-conosco" class="topbar-item" title="Trabalhe Conosco"><i class="bi bi-briefcase-fill"></i><span
+                class="topbar-label">Trabalhe Conosco</span></a>
+          </div>
 
           <!-- PORTAL DO PROFESSOR DROPDOWN -->
-          <div class="dropdown d-inline-block">
+          <div class="dropdown d-inline-block" data-toggle-item="portal-professor">
             <a href="#" class="topbar-item btn-portal-professor dropdown-toggle" data-bs-toggle="dropdown"
               aria-expanded="false" title="Portal do Professor">
               <i class="bi bi-person-workspace"></i><span class="topbar-label">Portal do Professor</span>
             </a>
-            <ul class="dropdown-menu dropdown-menu-custom shadow border-0">
+            <ul class="dropdown-menu dropdown-menu-custom shadow border-0" data-dynamic-portal-professor>
               <li>
                 <a class="dropdown-item d-flex align-items-center gap-2 py-2"
                   href="https://www.sponteeducacional.net.br/Default.aspx" target="_blank" rel="noopener">
@@ -78,15 +82,13 @@
             </ul>
           </div>
 
-          <a href="#" class="topbar-item" title="Trabalhe Conosco"><i class="bi bi-briefcase-fill"></i><span
-              class="topbar-label">Trabalhe Conosco</span></a>
           <div class="topbar-divider d-none d-md-block"></div>
-          <a href="tel:+558196772053" class="topbar-item topbar-phone" title="WhatsApp / Atendimento"><i
-              class="bi bi-whatsapp"></i><span class="topbar-label">(81) 9677-2053</span></a>
+          <a href="tel:+558196772053" data-config-tel-link class="topbar-item topbar-phone" title="WhatsApp / Atendimento"><i
+              class="bi bi-whatsapp"></i><span class="topbar-label" data-config-whatsapp-text>(81) 9677-2053</span></a>
           <div class="topbar-social">
-            <a href="https://www.instagram.com/escolazenaidemagalhaes?igsh=MXUzbzU1NHZmdHBydw==" target="_blank"
+            <a href="https://www.instagram.com/escolazenaidemagalhaes?igsh=MXUzbzU1NHZmdHBydw==" data-config-social="instagram" target="_blank"
               rel="noopener" aria-label="Instagram" title="Instagram"><i class="bi bi-instagram"></i></a>
-            <a href="https://www.facebook.com/escolazenaidemagalhaes.sbu/" target="_blank" rel="noopener"
+            <a href="https://www.facebook.com/escolazenaidemagalhaes.sbu/" data-config-social="facebook" target="_blank" rel="noopener"
               aria-label="Facebook" title="Facebook"><i class="bi bi-facebook"></i></a>
           </div>
         </div>
@@ -101,7 +103,7 @@
           <img src="assets/logo/logo.png" alt="Logotipo Escola Presbiteriana Zenaide Magalhães">
         </a>
 
-        <ul class="nav-menu d-none d-xl-flex list-unstyled mb-0">
+        <ul class="nav-menu d-none d-xl-flex list-unstyled mb-0" data-dynamic-navbar>
           <li class="nav-item active"><a class="nav-link" href="#inicio">Início</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sobre Nós</a>
@@ -110,7 +112,7 @@
               <li><a class="dropdown-item" href="#missao-visao-valores">Missão, Visão e Valores</a></li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown" data-toggle-menu="segmentos">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Segmentos</a>
             <ul class="dropdown-menu dropdown-menu-custom">
               <li><a class="dropdown-item" href="#segmentos">Hotelzinho (2 até 6 anos)</a></li>
@@ -119,7 +121,7 @@
               <li><a class="dropdown-item" href="#segmentos">Fundamental II (6º ao 9º ano)</a></li>
             </ul>
           </li>
-          <li class="nav-item"><a class="nav-link" href="#proposta">Proposta Pedagógica</a></li>
+          <li class="nav-item" data-toggle-menu="proposta"><a class="nav-link" href="#proposta">Proposta Pedagógica</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sistema de Ensino</a>
             <ul class="dropdown-menu dropdown-menu-custom">
@@ -129,14 +131,14 @@
                   rel="noopener">Livros Digitais</a></li>
             </ul>
           </li>
-          <li class="nav-item"><a class="nav-link" href="#eventos">Eventos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#equipe">Equipe</a></li>
+          <li class="nav-item" data-toggle-menu="eventos"><a class="nav-link" href="#eventos">Eventos</a></li>
+          <li class="nav-item" data-toggle-menu="equipe"><a class="nav-link" href="#equipe">Equipe</a></li>
           <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
         </ul>
 
         <div class="d-flex align-items-center gap-3">
-          <a href="#matriculas" class="btn-ez btn-ez-primary btn-header-matricula d-none d-xl-inline-flex">
-            <span>MATRÍCULA E REMATRÍCULA<br><small class="btn-subtext">ONLINE - 2027</small></span>
+          <a href="#matriculas" data-toggle-item="btn-matricula" class="btn-ez btn-ez-primary btn-header-matricula d-none d-xl-inline-flex">
+            <span><span data-btn-text="matricula">MATRÍCULA E REMATRÍCULA</span><br><small class="btn-subtext" data-config-ano-matricula>ONLINE - 2027</small></span>
           </a>
           <button class="navbar-toggler-custom d-xl-none" type="button" data-bs-toggle="offcanvas"
             data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Abrir menu">
@@ -157,7 +159,7 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
     </div>
     <div class="offcanvas-body d-flex flex-column justify-content-between">
-      <ul class="mobile-nav-list list-unstyled mb-3">
+      <ul class="mobile-nav-list list-unstyled mb-3" data-dynamic-mobile-nav>
         <li><a class="mobile-nav-link active" href="#inicio"><i class="bi bi-house-door me-2"></i>Início</a></li>
 
         <!-- Collapsible Sobre Nós -->
@@ -243,31 +245,31 @@
         <div class="mobile-social-bar mb-3">
           <span class="mobile-social-title">Siga-nos:</span>
           <div class="mobile-social-links">
-            <a href="https://www.instagram.com/escolazenaidemagalhaes?igsh=MXUzbzU1NHZmdHBydw==" target="_blank"
+            <a href="https://www.instagram.com/escolazenaidemagalhaes?igsh=MXUzbzU1NHZmdHBydw==" data-config-social="instagram" target="_blank"
               rel="noopener" aria-label="Instagram" class="mobile-social-icon icon-ig" title="Instagram">
               <i class="bi bi-instagram"></i>
             </a>
-            <a href="https://www.facebook.com/escolazenaidemagalhaes.sbu/" target="_blank" rel="noopener"
+            <a href="https://www.facebook.com/escolazenaidemagalhaes.sbu/" data-config-social="facebook" target="_blank" rel="noopener"
               aria-label="Facebook" class="mobile-social-icon icon-fb" title="Facebook">
               <i class="bi bi-facebook"></i>
             </a>
-            <a href="#" target="_blank" rel="noopener" aria-label="YouTube" class="mobile-social-icon icon-yt"
-              title="YouTube">
+            <a href="#" data-config-social="youtube" target="_blank" rel="noopener" aria-label="YouTube" class="mobile-social-icon icon-yt"
+              title="YouTube" style="display: none;">
               <i class="bi bi-youtube"></i>
             </a>
           </div>
         </div>
 
         <div class="mobile-quick-actions mb-3">
-          <a href="https://wa.me/558196772053" target="_blank" rel="noopener" class="mobile-action-btn btn-wa">
+          <a href="https://wa.me/558196772053" data-config-whatsapp-link target="_blank" rel="noopener" class="mobile-action-btn btn-wa">
             <i class="bi bi-whatsapp"></i> WhatsApp
           </a>
-          <a href="tel:+558196772053" class="mobile-action-btn btn-tel">
+          <a href="tel:+558196772053" data-config-tel-link class="mobile-action-btn btn-tel">
             <i class="bi bi-telephone"></i> Ligar
           </a>
         </div>
         <a href="#matriculas" class="btn-ez btn-ez-primary w-100 btn-mobile-matricula">
-          <span>MATRÍCULA E REMATRÍCULA<br><small class="btn-subtext">ONLINE - 2027</small></span>
+          <span>MATRÍCULA E REMATRÍCULA<br><small class="btn-subtext" data-config-ano-matricula>ONLINE - 2027</small></span>
         </a>
       </div>
     </div>
@@ -287,17 +289,18 @@
               adolescentes para a vida.</p>
             <div class="hero-buttons">
               <a href="#a-escola" class="btn-ez btn-ez-primary">
-                Conheça Nossa Escola <i class="bi bi-arrow-right"></i>
+                <span data-btn-text="hero-cta">Conheça Nossa Escola</span> <i class="bi bi-arrow-right"></i>
               </a>
-              <a href="https://wa.me/558196772053" target="_blank" rel="noopener" class="btn-ez btn-ez-outline">
-                <i class="bi bi-whatsapp"></i> Agende uma Visita
+              <a href="https://wa.me/558196772053" data-config-whatsapp-link target="_blank" rel="noopener" class="btn-ez btn-ez-outline">
+                <i class="bi bi-whatsapp"></i> <span data-btn-text="hero-whatsapp">Agende uma Visita</span>
               </a>
             </div>
           </div>
 
           <div class="hero-visual" data-aos="fade-left">
             <div class="hero-visual-frame">
-              <img src="assets/img/hero-alunos.jpeg" alt="Alunos sorrindo em sala de aula" loading="lazy">
+              <img src="assets/img/hero-alunos.jpeg" alt="Alunos sorrindo em sala de aula" loading="lazy"
+                data-site-image="hero_principal">
               <div class="hero-quote-card">
                 <i class="bi bi-quote"></i>
                 <div>
@@ -314,9 +317,9 @@
     </section>
 
     <!-- =========================================================
-         DIFERENCIAIS
+         DIFERENCIAIS / PROPOSTA PEDAGÓGICA
     ========================================================== -->
-    <section class="diferenciais">
+    <section class="diferenciais" id="proposta" data-toggle-section="diferenciais">
       <div class="container-custom">
         <div class="diferenciais-grid">
 
@@ -369,24 +372,24 @@
           <div class="quem-somos-visual" data-aos="fade-left">
             <div class="quem-somos-image">
               <img src="assets/img/fachada-escola.jpeg" alt="Fachada da Escola Presbiteriana Zenaide Magalhães"
-                loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+                loading="lazy" data-site-image="sobre_fachada" style="width:100%;height:100%;object-fit:cover;">
             </div>
 
             <div class="stats-stack">
               <div class="stat-card" data-aos="zoom-in" data-aos-delay="0">
-                <span class="stat-number">+650</span>
+                <span class="stat-number" data-config-stat="alunos">+650</span>
                 <span class="stat-label">Alunos</span>
               </div>
               <div class="stat-card" data-aos="zoom-in" data-aos-delay="100">
-                <span class="stat-number">+45</span>
+                <span class="stat-number" data-config-stat="professores">+45</span>
                 <span class="stat-label">Professores</span>
               </div>
               <div class="stat-card" data-aos="zoom-in" data-aos-delay="200">
-                <span class="stat-number">+20</span>
+                <span class="stat-number" data-config-stat="anos">+20</span>
                 <span class="stat-label">Anos de História</span>
               </div>
               <div class="stat-card" data-aos="zoom-in" data-aos-delay="300">
-                <span class="stat-number">100%</span>
+                <span class="stat-number" data-config-stat="compromisso">100%</span>
                 <span class="stat-label">Compromisso</span>
               </div>
             </div>
@@ -494,7 +497,7 @@
     <!-- =========================================================
          SISTEMA MACKENZIE
     ========================================================== -->
-    <section class="mackenzie" id="mackenzie">
+    <section class="mackenzie" id="mackenzie" data-toggle-section="mackenzie">
       <div class="container-custom">
         <div class="mackenzie-card" data-aos="fade-up">
           <div class="mackenzie-logo">M</div>
@@ -512,7 +515,7 @@
     <!-- =========================================================
          SEGMENTOS
     ========================================================== -->
-    <section class="segmentos" id="segmentos">
+    <section class="segmentos" id="segmentos" data-toggle-section="segmentos">
       <div class="container-custom">
         <div class="text-center mb-5" data-aos="fade-up">
           <span class="eyebrow justify-content-center">Segmentos</span>
@@ -558,17 +561,46 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- =========================================================
+         NOTÍCIAS & EVENTOS
+    ========================================================== -->
+    <section class="noticias-section" id="eventos" data-toggle-section="eventos">
+      <div class="container-custom">
+        <div class="text-center mb-5" data-aos="fade-up">
+          <span class="eyebrow justify-content-center">Acontece na Escola</span>
+          <h2 class="section-title">Notícias e Eventos</h2>
+          <p class="section-text mx-auto" style="max-width: 640px;">Acompanhe os avisos importantes, projetos pedagógicos, celebrações e novidades da nossa comunidade escolar.</p>
+        </div>
+
+        <div class="noticias-grid" id="noticiasHomeGrid"></div>
+
+        <div class="noticias-empty-card d-none" id="noticiasHomeEmpty">
+          <i class="bi bi-calendar2-week"></i>
+          <h3>Em breve novas notícias e eventos</h3>
+          <p>Fique atento aos nossos canais oficiais para acompanhar as novidades da escola.</p>
+        </div>
+
+        <div class="text-center mt-5" data-aos="fade-up">
+          <a href="noticias.html" class="btn-ez-outline-dark">
+            Ver todas as notícias e eventos <i class="bi bi-arrow-right ms-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- =========================================================
          NOSSA EQUIPE PREVIEW
     ========================================================== -->
-    <section class="equipe-section" id="equipe">
+    <section class="equipe-section" id="equipe" data-toggle-section="equipe">
       <div class="container-custom">
         <div class="text-center mb-5" data-aos="fade-up">
           <span class="eyebrow-handwritten">Nossa equipe</span>
           <h2 class="section-title text-center">Quem cuida do seu filho todos os dias</h2>
         </div>
 
-        <div class="equipe-grid">
+        <div class="equipe-grid" id="equipePreviewGrid">
           <div class="equipe-card" data-aos="fade-up" data-aos-delay="100">
             <div class="equipe-avatar">
               <img src="assets/img/equipe-1.png" alt="Maria Eduarda Santos" loading="lazy">
@@ -602,6 +634,12 @@
           </div>
         </div>
 
+        <div class="noticias-empty-card d-none" id="equipePreviewEmpty">
+          <i class="bi bi-people"></i>
+          <h3>Nossa equipe em atualização</h3>
+          <p>Clique no botão abaixo para conhecer os profissionais da escola.</p>
+        </div>
+
         <div class="text-center mt-5" data-aos="fade-up">
           <a href="equipe.html" class="btn-ez-outline-dark">
             Conheça toda a equipe <i class="bi bi-arrow-right ms-2"></i>
@@ -613,17 +651,18 @@
     <!-- =========================================================
          CTA FINAL
     ========================================================== -->
-    <section class="cta-final" id="matriculas">
+    <section class="cta-final" id="matriculas" data-toggle-section="matriculas">
       <div class="container-custom">
         <div class="cta-card" data-aos="zoom-in">
           <div class="cta-content">
             <span class="eyebrow">Matrículas Abertas</span>
             <h2>Garanta já a vaga do seu filho para o próximo ano letivo!</h2>
             <p>Vagas limitadas por turma. Fale com nossa equipe pedagógica e conheça de perto a nossa estrutura.</p>
-            <a href="#contato" class="btn-ez btn-ez-light">Fazer Matrícula <i class="bi bi-arrow-right"></i></a>
+            <a href="#contato" data-config-matricula-link class="btn-ez btn-ez-light">Fazer Matrícula <i class="bi bi-arrow-right"></i></a>
           </div>
           <div class="cta-visual">
-            <img src="assets/img/estudante-cta.png" alt="Estudante da escola" loading="lazy">
+            <img src="assets/img/estudante-cta.png" alt="Estudante da escola" loading="lazy"
+              data-site-image="cta_matriculas">
           </div>
         </div>
       </div>
@@ -643,11 +682,11 @@
           </div>
           <p class="footer-desc">“Integrando o ser humano a Deus, à família e à sociedade”</p>
           <div class="footer-social">
-            <a href="https://www.instagram.com/escolazenaidemagalhaes?igsh=MXUzbzU1NHZmdHBydw==" target="_blank"
+            <a href="https://www.instagram.com/escolazenaidemagalhaes?igsh=MXUzbzU1NHZmdHBydw==" data-config-social="instagram" target="_blank"
               rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a href="https://www.facebook.com/escolazenaidemagalhaes.sbu/" target="_blank" rel="noopener"
+            <a href="https://www.facebook.com/escolazenaidemagalhaes.sbu/" data-config-social="facebook" target="_blank" rel="noopener"
               aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+            <a href="#" data-config-social="youtube" target="_blank" rel="noopener" aria-label="YouTube" style="display: none;"><i class="bi bi-youtube"></i></a>
           </div>
         </div>
 
@@ -662,11 +701,11 @@
           </div>
           <div class="footer-contact-item">
             <i class="bi bi-whatsapp"></i>
-            <span><a href="https://wa.me/558196772053" target="_blank" rel="noopener">(81) 9677-2053</a></span>
+            <span><a href="https://wa.me/558196772053" data-config-whatsapp-link target="_blank" rel="noopener"><span data-config-whatsapp-text>(81) 9677-2053</span></a></span>
           </div>
           <div class="footer-contact-item">
             <i class="bi bi-envelope-fill"></i>
-            <span><a href="mailto:contato@epzm.com.br">contato@epzm.com.br</a></span>
+            <span><a href="mailto:contato@epzm.com.br" data-config-email>contato@epzm.com.br</a></span>
           </div>
         </div>
 
@@ -686,13 +725,13 @@
         <div class="footer-col">
           <h5>Portais &amp; Sistemas</h5>
           <ul class="list-unstyled footer-links">
-            <li><a href="javascript:void(0)" onclick="return false;" style="cursor: default;">Portal do Estudante</a></li>
+            <li><a href="javascript:void(0)" onclick="return false;" data-config-portal-estudante style="cursor: default;">Portal do Estudante</a></li>
             <li><a href="https://www.sponteeducacional.net.br/Default.aspx" target="_blank" rel="noopener">Portal do
                 Professor (Sponte)</a></li>
             <li><a href="https://planeje.escolazenaidemagalhaes.com.br" target="_blank" rel="noopener">Portal do
                 Professor (Planeje+)</a></li>
-            <li><a href="#">Agenda Digital Sponte Plus</a></li>
-            <li><a href="#">Trabalhe Conosco</a></li>
+            <li><a href="#contato" data-config-agenda-sponte>Agenda Digital Sponte Plus</a></li>
+            <li><a href="mailto:contato@epzm.com.br?subject=Trabalhe%20Conosco" data-config-trabalhe-conosco>Trabalhe Conosco</a></li>
             <li><a href="#contato">Fale Conosco</a></li>
           </ul>
         </div>
@@ -703,12 +742,41 @@
         <span>&copy; <span id="currentYear">2026</span> Escola Presbiteriana Zenaide Magalhães. Todos os direitos
           reservados.</span>
         <div class="footer-bottom-links">
-          <a href="#">Política de Privacidade</a>
-          <a href="#">LGPD</a>
+          <a href="privacidade.html">Política de Privacidade</a>
+          <a href="lgpd.html">LGPD</a>
+          <a href="admin/index.html" title="Acesso restrito à administração"><i class="bi bi-lock-fill me-1"></i>Área Administrativa</a>
         </div>
       </div>
     </div>
   </footer>
+
+  <!-- Modal de Leitura de Notícia / Evento -->
+  <div class="modal fade" id="noticiaModal" tabindex="-1" aria-labelledby="noticiaModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content noticia-modal-content">
+        <div class="modal-header border-0 pb-0">
+          <div class="d-flex align-items-center gap-2 flex-wrap">
+            <span id="noticiaModalBadge" class="noticia-badge noticia-badge-noticia">Notícia</span>
+            <span class="text-muted small"><i class="bi bi-calendar3 me-1"></i><span id="noticiaModalDate"></span></span>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body pt-3">
+          <h3 class="noticia-modal-title" id="noticiaModalTitle"></h3>
+          <div id="noticiaModalCoverWrap" class="noticia-modal-cover d-none">
+            <img id="noticiaModalCover" src="" alt="">
+          </div>
+          <div id="noticiaModalBody" class="noticia-modal-body"></div>
+        </div>
+        <div class="modal-footer border-top">
+          <button type="button" id="noticiaModalShareBtn" class="btn btn-outline-primary btn-sm">
+            <i class="bi bi-share me-1"></i>Copiar link
+          </button>
+          <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Botão Flutuante (Voltar ao Topo) -->
   <div class="floating-buttons-wrapper">
@@ -722,6 +790,11 @@
 
   <!-- AOS -->
   <script src="assets/vendor/aos/aos.js"></script>
+
+  <!-- Supabase JS v2 + Conteúdo Dinâmico -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/public-content.js"></script>
 
   <!-- Custom JS -->
   <script src="js/script.js"></script>

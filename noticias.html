@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#0F5A45">
+  <title>Notícias e Eventos — Escola Presbiteriana Zenaide Magalhães</title>
+  <meta name="description"
+    content="Acompanhe as últimas notícias, eventos escolares e comunicados da Escola Presbiteriana Zenaide Magalhães em São Bento do Una - PE.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo/icon-logo.png">
+
+  <!-- Poppins (self-hosted) -->
+  <link rel="stylesheet" href="css/fonts.css">
+
+  <!-- Bootstrap 5 (self-hosted) -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons (self-hosted) -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap-icons/font/bootstrap-icons.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .page-banner {
+      background: linear-gradient(135deg, #0F5A45 0%, #176B55 100%);
+      padding: 90px 0 70px;
+      color: #FFFFFF;
+      text-align: center;
+      position: relative;
+    }
+
+    .page-banner-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 16px;
+    }
+
+    .page-banner-desc {
+      font-size: 16px;
+      font-weight: 300;
+      max-width: 680px;
+      margin: 0 auto;
+      opacity: 0.92;
+      line-height: 1.7;
+    }
+
+    .noticias-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .noticias-filters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 10px 22px;
+      border-radius: 50px;
+      border: 1px solid #E5E5E5;
+      background: #FFFFFF;
+      color: #666666;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition-base);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(15, 90, 69, 0.25);
+    }
+
+    .noticias-search-box {
+      position: relative;
+      min-width: 260px;
+      flex: 0 1 320px;
+    }
+
+    .noticias-search-box i {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888888;
+    }
+
+    .noticias-search-box input {
+      width: 100%;
+      padding: 10px 16px 10px 42px;
+      border-radius: 50px;
+      border: 1px solid #E5E5E5;
+      font-size: 14px;
+      outline: none;
+      transition: var(--transition-base);
+    }
+
+    .noticias-search-box input:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(15, 90, 69, 0.12);
+    }
+  </style>
+</head>
+
+<body data-page-key="noticias">
+
+  <!-- HEADER -->
+  <header class="site-header-sticky">
+    <div class="topbar">
+      <div class="container-custom">
+        <div class="topbar-welcome d-none d-lg-flex">
+          <i class="bi bi-heart-fill"></i>
+          <span>Seja bem-vindo à Escola Presbiteriana Zenaide Magalhães!</span>
+        </div>
+        <div class="topbar-links">
+          <div class="d-inline-flex align-items-center gap-2" data-dynamic-topbar-buttons>
+            <a href="javascript:void(0)" onclick="return false;" class="topbar-item btn-portal-estudante" title="Portal do Estudante" style="cursor: default;"><i
+                class="bi bi-mortarboard-fill"></i><span class="topbar-label">Portal do Estudante</span></a>
+            <a href="index.html#contato" class="topbar-item" title="Trabalhe Conosco"><i class="bi bi-briefcase-fill"></i><span
+                class="topbar-label">Trabalhe Conosco</span></a>
+          </div>
+
+          <div class="dropdown d-inline-block" data-toggle-item="portal-professor">
+            <a href="#" class="topbar-item btn-portal-professor dropdown-toggle" data-bs-toggle="dropdown"
+              aria-expanded="false" title="Portal do Professor">
+              <i class="bi bi-person-workspace"></i><span class="topbar-label">Portal do Professor</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-custom shadow border-0" data-dynamic-portal-professor>
+              <li>
+                <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                  href="https://www.sponteeducacional.net.br/Default.aspx" target="_blank" rel="noopener">
+                  <i class="bi bi-laptop text-primary"></i> Sponte Educacional
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center gap-2 py-2"
+                  href="https://planeje.escolazenaidemagalhaes.com.br" target="_blank" rel="noopener">
+                  <i class="bi bi-journal-plus text-primary"></i> Planeje+
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="topbar-divider d-none d-md-block"></div>
+          <a href="tel:+558196772053" data-config-tel-link class="topbar-item topbar-phone" title="WhatsApp / Atendimento"><i
+              class="bi bi-whatsapp"></i><span class="topbar-label" data-config-whatsapp-text>(81) 9677-2053</span></a>
+          <div class="topbar-social">
+            <a href="https://www.instagram.com/escolazenaidemagalhaes?igsh=MXUzbzU1NHZmdHBydw==" data-config-social="instagram" target="_blank"
+              rel="noopener" aria-label="Instagram" title="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/escolazenaidemagalhaes.sbu/" data-config-social="facebook" target="_blank" rel="noopener"
+              aria-label="Facebook" title="Facebook"><i class="bi bi-facebook"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="main-navbar" id="mainNavbar">
+      <div class="container-custom">
+        <a href="index.html" class="navbar-brand-custom">
+          <img src="assets/logo/logo.png" alt="Logotipo Escola Presbiteriana Zenaide Magalhães">
+        </a>
+
+        <ul class="nav-menu d-none d-xl-flex list-unstyled mb-0" data-dynamic-navbar>
+          <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sobre Nós</a>
+            <ul class="dropdown-menu dropdown-menu-custom">
+              <li><a class="dropdown-item" href="index.html#a-escola">Nossa História</a></li>
+              <li><a class="dropdown-item" href="index.html#missao-visao-valores">Missão, Visão e Valores</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Segmentos</a>
+            <ul class="dropdown-menu dropdown-menu-custom">
+              <li><a class="dropdown-item" href="index.html#segmentos">Hotelzinho (2 até 6 anos)</a></li>
+              <li><a class="dropdown-item" href="index.html#segmentos">Educação Infantil</a></li>
+              <li><a class="dropdown-item" href="index.html#segmentos">Fundamental I (1º ao 5º ano)</a></li>
+              <li><a class="dropdown-item" href="index.html#segmentos">Fundamental II (6º ao 9º ano)</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="index.html#proposta">Proposta Pedagógica</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sistema de Ensino</a>
+            <ul class="dropdown-menu dropdown-menu-custom">
+              <li><a class="dropdown-item" href="https://mackensina.mackenzie.br/login" target="_blank"
+                  rel="noopener">Sistema de Ensino Mackenzie</a></li>
+              <li><a class="dropdown-item" href="https://mackensina.mackenzie.br/login" target="_blank"
+                  rel="noopener">Livros Digitais</a></li>
+            </ul>
+          </li>
+          <li class="nav-item active"><a class="nav-link" href="noticias.html">Eventos</a></li>
+          <li class="nav-item"><a class="nav-link" href="equipe.html">Equipe</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#contato">Contato</a></li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-3">
+          <a href="index.html#matriculas" class="btn-ez btn-ez-primary btn-header-matricula d-none d-xl-inline-flex">
+            <span>MATRÍCULA E REMATRÍCULA<br><small class="btn-subtext">ONLINE - 2027</small></span>
+          </a>
+          <button class="navbar-toggler-custom d-xl-none" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Abrir menu">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Offcanvas Menu -->
+  <div class="offcanvas offcanvas-end mobile-offcanvas" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+    <div class="offcanvas-header border-bottom">
+      <a href="index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+        <img src="assets/logo/logo.png" alt="Escola Presbiteriana Zenaide Magalhães" class="offcanvas-logo">
+      </a>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column justify-content-between">
+      <ul class="mobile-nav-list list-unstyled mb-3" data-dynamic-mobile-nav>
+        <li><a class="mobile-nav-link" href="index.html"><i class="bi bi-house-door me-2"></i>Início</a></li>
+        <li><a class="mobile-nav-link" href="index.html#a-escola"><i class="bi bi-building me-2"></i>Sobre Nós</a></li>
+        <li><a class="mobile-nav-link" href="index.html#segmentos"><i class="bi bi-grid me-2"></i>Segmentos</a></li>
+        <li><a class="mobile-nav-link active" href="noticias.html"><i class="bi bi-calendar-event me-2"></i>Eventos &amp; Notícias</a></li>
+        <li><a class="mobile-nav-link" href="equipe.html"><i class="bi bi-people me-2"></i>Equipe</a></li>
+        <li><a class="mobile-nav-link" href="index.html#contato"><i class="bi bi-envelope me-2"></i>Contato</a></li>
+      </ul>
+      <div class="mobile-offcanvas-footer pt-3 border-top">
+        <div class="mobile-quick-actions mb-3">
+          <a href="https://wa.me/558196772053" target="_blank" rel="noopener" class="mobile-action-btn btn-wa">
+            <i class="bi bi-whatsapp"></i> WhatsApp
+          </a>
+          <a href="tel:+558196772053" class="mobile-action-btn btn-tel">
+            <i class="bi bi-telephone"></i> Ligar
+          </a>
+        </div>
+        <a href="index.html#matriculas" class="btn-ez btn-ez-primary w-100 btn-mobile-matricula">
+          <span>MATRÍCULA E REMATRÍCULA<br><small class="btn-subtext">ONLINE - 2027</small></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- PAGE BANNER -->
+    <section class="page-banner">
+      <div class="container-custom">
+        <span class="eyebrow-handwritten text-white opacity-85">Acontece na Escola</span>
+        <h1 class="page-banner-title">Notícias e Eventos</h1>
+        <p class="page-banner-desc">Fique por dentro das atividades pedagógicas, celebrações, comunicados oficiais e momentos especiais da nossa comunidade escolar.</p>
+      </div>
+    </section>
+
+    <!-- LISTAGEM -->
+    <section class="py-5 bg-white">
+      <div class="container-custom py-4">
+
+        <div class="noticias-toolbar">
+          <div class="noticias-filters">
+            <button type="button" class="filter-btn active" data-filter="all">Todas</button>
+            <button type="button" class="filter-btn" data-filter="noticia">Notícias</button>
+            <button type="button" class="filter-btn" data-filter="evento">Eventos</button>
+            <button type="button" class="filter-btn" data-filter="comunicado">Comunicados</button>
+          </div>
+          <div class="noticias-search-box">
+            <i class="bi bi-search"></i>
+            <input type="search" id="noticiasSearchInput" placeholder="Buscar por título ou assunto..." aria-label="Buscar notícias">
+          </div>
+        </div>
+
+        <div class="text-center py-5" id="noticiasLoadingState">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Carregando...</span>
+          </div>
+          <p class="text-muted mt-3 mb-0">Carregando notícias e eventos...</p>
+        </div>
+
+        <div class="noticias-grid" id="noticiasFullGrid"></div>
+
+        <div class="noticias-empty-card d-none" id="noticiasEmptyState">
+          <i class="bi bi-newspaper"></i>
+          <h3>Nenhuma publicação encontrada</h3>
+          <p>Ainda não há notícias ou eventos publicados para o filtro selecionado.</p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container-custom">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand-col">
+          <div class="footer-brand">
+            <img src="assets/logo/logo.png" alt="Escola Presbiteriana Zenaide Magalhães">
+          </div>
+          <p class="footer-desc">“Integrando o ser humano a Deus, à família e à sociedade”</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/escolazenaidemagalhaes?igsh=MXUzbzU1NHZmdHBydw==" target="_blank"
+              rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/escolazenaidemagalhaes.sbu/" target="_blank" rel="noopener"
+              aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contato</h5>
+          <div class="footer-contact-item">
+            <i class="bi bi-geo-alt-fill"></i>
+            <span><a href="https://maps.app.goo.gl/mA72nAE25KxtMBfV8" target="_blank" rel="noopener">Rua Gercina Cintra Valença, 100A<br>Loteamento João Paulo II — CEP: 55373-338<br>São Bento do Una - PE</a></span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="bi bi-whatsapp"></i>
+            <span><a href="https://wa.me/558196772053" target="_blank" rel="noopener">(81) 9677-2053</a></span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Institucional</h5>
+          <ul class="list-unstyled footer-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="index.html#a-escola">Sobre Nós</a></li>
+            <li><a href="noticias.html">Notícias e Eventos</a></li>
+            <li><a href="equipe.html">Nossa Equipe</a></li>
+            <li><a href="admin/index.html">Área Administrativa</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="mb-0">&copy; <span id="currentYear">2026</span> Escola Presbiteriana Zenaide Magalhães. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal de Leitura de Notícia / Evento -->
+  <div class="modal fade" id="noticiaModal" tabindex="-1" aria-labelledby="noticiaModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content noticia-modal-content">
+        <div class="modal-header border-0 pb-0">
+          <div class="d-flex align-items-center gap-2 flex-wrap">
+            <span id="noticiaModalBadge" class="noticia-badge noticia-badge-noticia">Notícia</span>
+            <span class="text-muted small"><i class="bi bi-calendar3 me-1"></i><span id="noticiaModalDate"></span></span>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body pt-3">
+          <h3 class="noticia-modal-title" id="noticiaModalTitle"></h3>
+          <div id="noticiaModalCoverWrap" class="noticia-modal-cover d-none">
+            <img id="noticiaModalCover" src="" alt="">
+          </div>
+          <div id="noticiaModalBody" class="noticia-modal-body"></div>
+        </div>
+        <div class="modal-footer border-top">
+          <button type="button" id="noticiaModalShareBtn" class="btn btn-outline-primary btn-sm">
+            <i class="bi bi-share me-1"></i>Copiar link
+          </button>
+          <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botão Flutuante (Voltar ao Topo) -->
+  <div class="floating-buttons-wrapper">
+    <button type="button" id="backToTopBtn" class="btn-floating btn-back-to-top" aria-label="Voltar ao topo">
+      <i class="bi bi-arrow-up"></i>
+    </button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/public-content.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>

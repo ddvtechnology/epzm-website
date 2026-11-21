@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0F5A45">
+  <title>Esqueci Minha Senha — Painel Administrativo EPZM</title>
+
+  <link rel="icon" type="image/png" href="../assets/logo/icon-logo.png">
+  <link rel="stylesheet" href="../css/fonts.css">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/vendor/bootstrap-icons/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+
+<body data-auth-page="esqueci-senha">
+
+  <section class="admin-login-wrapper">
+    <div class="admin-login-card">
+      <div class="text-center mb-4">
+        <img src="../assets/logo/logo.png" alt="Escola Presbiteriana Zenaide Magalhães" class="admin-login-logo">
+        <h1 class="h4 fw-bold mt-3 mb-1">Recuperar Senha</h1>
+        <p class="text-muted small mb-0">Informe seu e-mail administrativo para receber o link de redefinição.</p>
+      </div>
+
+      <div id="authErrorAlert" class="alert alert-danger small d-none" role="alert"></div>
+      <div id="authSuccessAlert" class="alert alert-success small d-none" role="alert"></div>
+
+      <form id="forgotForm" novalidate>
+        <div class="mb-4">
+          <label for="forgotEmail" class="form-label fw-medium small">E-mail cadastrado</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+            <input type="email" class="form-control" id="forgotEmail" placeholder="admin@escolazenaidemagalhaes.com.br"
+              autocomplete="email" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold" id="forgotSubmitBtn">
+          Enviar link de redefinição
+        </button>
+      </form>
+
+      <div class="text-center mt-4 pt-3 border-top d-flex flex-column gap-2">
+        <a href="index.html" class="small fw-medium text-decoration-none">
+          <i class="bi bi-arrow-left me-1"></i>Voltar para o Login
+        </a>
+        <a href="../index.html" class="text-muted small text-decoration-none">
+          Ir para o site público
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase-config.js"></script>
+  <script src="auth-pages.js"></script>
+</body>
+
+</html>
