@@ -10,19 +10,19 @@
     hero_principal: {
       titulo: 'Banner Principal (Hero)',
       descricao: 'Foto em destaque no topo da página inicial ao lado do versículo bíblico.',
-      fallback: '../assets/img/hero-alunos.jpeg',
+      fallback: '/assets/img/hero-alunos.jpeg',
       defaultAlt: 'Alunos sorrindo em sala de aula',
     },
     sobre_fachada: {
       titulo: 'Fachada da Escola',
       descricao: 'Imagem exibida na seção Sobre Nós ao lado dos números da escola.',
-      fallback: '../assets/img/fachada-escola.jpeg',
+      fallback: '/assets/img/fachada-escola.jpeg',
       defaultAlt: 'Fachada da Escola Presbiteriana Zenaide Magalhães',
     },
     cta_matriculas: {
       titulo: 'Banner de Matrículas',
       descricao: 'Imagem exibida no card verde de Matrículas Abertas no final da Home.',
-      fallback: '../assets/img/estudante-cta.png',
+      fallback: '/assets/img/estudante-cta.png',
       defaultAlt: 'Estudante da escola',
     },
   };
@@ -125,8 +125,8 @@
 
   function resolveAdminImageUrl(url, fallback) {
     if (!url) return fallback;
-    if (url.startsWith('http://') || url.startsWith('https://')) return url;
-    if (url.startsWith('assets/')) return '../' + url;
+    if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('/')) return url;
+    if (url.startsWith('assets/')) return '/' + url;
     return url;
   }
 
@@ -143,12 +143,12 @@
     return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
   }
 
-  function setButtonLoading(btn, loading, defaultText) {
+  function setButtonLoading(btn, loading, defaultText, loadingText) {
     if (!btn) return;
     if (loading) {
       btn.dataset.originalText = btn.textContent;
       btn.disabled = true;
-      btn.textContent = 'Salvando...';
+      btn.textContent = loadingText || 'Salvando...';
     } else {
       btn.disabled = false;
       btn.textContent = defaultText || btn.dataset.originalText || 'Salvar';
@@ -196,15 +196,134 @@
   }
 
   /* -----------------------------------------------------------
-     Autenticação
+     Autenticação + Expiração Automática de Sessão (Segurança)
   ----------------------------------------------------------- */
+  const IDLE_TIMEOUT_MS = 30 * 60 * 1000;      // 30 minutos sem atividade
+  const MAX_SESSION_MS = 8 * 60 * 60 * 1000;   // 8 horas de sessão máxima
+  const KEY_LAST_ACTIVITY = 'epzm_admin_last_activity';
+  const KEY_LOGIN_AT = 'epzm_admin_login_at';
+  let sessionWatchTimer = null;
+  let isLoggingIn = false;
+
+  function recordActivity() {
+    if (!state.session) return;
+    try {
+      localStorage.setItem(KEY_LAST_ACTIVITY, String(Date.now()));
+    } catch (_) {}
+  }
+
+  function startSessionClock(isFreshLogin) {
+    const now = Date.now();
+    try {
+      if (isFreshLogin || !localStorage.getItem(KEY_LOGIN_AT)) {
+        localStorage.setItem(KEY_LOGIN_AT, String(now));
+      }
+      localStorage.setItem(KEY_LAST_ACTIVITY, String(now));
+    } catch (_) {}
+  }
+
+  function clearSessionClock() {
+    try {
+      localStorage.removeItem(KEY_LAST_ACTIVITY);
+      localStorage.removeItem(KEY_LOGIN_AT);
+    } catch (_) {}
+  }
+
+  function isSessionExpiredByPolicy(session) {
+    try {
+      const now = Date.now();
+      const last = parseInt(localStorage.getItem(KEY_LAST_ACTIVITY) || '0', 10);
+      const loginAt = parseInt(localStorage.getItem(KEY_LOGIN_AT) || '0', 10);
+      if (last > 0 && now - last > IDLE_TIMEOUT_MS) return 'inatividade';
+      if (loginAt > 0 && now - loginAt > MAX_SESSION_MS) return 'tempo_maximo';
+
+      // Sessões antigas (criadas antes do controle de expiração): valida pelo último login registrado
+      if (!last && !loginAt && session && session.user && session.user.last_sign_in_at) {
+        const lastSignInMs = Date.parse(session.user.last_sign_in_at);
+        if (!Number.isNaN(lastSignInMs)) {
+          if (now - lastSignInMs > MAX_SESSION_MS) return 'tempo_maximo';
+          if (now - lastSignInMs > IDLE_TIMEOUT_MS) return 'inatividade';
+        }
+      }
+      return null;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  async function expireSessionNow(reason) {
+    stopSessionWatcher();
+    clearSessionClock();
+    if (window.epzmSupabase) {
+      try {
+        await window.epzmSupabase.auth.signOut();
+      } catch (_) {}
+    }
+    state.session = null;
+    markConfigDirty(false);
+    $('loginPassword').value = '';
+    showLoginView();
+    showLoginError(
+      reason === 'tempo_maximo'
+        ? 'Sua sessão atingiu o tempo máximo de 8 horas. Por segurança, faça login novamente.'
+        : 'Sua sessão expirou após 30 minutos de inatividade. Faça login novamente.'
+    );
+  }
+
+  function startSessionWatcher() {
+    stopSessionWatcher();
+    sessionWatchTimer = setInterval(() => {
+      if (!state.session) return;
+      const reason = isSessionExpiredByPolicy(state.session);
+      if (reason) expireSessionNow(reason);
+    }, 30 * 1000);
+  }
+
+  function stopSessionWatcher() {
+    if (sessionWatchTimer) {
+      clearInterval(sessionWatchTimer);
+      sessionWatchTimer = null;
+    }
+  }
+
+  function bindActivityTracking() {
+    let lastTick = 0;
+    const onActivity = () => {
+      const now = Date.now();
+      if (now - lastTick > 15000) {
+        lastTick = now;
+        recordActivity();
+      }
+    };
+    ['mousedown', 'keydown', 'scroll', 'touchstart'].forEach((evt) => {
+      window.addEventListener(evt, onActivity, { passive: true });
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible' && state.session) {
+        const reason = isSessionExpiredByPolicy(state.session);
+        if (reason) expireSessionNow(reason);
+      }
+    });
+    window.addEventListener('storage', (e) => {
+      if (e.key === KEY_LOGIN_AT && !e.newValue && state.session) {
+        stopSessionWatcher();
+        state.session = null;
+        markConfigDirty(false);
+        showLoginView();
+      }
+    });
+  }
+
   function showLoginView() {
+    stopSessionWatcher();
     $('loginView').classList.remove('d-none');
     $('dashboardView').classList.add('d-none');
   }
 
-  function showDashboardView(session) {
+  function showDashboardView(session, isFreshLogin = false) {
     state.session = session;
+    startSessionClock(isFreshLogin);
+    startSessionWatcher();
     $('loginView').classList.add('d-none');
     $('dashboardView').classList.remove('d-none');
 
@@ -257,7 +376,8 @@
     }
 
     const btn = $('loginSubmitBtn');
-    setButtonLoading(btn, true);
+    setButtonLoading(btn, true, 'Entrar no Painel', 'Entrando...');
+    isLoggingIn = true;
     try {
       const { data, error } = await window.epzmSupabase.auth.signInWithPassword({ email, password });
       if (error) {
@@ -265,16 +385,19 @@
         return;
       }
       if (data && data.session) {
-        showDashboardView(data.session);
+        showDashboardView(data.session, true);
       }
     } catch (_) {
       showLoginError('Erro de conexão ao tentar entrar.');
     } finally {
+      isLoggingIn = false;
       setButtonLoading(btn, false, 'Entrar no Painel');
     }
   }
 
   async function handleLogout() {
+    stopSessionWatcher();
+    clearSessionClock();
     if (window.epzmSupabase) {
       await window.epzmSupabase.auth.signOut();
     }
@@ -515,7 +638,7 @@
 
       const img = document.createElement('img');
       img.className = 'admin-thumb-avatar';
-      img.src = resolveAdminImageUrl(membro.foto_url, '../assets/img/equipe-1.png');
+      img.src = resolveAdminImageUrl(membro.foto_url, '/assets/img/equipe-1.png');
       img.alt = membro.nome;
 
       const info = document.createElement('div');
@@ -682,7 +805,7 @@
       $('equipeAtivo').checked = Boolean(membro.ativo);
       $('equipeFotoUrlAtual').value = membro.foto_url || '';
       $('equipeFotoCaminhoAtual').value = membro.foto_caminho || '';
-      $('equipeFotoPreview').src = resolveAdminImageUrl(membro.foto_url, '../assets/img/equipe-1.png');
+      $('equipeFotoPreview').src = resolveAdminImageUrl(membro.foto_url, '/assets/img/equipe-1.png');
     } else {
       $('equipeModalTitle').textContent = 'Novo Servidor';
       $('equipeId').value = '';
@@ -691,7 +814,7 @@
       $('equipeDestaqueHome').checked = false;
       $('equipeFotoUrlAtual').value = '';
       $('equipeFotoCaminhoAtual').value = '';
-      $('equipeFotoPreview').src = '../assets/img/equipe-1.png';
+      $('equipeFotoPreview').src = '/assets/img/equipe-1.png';
     }
 
     updateDestaqueHomeControls();
@@ -1736,15 +1859,16 @@
     const hashParams = new URLSearchParams((window.location.hash || '').replace(/^#/, ''));
     const incomingType = searchParams.get('type') || hashParams.get('type');
     if (incomingType === 'invite') {
-      window.location.replace('primeiro-acesso.html' + window.location.search + window.location.hash);
+      window.location.replace('/admin/primeiro-acesso.html' + window.location.search + window.location.hash);
       return;
     }
     if (incomingType === 'recovery') {
-      window.location.replace('redefinir-senha.html' + window.location.search + window.location.hash);
+      window.location.replace('/admin/redefinir-senha.html' + window.location.search + window.location.hash);
       return;
     }
 
     bindEvents();
+    bindActivityTracking();
 
     if (!window.isSupabaseConfigured || !window.isSupabaseConfigured() || !window.epzmSupabase) {
       $('configWarningAlert').classList.remove('d-none');
@@ -1754,17 +1878,28 @@
 
     window.epzmSupabase.auth.onAuthStateChange((event, session) => {
       if (event === 'PASSWORD_RECOVERY') {
-        window.location.replace('redefinir-senha.html' + window.location.search + window.location.hash);
+        window.location.replace('/admin/redefinir-senha.html' + window.location.search + window.location.hash);
       } else if (event === 'SIGNED_OUT') {
+        clearSessionClock();
         showLoginView();
-      } else if (event === 'SIGNED_IN' && session) {
-        showDashboardView(session);
+      } else if (event === 'SIGNED_IN' && session && !state.session && !isLoggingIn) {
+        const expiredReason = isSessionExpiredByPolicy(session);
+        if (expiredReason) {
+          expireSessionNow(expiredReason);
+        } else {
+          showDashboardView(session, false);
+        }
       }
     });
 
     const { data } = await window.epzmSupabase.auth.getSession();
     if (data && data.session) {
-      showDashboardView(data.session);
+      const expiredReason = isSessionExpiredByPolicy(data.session);
+      if (expiredReason) {
+        await expireSessionNow(expiredReason);
+      } else {
+        showDashboardView(data.session, false);
+      }
     } else {
       showLoginView();
     }

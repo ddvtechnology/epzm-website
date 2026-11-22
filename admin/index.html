@@ -8,72 +8,98 @@
   <meta name="theme-color" content="#0A3629">
   <title>Painel Administrativo — Escola Presbiteriana Zenaide Magalhães</title>
 
-  <link rel="icon" type="image/png" href="../assets/logo/icon-logo.png">
-  <link rel="stylesheet" href="../css/fonts.css">
-  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/vendor/bootstrap-icons/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="admin.css">
+  <link rel="icon" type="image/png" href="/assets/logo/icon-logo.png">
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/vendor/bootstrap-icons/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/admin/admin.css">
 </head>
 
 <body>
 
   <!-- =========================================================
-       TELA DE LOGIN
+       TELA DE LOGIN (SPLIT-SCREEN MODERNO EPZM)
   ========================================================== -->
-  <section id="loginView" class="admin-login-wrapper">
-    <div class="admin-login-card">
-      <div class="text-center mb-4">
-        <img src="../assets/logo/logo.png" alt="Escola Presbiteriana Zenaide Magalhães" class="admin-login-logo">
-        <h1 class="h4 fw-bold mt-3 mb-1">Painel Administrativo</h1>
-        <p class="text-muted small mb-0">Gestão do portal institucional da EPZM</p>
+  <section id="loginView" class="auth-split-shell">
+    <!-- Painel Institucional Esquerdo -->
+    <div class="auth-brand-panel">
+      <div class="auth-brand-top">
+        <a href="/index.html" class="auth-brand-logo-box" title="Voltar ao site">
+          <img src="/assets/logo/logo.png" alt="Escola Presbiteriana Zenaide Magalhães">
+        </a>
       </div>
 
-      <div id="configWarningAlert" class="alert alert-warning small d-none" role="alert">
-        <i class="bi bi-exclamation-triangle-fill me-1"></i>
-        <strong>Supabase ainda não configurado.</strong><br>
-        Preencha a URL e a chave pública em <code>js/supabase-config.js</code>.
+      <div class="auth-brand-middle">
+        <span class="auth-brand-eyebrow"><i class="bi bi-shield-lock-fill"></i> Portal de Gestão Institucional</span>
+        <h2 class="auth-brand-title">Atualize o site da escola com agilidade e segurança.</h2>
+        <p class="auth-brand-desc">Gerencie equipe pedagógica, notícias, eventos, comunicados, imagens principais e dados de atendimento em um único ambiente.</p>
       </div>
 
-      <div id="loginAlert" class="alert alert-danger small d-none" role="alert"></div>
-      <div id="loginSuccessAlert" class="alert alert-success small d-none" role="alert"></div>
+      <div class="auth-brand-bottom">
+        <i class="bi bi-geo-alt-fill"></i>
+        <span>Escola Presbiteriana Zenaide Magalhães · São Bento do Una - PE</span>
+      </div>
+    </div>
 
-      <form id="loginForm" novalidate>
-        <div class="mb-3">
-          <label for="loginEmail" class="form-label fw-medium small">E-mail</label>
-          <div class="input-group">
-            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-            <input type="email" class="form-control" id="loginEmail" placeholder="gestor@escolazenaidemagalhaes.com.br"
-              autocomplete="email" required>
-          </div>
+    <!-- Painel de Formulário Direito -->
+    <div class="auth-form-panel">
+      <div class="auth-form-box">
+        <div class="auth-mobile-logo">
+          <img src="/assets/logo/logo.png" alt="Escola Presbiteriana Zenaide Magalhães">
         </div>
 
-        <div class="mb-3">
-          <label for="loginPassword" class="form-label fw-medium small">Senha</label>
-          <div class="input-group">
-            <span class="input-group-text"><i class="bi bi-lock"></i></span>
-            <input type="password" class="form-control" id="loginPassword" placeholder="Digite sua senha"
-              autocomplete="current-password" required>
-            <button type="button" class="btn btn-outline-secondary" id="togglePasswordBtn" aria-label="Mostrar senha">
-              <i class="bi bi-eye"></i>
-            </button>
-          </div>
+        <h1 class="auth-form-title">Entrar no Painel</h1>
+        <p class="auth-form-subtitle">Use seu e-mail administrativo e senha para continuar.</p>
+
+        <div id="configWarningAlert" class="alert alert-warning small d-none" role="alert">
+          <i class="bi bi-exclamation-triangle-fill me-1"></i>
+          <strong>Supabase ainda não configurado.</strong><br>
+          Preencha a URL e a chave pública em <code>js/supabase-config.js</code>.
         </div>
 
-        <div class="d-flex justify-content-end mb-4">
-          <a href="esqueci-senha.html" class="small text-decoration-none fw-medium">
-            Esqueci minha senha
+        <div id="loginAlert" class="alert alert-danger small d-none" role="alert"></div>
+        <div id="loginSuccessAlert" class="alert alert-success small d-none" role="alert"></div>
+
+        <form id="loginForm" novalidate>
+          <div class="auth-field">
+            <label for="loginEmail">E-mail</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-envelope auth-input-icon"></i>
+              <input type="email" class="form-control" id="loginEmail" placeholder="gestor@escolazenaidemagalhaes.com.br"
+                autocomplete="email" required>
+            </div>
+          </div>
+
+          <div class="auth-field mb-2">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <label for="loginPassword" class="mb-0">Senha</label>
+              <a href="/admin/esqueci-senha.html" class="small text-decoration-none fw-medium">
+                Esqueci minha senha
+              </a>
+            </div>
+            <div class="auth-input-wrap">
+              <i class="bi bi-lock auth-input-icon"></i>
+              <input type="password" class="form-control has-toggle" id="loginPassword" placeholder="Digite sua senha"
+                autocomplete="current-password" required>
+              <button type="button" class="auth-eye-btn" id="togglePasswordBtn" aria-label="Mostrar senha">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary auth-submit-btn mt-3" id="loginSubmitBtn">
+            Entrar no Painel
+          </button>
+        </form>
+
+        <div class="auth-footer-meta">
+          <span class="auth-security-note">
+            <i class="bi bi-shield-check text-success"></i> Sessão protegida com expiração automática
+          </span>
+          <a href="/index.html" class="text-muted small text-decoration-none">
+            <i class="bi bi-arrow-left me-1"></i>Voltar para o site público
           </a>
         </div>
-
-        <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold" id="loginSubmitBtn">
-          Entrar no Painel
-        </button>
-      </form>
-
-      <div class="text-center mt-4 pt-3 border-top">
-        <a href="../index.html" class="text-muted small text-decoration-none">
-          <i class="bi bi-arrow-left me-1"></i>Voltar para o site público
-        </a>
       </div>
     </div>
   </section>
@@ -87,7 +113,7 @@
     <aside class="admin-sidebar" id="adminSidebar">
       <div class="admin-sidebar-brand">
         <div class="brand-logo-pill">
-          <img src="../assets/logo/logo.png" alt="EPZM">
+          <img src="/assets/logo/logo.png" alt="EPZM">
         </div>
         <button type="button" class="btn-sidebar-close d-lg-none" id="closeSidebarBtn" aria-label="Fechar menu">
           <i class="bi bi-x-lg"></i>
@@ -120,7 +146,7 @@
       </nav>
 
       <div class="admin-sidebar-footer">
-        <a href="../index.html" target="_blank" rel="noopener" class="sidebar-site-link mb-2">
+        <a href="/index.html" target="_blank" rel="noopener" class="sidebar-site-link mb-2">
           <i class="bi bi-box-arrow-up-right"></i>
           <span>Abrir site ao vivo</span>
         </a>
@@ -787,7 +813,7 @@
           <input type="hidden" id="equipeFotoCaminhoAtual">
 
           <div class="text-center mb-3">
-            <img id="equipeFotoPreview" src="../assets/img/equipe-1.png" alt="Preview" class="admin-avatar-preview mb-2">
+            <img id="equipeFotoPreview" src="/assets/img/equipe-1.png" alt="Preview" class="admin-avatar-preview mb-2">
             <div>
               <label for="equipeFotoInput" class="btn btn-outline-primary btn-sm">
                 <i class="bi bi-upload me-1"></i>Escolher Foto
@@ -982,12 +1008,12 @@
   <div class="toast-container position-fixed bottom-0 end-0 p-3" id="adminToastContainer"></div>
 
   <!-- Scripts -->
-  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../js/supabase-config.js"></script>
-  <script src="../js/image-optimizer.js"></script>
-  <script src="admin.js"></script>
-  <script src="tour.js"></script>
+  <script src="/js/supabase-config.js"></script>
+  <script src="/js/image-optimizer.js"></script>
+  <script src="/admin/admin.js"></script>
+  <script src="/admin/tour.js"></script>
 </body>
 
 </html>

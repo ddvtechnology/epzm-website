@@ -8,55 +8,79 @@
   <meta name="theme-color" content="#0F5A45">
   <title>Esqueci Minha Senha — Painel Administrativo EPZM</title>
 
-  <link rel="icon" type="image/png" href="../assets/logo/icon-logo.png">
-  <link rel="stylesheet" href="../css/fonts.css">
-  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/vendor/bootstrap-icons/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="admin.css">
+  <link rel="icon" type="image/png" href="/assets/logo/icon-logo.png">
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/vendor/bootstrap-icons/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/admin/admin.css">
 </head>
 
 <body data-auth-page="esqueci-senha">
 
-  <section class="admin-login-wrapper">
-    <div class="admin-login-card">
-      <div class="text-center mb-4">
-        <img src="../assets/logo/logo.png" alt="Escola Presbiteriana Zenaide Magalhães" class="admin-login-logo">
-        <h1 class="h4 fw-bold mt-3 mb-1">Recuperar Senha</h1>
-        <p class="text-muted small mb-0">Informe seu e-mail administrativo para receber o link de redefinição.</p>
+  <section class="auth-split-shell">
+    <!-- Painel Institucional Esquerdo -->
+    <div class="auth-brand-panel">
+      <div class="auth-brand-top">
+        <a href="/index.html" class="auth-brand-logo-box" title="Voltar ao site">
+          <img src="/assets/logo/logo.png" alt="Escola Presbiteriana Zenaide Magalhães">
+        </a>
       </div>
 
-      <div id="authErrorAlert" class="alert alert-danger small d-none" role="alert"></div>
-      <div id="authSuccessAlert" class="alert alert-success small d-none" role="alert"></div>
+      <div class="auth-brand-middle">
+        <span class="auth-brand-eyebrow"><i class="bi bi-key-fill"></i> Recuperação Segura</span>
+        <h2 class="auth-brand-title">Esqueceu sua senha? Recupere o acesso com segurança.</h2>
+        <p class="auth-brand-desc">Enviaremos um link exclusivo com token temporário para o seu e-mail administrativo cadastrado.</p>
+      </div>
 
-      <form id="forgotForm" novalidate>
-        <div class="mb-4">
-          <label for="forgotEmail" class="form-label fw-medium small">E-mail cadastrado</label>
-          <div class="input-group">
-            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-            <input type="email" class="form-control" id="forgotEmail" placeholder="admin@escolazenaidemagalhaes.com.br"
-              autocomplete="email" required>
-          </div>
+      <div class="auth-brand-bottom">
+        <i class="bi bi-geo-alt-fill"></i>
+        <span>Escola Presbiteriana Zenaide Magalhães · São Bento do Una - PE</span>
+      </div>
+    </div>
+
+    <!-- Painel Direito -->
+    <div class="auth-form-panel">
+      <div class="auth-form-box">
+        <div class="auth-mobile-logo">
+          <img src="/assets/logo/logo.png" alt="Escola Presbiteriana Zenaide Magalhães">
         </div>
 
-        <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold" id="forgotSubmitBtn">
-          Enviar link de redefinição
-        </button>
-      </form>
+        <h1 class="auth-form-title">Recuperar Senha</h1>
+        <p class="auth-form-subtitle">Informe seu e-mail cadastrado para receber o link de redefinição.</p>
 
-      <div class="text-center mt-4 pt-3 border-top d-flex flex-column gap-2">
-        <a href="index.html" class="small fw-medium text-decoration-none">
-          <i class="bi bi-arrow-left me-1"></i>Voltar para o Login
-        </a>
-        <a href="../index.html" class="text-muted small text-decoration-none">
-          Ir para o site público
-        </a>
+        <div id="authErrorAlert" class="alert alert-danger small d-none" role="alert"></div>
+        <div id="authSuccessAlert" class="alert alert-success small d-none" role="alert"></div>
+
+        <form id="forgotForm" novalidate>
+          <div class="auth-field mb-4">
+            <label for="forgotEmail">E-mail administrativo</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-envelope auth-input-icon"></i>
+              <input type="email" class="form-control" id="forgotEmail" placeholder="gestor@escolazenaidemagalhaes.com.br"
+                autocomplete="email" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary auth-submit-btn" id="forgotSubmitBtn">
+            Enviar link de redefinição
+          </button>
+        </form>
+
+        <div class="auth-footer-meta">
+          <a href="/admin/" class="small fw-medium text-decoration-none">
+            <i class="bi bi-arrow-left me-1"></i>Voltar para o Login
+          </a>
+          <a href="/index.html" class="text-muted small text-decoration-none">
+            Ir para o site público
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../js/supabase-config.js"></script>
-  <script src="auth-pages.js"></script>
+  <script src="/js/supabase-config.js"></script>
+  <script src="/admin/auth-pages.js"></script>
 </body>
 
 </html>

@@ -269,11 +269,17 @@
           throw new Error(updateErr.message);
         }
 
+        try {
+          const now = String(Date.now());
+          localStorage.setItem('epzm_admin_login_at', now);
+          localStorage.setItem('epzm_admin_last_activity', now);
+        } catch (_) {}
+
         formView.classList.add('d-none');
         successView.classList.remove('d-none');
 
         setTimeout(() => {
-          window.location.href = 'index.html';
+          window.location.href = '/admin/';
         }, 1800);
       } catch (err) {
         showAlert('authErrorAlert', err.message || 'Não foi possível concluir o primeiro acesso.');
@@ -309,7 +315,7 @@
       setButtonLoading(submitBtn, true, 'Enviando link...');
 
       try {
-        const redirectUrl = new URL('redefinir-senha.html', window.location.href).toString();
+        const redirectUrl = new URL('/admin/redefinir-senha.html', window.location.origin).toString();
         const { error } = await window.epzmSupabase.auth.resetPasswordForEmail(email, {
           redirectTo: redirectUrl,
         });
@@ -408,11 +414,17 @@
           throw new Error(updateErr.message);
         }
 
+        try {
+          const now = String(Date.now());
+          localStorage.setItem('epzm_admin_login_at', now);
+          localStorage.setItem('epzm_admin_last_activity', now);
+        } catch (_) {}
+
         formView.classList.add('d-none');
         successView.classList.remove('d-none');
 
         setTimeout(() => {
-          window.location.href = 'index.html';
+          window.location.href = '/admin/';
         }, 1800);
       } catch (err) {
         showAlert('authErrorAlert', err.message || 'Não foi possível redefinir a senha.');
