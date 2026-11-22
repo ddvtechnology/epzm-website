@@ -1179,6 +1179,205 @@
      5. CONFIGURAÇÕES UNIFICADAS (APARÊNCIA + DADOS DA ESCOLA)
   ----------------------------------------------------------- */
   const LEGACY_AVISO_HEX = { ambar: '#D97706', verde: '#0F5A45', roxo: '#4C1D95' };
+  const TRABALHE_ICONS = [
+    'bi-briefcase-fill',
+    'bi-person-plus-fill',
+    'bi-envelope-fill',
+    'bi-whatsapp',
+    'bi-file-earmark-person-fill',
+    'bi-people-fill',
+    'bi-building-fill',
+    'bi-send-fill',
+    'bi-award-fill',
+    'bi-megaphone-fill',
+  ];
+
+  function resolveHexColor(val, fallback) {
+    const raw = String(val || '').trim();
+    if (/^#[0-9A-Fa-f]{6}$/.test(raw)) return raw.toUpperCase();
+    return fallback;
+  }
+
+  function renderTrabalheIconPicker() {
+    const grid = $('trabalheIconPickerGrid');
+    if (!grid) return;
+    const selected = $('cfgBtnTrabalheIcone')?.value || 'bi-briefcase-fill';
+    clearEl(grid);
+
+    TRABALHE_ICONS.forEach((iconClass) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = `icon-pick-btn ${selected === iconClass ? 'active' : ''}`;
+      btn.title = iconClass;
+      btn.innerHTML = `<i class="bi ${iconClass}"></i>`;
+      btn.addEventListener('click', () => {
+        $('cfgBtnTrabalheIcone').value = iconClass;
+        markConfigDirty(true);
+        renderTrabalheIconPicker();
+        updateTrabalhePreview();
+      });
+      grid.appendChild(btn);
+    });
+  }
+
+  function appendFormattedNodes(parent, rawText) {
+    const tokenRegex = /(\*\*[^*]+\*\*|__[^_]+__|~~[^~]+~~|\*[^*]+\*)/;
+    let remaining = String(rawText || '');
+
+    while (remaining.length > 0) {
+      const match = tokenRegex.exec(remaining);
+      if (!match) {
+        parent.appendChild(document.createTextNode(remaining));
+        break;
+      }
+
+      if (match.index > 0) {
+        parent.appendChild(document.createTextNode(remaining.slice(0, match.index)));
+      }
+
+      const token = match[0];
+      let tag = null;
+      let inner = '';
+
+      if (token.startsWith('**') && token.endsWith('**')) {
+        tag = 'strong';
+        inner = token.slice(2, -2);
+      } else if (token.startsWith('__') && token.endsWith('__')) {
+        tag = 'u';
+        inner = token.slice(2, -2);
+      } else if (token.startsWith('~~') && token.endsWith('~~')) {
+        tag = 's';
+        inner = token.slice(2, -2);
+      } else if (token.startsWith('*') && token.endsWith('*')) {
+        tag = 'em';
+        inner = token.slice(1, -1);
+      }
+
+      if (tag && inner) {
+        const node = document.createElement(tag);
+        appendFormattedNodes(node, inner);
+        parent.appendChild(node);
+      } else {
+        parent.appendChild(document.createTextNode(token));
+      }
+
+      remaining = remaining.slice(match.index + token.length);
+    }
+  }
+
+  function renderSafeBoldText(el, rawText) {
+    clearEl(el);
+    appendFormattedNodes(el, rawText);
+  }
+
+  function stripRichMarkers(text) {
+    return String(text || '').replace(/(\*\*|__|~~|\*)/g, '');
+  }
+
+  const DEFAULT_HERO_QUOTE =
+    '“Ensina a criança no caminho em que deve andar, e ainda quando for velho não se desviará dele.”';
+  const DEFAULT_HERO_REF = '— Provérbios 22:6';
+
+  function applyFormatToHeroQuote(marker) {
+    const input = $('cfgHeroQuoteTexto');
+    if (!input || !marker) return;
+    const start = input.selectionStart;
+    const end = input.selectionEnd;
+
+    if (start === null || end === null || start === end) {
+      showToast('Selecione primeiro o trecho da frase que deseja formatar.', 'warning');
+      input.focus();
+      return;
+    }
+
+    const mLen = marker.length;
+    const val = input.value;
+    const selected = val.slice(start, end);
+    const before = val.slice(0, start);
+    const after = val.slice(end);
+
+    if (before.endsWith(marker) && after.startsWith(marker)) {
+      input.value = before.slice(0, -mLen) + selected + after.slice(mLen);
+      input.setSelectionRange(start - mLen, end - mLen);
+    } else if (selected.startsWith(marker) && selected.endsWith(marker) && selected.length > mLen * 2) {
+      const inner = selected.slice(mLen, -mLen);
+      input.value = before + inner + after;
+      input.setSelectionRange(start, start + inner.length);
+    } else {
+      input.value = before + marker + selected + marker + after;
+      input.setSelectionRange(start + mLen, end + mLen);
+    }
+
+    input.focus();
+    markConfigDirty(true);
+    updateTrabalhePreview();
+  }
+
+  function clearHeroQuoteFormatting() {
+    const input = $('cfgHeroQuoteTexto');
+    if (!input) return;
+    const start = input.selectionStart;
+    const end = input.selectionEnd;
+
+    if (start !== null && end !== null && start !== end) {
+      const before = input.value.slice(0, start);
+      const cleanSel = stripRichMarkers(input.value.slice(start, end));
+      const after = input.value.slice(end);
+      input.value = before + cleanSel + after;
+      input.setSelectionRange(start, start + cleanSel.length);
+    } else {
+      input.value = stripRichMarkers(input.value);
+    }
+
+    input.focus();
+    markConfigDirty(true);
+    updateTrabalhePreview();
+  }
+
+  function updateTrabalhePreview() {
+    const pill = $('cfgTrabalhePreviewPill');
+    const iconEl = $('cfgTrabalhePreviewIcon');
+    const textEl = $('cfgTrabalhePreviewText');
+    const quoteInput = $('cfgHeroQuoteTexto');
+    const quoteRefInput = $('cfgHeroQuoteRef');
+    const quotePreview = $('cfgHeroQuotePreview');
+    const quoteRefPreview = $('cfgHeroQuoteRefPreview');
+
+    if (quoteInput && quotePreview) {
+      const rawQuote = quoteInput.value.trim() || DEFAULT_HERO_QUOTE;
+      const visibleLen = stripRichMarkers(quoteInput.value).length;
+      if ($('cfgHeroQuoteCount')) {
+        $('cfgHeroQuoteCount').textContent = `${visibleLen} / 180`;
+      }
+      renderSafeBoldText(quotePreview, rawQuote);
+    }
+    if (quoteRefInput && quoteRefPreview) {
+      quoteRefPreview.textContent = quoteRefInput.value.trim() || DEFAULT_HERO_REF;
+    }
+
+    if (!pill || !iconEl || !textEl) return;
+
+    const ativo = $('cfgBtnTrabalheAtivo')?.checked !== false;
+    const hex = resolveHexColor($('cfgBtnTrabalheCor')?.value, '#0EA5E9');
+    const txtColor = getContrastTextColor(hex);
+    const textoRaw = $('cfgBtnTrabalheTexto')?.value || '';
+    const texto = textoRaw.trim() || 'Trabalhe Conosco';
+    const icone = $('cfgBtnTrabalheIcone')?.value || 'bi-briefcase-fill';
+
+    if ($('cfgBtnTrabalheCount')) $('cfgBtnTrabalheCount').textContent = `${textoRaw.length} / 18`;
+    if ($('cfgBtnTrabalheColorPicker')) $('cfgBtnTrabalheColorPicker').value = hex;
+    if ($('cfgBtnTrabalheColorHex')) $('cfgBtnTrabalheColorHex').textContent = hex;
+
+    document.querySelectorAll('#trabalheColorSwatches .color-swatch').forEach((btn) => {
+      btn.classList.toggle('active', String(btn.getAttribute('data-color') || '').toUpperCase() === hex);
+    });
+
+    pill.style.background = hex;
+    pill.style.color = txtColor;
+    pill.classList.toggle('is-disabled', !ativo);
+    iconEl.className = `bi ${icone}`;
+    textEl.textContent = texto;
+  }
 
   function resolveAvisoHex(val) {
     const raw = String(val || '').trim();
@@ -1248,12 +1447,20 @@
     $('cfgBtnMatriculaVisivel').checked = ctrl.mostrar_btn_matricula !== false;
     $('cfgTextoBtnMatricula').value = ctrl.texto_btn_matricula || 'MATRÍCULA E REMATRÍCULA';
 
+    // Botão Opcional + Versículo / Citação do Banner Principal
+    $('cfgHeroQuoteTexto').value = ctrl.hero_quote_texto || DEFAULT_HERO_QUOTE;
+    $('cfgHeroQuoteRef').value = ctrl.hero_quote_ref || DEFAULT_HERO_REF;
+    $('cfgBtnTrabalheAtivo').checked = ctrl.mostrar_trabalhe_conosco !== false;
+    $('cfgBtnTrabalheTexto').value = (ctrl.trabalhe_texto || 'Trabalhe Conosco').slice(0, 18);
+    $('cfgBtnTrabalheCor').value = resolveHexColor(ctrl.trabalhe_cor, '#0EA5E9');
+    $('cfgBtnTrabalheIcone').value = ctrl.trabalhe_icone || 'bi-briefcase-fill';
+    $('cfgLinkTrabalheConosco').value = ctrl.trabalhe_link || cfg.link_trabalhe_conosco || '';
+
     $('cfgWhatsappExibicao').value = cfg.whatsapp_exibicao || '';
     $('cfgWhatsappNumero').value = cfg.whatsapp_numero || '';
     $('cfgEmailContato').value = cfg.email_contato || '';
     $('cfgAnoMatricula').value = cfg.ano_matricula || '';
     $('cfgLinkMatricula').value = cfg.link_matricula || '';
-    $('cfgLinkTrabalheConosco').value = cfg.link_trabalhe_conosco || '';
     $('cfgEmailDpo').value = cfg.email_dpo || '';
 
     $('cfgStatAlunos').value = cfg.stat_alunos || '';
@@ -1266,6 +1473,8 @@
     $('cfgLinkYoutube').value = cfg.link_youtube || '';
 
     updateAvisoPreview();
+    renderTrabalheIconPicker();
+    updateTrabalhePreview();
   }
 
   async function saveGlobalConfig() {
@@ -1273,6 +1482,7 @@
     setButtonLoading(btn, true);
 
     try {
+      const trabalheLink = $('cfgLinkTrabalheConosco').value.trim();
       const controlesVisuais = {
         mostrar_secao_diferenciais: $('cfgSecDiferenciais').checked,
         mostrar_secao_mackenzie: $('cfgSecMackenzie').checked,
@@ -1282,6 +1492,13 @@
         mostrar_secao_matriculas: $('cfgSecMatriculas').checked,
         mostrar_btn_matricula: $('cfgBtnMatriculaVisivel').checked,
         texto_btn_matricula: $('cfgTextoBtnMatricula').value.trim() || 'MATRÍCULA E REMATRÍCULA',
+        hero_quote_texto: $('cfgHeroQuoteTexto').value.trim() || DEFAULT_HERO_QUOTE,
+        hero_quote_ref: $('cfgHeroQuoteRef').value.trim() || DEFAULT_HERO_REF,
+        mostrar_trabalhe_conosco: $('cfgBtnTrabalheAtivo').checked,
+        trabalhe_texto: ($('cfgBtnTrabalheTexto').value.trim() || 'Trabalhe Conosco').slice(0, 18),
+        trabalhe_cor: resolveHexColor($('cfgBtnTrabalheCor').value, '#0EA5E9'),
+        trabalhe_icone: $('cfgBtnTrabalheIcone').value || 'bi-briefcase-fill',
+        trabalhe_link: trabalheLink,
       };
 
       const payload = {
@@ -1296,7 +1513,7 @@
         email_contato: $('cfgEmailContato').value.trim(),
         ano_matricula: $('cfgAnoMatricula').value.trim(),
         link_matricula: $('cfgLinkMatricula').value.trim(),
-        link_trabalhe_conosco: $('cfgLinkTrabalheConosco').value.trim(),
+        link_trabalhe_conosco: trabalheLink,
         email_dpo: $('cfgEmailDpo').value.trim(),
         stat_alunos: $('cfgStatAlunos').value.trim(),
         stat_professores: $('cfgStatProfessores').value.trim(),
@@ -1467,6 +1684,7 @@
       field.addEventListener(evt, () => {
         markConfigDirty(true);
         updateAvisoPreview();
+        updateTrabalhePreview();
       });
     });
 
@@ -1482,6 +1700,25 @@
       $('cfgAvisoCor').value = String(e.target.value || '#D97706').toUpperCase();
       markConfigDirty(true);
       updateAvisoPreview();
+    });
+
+    document.querySelectorAll('#trabalheColorSwatches .color-swatch').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        $('cfgBtnTrabalheCor').value = btn.getAttribute('data-color') || '#0EA5E9';
+        markConfigDirty(true);
+        updateTrabalhePreview();
+      });
+    });
+
+    document.querySelectorAll('#heroQuoteToolbar .fmt-btn[data-marker]').forEach((btn) => {
+      btn.addEventListener('click', () => applyFormatToHeroQuote(btn.getAttribute('data-marker')));
+    });
+    $('btnHeroQuoteClearFmt')?.addEventListener('click', clearHeroQuoteFormatting);
+
+    $('cfgBtnTrabalheColorPicker')?.addEventListener('input', (e) => {
+      $('cfgBtnTrabalheCor').value = String(e.target.value || '#0EA5E9').toUpperCase();
+      markConfigDirty(true);
+      updateTrabalhePreview();
     });
 
     $('saveConfigGlobalBtn')?.addEventListener('click', saveGlobalConfig);

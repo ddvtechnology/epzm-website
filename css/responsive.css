@@ -113,6 +113,16 @@
     color: #FFFFFF !important;
   }
 
+  .topbar-links a.topbar-item.btn-trabalhe-conosco {
+    background: var(--trabalhe-bg, #0EA5E9) !important;
+    color: var(--trabalhe-color, #FFFFFF) !important;
+    padding: 0 !important;
+  }
+
+  .topbar-links a.topbar-item.btn-trabalhe-conosco i {
+    color: var(--trabalhe-color, #FFFFFF) !important;
+  }
+
   .topbar-links .dropdown-menu {
     position: absolute !important;
     left: 50% !important;

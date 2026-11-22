@@ -424,7 +424,7 @@
                         placeholder="Ex.: Matrículas 2027 abertas! Garanta já a vaga do seu filho.">
                     </div>
                     <div class="col-md-5">
-                      <label for="cfgAvisoLink" class="form-label small fw-medium">Link do botão "Saiba mais" (opcional)</label>
+                      <label for="cfgAvisoLink" class="form-label small fw-medium">Link do botão (opcional)</label>
                       <input type="text" class="form-control config-dirty-field" id="cfgAvisoLink" placeholder="Ex.: #matriculas ou https://...">
                     </div>
                     <div class="col-md-7">
@@ -456,7 +456,7 @@
 
               <!-- PANE 3: SEÇÕES & BOTÕES DA HOME -->
               <div class="aparencia-pane d-none" id="pane-secoes">
-                <div class="surface-card mb-4">
+                <div class="surface-card mb-4" id="cardSecoesHome">
                   <div class="surface-card-header">
                     <div>
                       <h2 class="surface-title">Seções da Página Inicial</h2>
@@ -522,7 +522,7 @@
                   </div>
                 </div>
 
-                <div class="surface-card">
+                <div class="surface-card mb-4">
                   <div class="surface-card-header">
                     <div>
                       <h2 class="surface-title">Botão de Matrícula</h2>
@@ -547,6 +547,112 @@
                       <label for="cfgLinkMatricula" class="form-label small fw-medium">Destino de "Fazer Matrícula"</label>
                       <input type="text" class="form-control config-dirty-field" id="cfgLinkMatricula" placeholder="#contato ou https://wa.me/...">
                     </div>
+                  </div>
+                </div>
+
+                <!-- Botão Opcional da Barra Superior -->
+                <div class="surface-card mb-4" id="cardBotaoOpcional">
+                  <div class="surface-card-header">
+                    <div>
+                      <h2 class="surface-title">Botão Opcional na Barra Superior <span class="pill-tag pill-neutral ms-1">Opcional</span></h2>
+                      <p class="surface-desc">Quando ativo, aparece na barra superior logo após o Portal do Professor com o mesmo estilo dos portais.</p>
+                    </div>
+                    <div class="form-check form-switch m-0">
+                      <input class="form-check-input config-dirty-field" type="checkbox" id="cfgBtnTrabalheAtivo" checked>
+                      <label class="form-check-label small fw-medium" for="cfgBtnTrabalheAtivo">Exibir botão</label>
+                    </div>
+                  </div>
+
+                  <!-- Preview real da Barra Superior -->
+                  <div class="topbar-btn-preview-bar mb-4">
+                    <span class="topbar-preview-pill preview-estudante"><i class="bi bi-mortarboard-fill"></i> Portal do Estudante</span>
+                    <span class="topbar-preview-pill preview-professor"><i class="bi bi-person-workspace"></i> Portal do Professor <i class="bi bi-caret-down-fill" style="font-size:10px;"></i></span>
+                    <span class="topbar-preview-pill preview-trabalhe" id="cfgTrabalhePreviewPill">
+                      <i class="bi bi-briefcase-fill" id="cfgTrabalhePreviewIcon"></i>
+                      <span id="cfgTrabalhePreviewText">Trabalhe Conosco</span>
+                    </span>
+                  </div>
+
+                  <div class="row g-3">
+                    <div class="col-md-5">
+                      <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="cfgBtnTrabalheTexto" class="form-label small fw-medium mb-0">Texto do botão</label>
+                        <span class="text-muted" style="font-size: 11.5px;" id="cfgBtnTrabalheCount">0 / 18</span>
+                      </div>
+                      <input type="text" class="form-control config-dirty-field" id="cfgBtnTrabalheTexto" maxlength="18" placeholder="Ex.: Trabalhe Conosco">
+                      <div class="form-text">Máx. 18 caracteres para manter a barra em uma única linha.</div>
+                    </div>
+                    <div class="col-md-7">
+                      <label for="cfgLinkTrabalheConosco" class="form-label small fw-medium">Link ou e-mail de destino</label>
+                      <input type="text" class="form-control config-dirty-field" id="cfgLinkTrabalheConosco" placeholder="mailto:contato@epzm.com.br ou https://...">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label small fw-medium d-block">Cor do botão</label>
+                      <input type="hidden" id="cfgBtnTrabalheCor" value="#0EA5E9" class="config-dirty-field">
+                      <div class="color-swatch-group" id="trabalheColorSwatches">
+                        <button type="button" class="color-swatch active" data-color="#0EA5E9" title="Azul Celeste"><span class="swatch-dot" style="background:#0EA5E9"></span></button>
+                        <button type="button" class="color-swatch" data-color="#1D4ED8" title="Azul Royal"><span class="swatch-dot" style="background:#1D4ED8"></span></button>
+                        <button type="button" class="color-swatch" data-color="#16A34A" title="Verde Destaque"><span class="swatch-dot" style="background:#16A34A"></span></button>
+                        <button type="button" class="color-swatch" data-color="#D97706" title="Âmbar"><span class="swatch-dot" style="background:#D97706"></span></button>
+                        <button type="button" class="color-swatch" data-color="#DC2626" title="Vermelho"><span class="swatch-dot" style="background:#DC2626"></span></button>
+                        <button type="button" class="color-swatch" data-color="#0F766E" title="Petróleo"><span class="swatch-dot" style="background:#0F766E"></span></button>
+                        <label class="color-custom-pill" for="cfgBtnTrabalheColorPicker" title="Escolher cor personalizada">
+                          <input type="color" id="cfgBtnTrabalheColorPicker" value="#0EA5E9">
+                          <span id="cfgBtnTrabalheColorHex">#0EA5E9</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label small fw-medium d-block">Ícone do botão</label>
+                      <input type="hidden" id="cfgBtnTrabalheIcone" value="bi-briefcase-fill" class="config-dirty-field">
+                      <div class="icon-picker-compact" id="trabalheIconPickerGrid"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Versículo / Citação do Banner Principal -->
+                <div class="surface-card" id="cardVersiculoHero">
+                  <div class="surface-card-header">
+                    <div>
+                      <h2 class="surface-title">Versículo / Citação do Banner Principal</h2>
+                      <p class="surface-desc">Frase exibida no card verde sobre a foto inicial. Selecione qualquer trecho e use a barra de formatação abaixo.</p>
+                    </div>
+                  </div>
+
+                  <!-- Preview real do card de citação -->
+                  <div class="quote-live-preview mb-4">
+                    <i class="bi bi-quote"></i>
+                    <div>
+                      <blockquote id="cfgHeroQuotePreview">“Ensina a criança no caminho em que deve andar, e ainda quando for velho não se desviará dele.”</blockquote>
+                      <cite id="cfgHeroQuoteRefPreview">— Provérbios 22:6</cite>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                      <label for="cfgHeroQuoteTexto" class="form-label small fw-medium mb-0">Texto do versículo ou frase</label>
+                      <span class="text-muted" style="font-size: 11.5px;" id="cfgHeroQuoteCount">0 / 180</span>
+                    </div>
+
+                    <div class="rich-format-toolbar mb-2" id="heroQuoteToolbar" role="toolbar" aria-label="Formatação do texto">
+                      <button type="button" class="fmt-btn" data-marker="**" title="Negrito"><strong>B</strong></button>
+                      <button type="button" class="fmt-btn" data-marker="*" title="Itálico"><em>I</em></button>
+                      <button type="button" class="fmt-btn" data-marker="__" title="Sublinhado"><u>U</u></button>
+                      <button type="button" class="fmt-btn" data-marker="~~" title="Tachado"><s>S</s></button>
+                      <span class="fmt-divider"></span>
+                      <button type="button" class="fmt-btn fmt-btn-wide" id="btnHeroQuoteClearFmt" title="Limpar formatação">
+                        <i class="bi bi-eraser me-1"></i>Limpar
+                      </button>
+                    </div>
+
+                    <textarea class="form-control config-dirty-field" id="cfgHeroQuoteTexto" rows="2" maxlength="260"
+                      placeholder="Ex.: “Ensina a criança no caminho em que deve andar, e ainda quando for velho não se desviará dele.”"></textarea>
+                    <div class="form-text">Selecione palavras com o mouse e clique em <strong>B</strong> (negrito), <em>I</em> (itálico), <u>U</u> (sublinhado) ou <s>S</s> (tachado).</div>
+                  </div>
+
+                  <div>
+                    <label for="cfgHeroQuoteRef" class="form-label small fw-medium">Referência / Autor</label>
+                    <input type="text" class="form-control config-dirty-field" id="cfgHeroQuoteRef" maxlength="60" placeholder="Ex.: — Provérbios 22:6">
                   </div>
                 </div>
               </div>
@@ -641,10 +747,6 @@
                 <div class="col-md-4">
                   <label for="cfgLinkYoutube" class="form-label small fw-medium"><i class="bi bi-youtube me-1"></i>YouTube</label>
                   <input type="url" class="form-control config-dirty-field" id="cfgLinkYoutube" placeholder="Vazio para ocultar">
-                </div>
-                <div class="col-12">
-                  <label for="cfgLinkTrabalheConosco" class="form-label small fw-medium">Link / E-mail "Trabalhe Conosco"</label>
-                  <input type="text" class="form-control config-dirty-field" id="cfgLinkTrabalheConosco" placeholder="mailto:contato@epzm.com.br ou https://...">
                 </div>
               </div>
             </div>

@@ -557,8 +557,70 @@
     header.insertBefore(bar, header.firstChild);
   }
 
+  function appendFormattedNodes(parent, rawText) {
+    const tokenRegex = /(\*\*[^*]+\*\*|__[^_]+__|~~[^~]+~~|\*[^*]+\*)/;
+    let remaining = String(rawText || '');
+
+    while (remaining.length > 0) {
+      const match = tokenRegex.exec(remaining);
+      if (!match) {
+        parent.appendChild(document.createTextNode(remaining));
+        break;
+      }
+
+      if (match.index > 0) {
+        parent.appendChild(document.createTextNode(remaining.slice(0, match.index)));
+      }
+
+      const token = match[0];
+      let tag = null;
+      let inner = '';
+
+      if (token.startsWith('**') && token.endsWith('**')) {
+        tag = 'strong';
+        inner = token.slice(2, -2);
+      } else if (token.startsWith('__') && token.endsWith('__')) {
+        tag = 'u';
+        inner = token.slice(2, -2);
+      } else if (token.startsWith('~~') && token.endsWith('~~')) {
+        tag = 's';
+        inner = token.slice(2, -2);
+      } else if (token.startsWith('*') && token.endsWith('*')) {
+        tag = 'em';
+        inner = token.slice(1, -1);
+      }
+
+      if (tag && inner) {
+        const node = document.createElement(tag);
+        appendFormattedNodes(node, inner);
+        parent.appendChild(node);
+      } else {
+        parent.appendChild(document.createTextNode(token));
+      }
+
+      remaining = remaining.slice(match.index + token.length);
+    }
+  }
+
+  function renderSafeBoldText(el, rawText) {
+    clearElement(el);
+    appendFormattedNodes(el, rawText);
+  }
+
   function applyVisualControls(ctrl) {
     if (!ctrl || typeof ctrl !== 'object') return;
+
+    // Versículo / Citação do Banner Principal (com suporte seguro a **negrito**)
+    if (typeof ctrl.hero_quote_texto === 'string' && ctrl.hero_quote_texto.trim()) {
+      document.querySelectorAll('[data-config-hero-quote]').forEach((el) => {
+        renderSafeBoldText(el, ctrl.hero_quote_texto.trim());
+      });
+    }
+    if (typeof ctrl.hero_quote_ref === 'string' && ctrl.hero_quote_ref.trim()) {
+      document.querySelectorAll('[data-config-hero-cite]').forEach((el) => {
+        el.textContent = ctrl.hero_quote_ref.trim();
+      });
+    }
 
     const toggleSelectors = [
       ['mostrar_secao_diferenciais', '[data-toggle-section="diferenciais"], [data-toggle-menu="proposta"]'],
@@ -584,6 +646,44 @@
         el.textContent = ctrl.texto_btn_matricula.trim();
       });
     }
+
+    // Botão Trabalhe Conosco (opcional, personalizável: cor, ícone, texto e link)
+    const showTrabalhe = ctrl.mostrar_trabalhe_conosco !== false;
+    const trabalheHex = /^#[0-9A-Fa-f]{6}$/.test(String(ctrl.trabalhe_cor || '').trim())
+      ? ctrl.trabalhe_cor.trim()
+      : '#0EA5E9';
+    const trabalheColor = getContrastTextColor(trabalheHex);
+    const trabalheTexto = String(ctrl.trabalhe_texto || '').trim() || 'Trabalhe Conosco';
+    const trabalheIcone = /^bi-[a-z0-9-]+$/i.test(String(ctrl.trabalhe_icone || '').trim())
+      ? ctrl.trabalhe_icone.trim()
+      : 'bi-briefcase-fill';
+
+    document.querySelectorAll('[data-config-trabalhe-conosco]').forEach((el) => {
+      if (!showTrabalhe) {
+        if (el.parentElement && el.parentElement.tagName === 'LI') {
+          el.parentElement.style.display = 'none';
+        }
+        el.style.setProperty('display', 'none', 'important');
+        return;
+      }
+
+      el.style.removeProperty('display');
+      if (el.parentElement && el.parentElement.tagName === 'LI') {
+        el.parentElement.style.display = '';
+      }
+      el.setAttribute('title', trabalheTexto);
+
+      if (el.classList.contains('btn-trabalhe-conosco')) {
+        el.style.setProperty('--trabalhe-bg', trabalheHex);
+        el.style.setProperty('--trabalhe-color', trabalheColor);
+        const iconEl = el.querySelector('i');
+        if (iconEl) iconEl.className = `bi ${trabalheIcone}`;
+        const labelEl = el.querySelector('.topbar-label');
+        if (labelEl) labelEl.textContent = trabalheTexto;
+      } else {
+        el.textContent = trabalheTexto;
+      }
+    });
   }
 
   async function loadSiteConfig() {
@@ -646,13 +746,19 @@
       });
     }
 
-    // Trabalhe Conosco
-    if (data.link_trabalhe_conosco) {
+    // Trabalhe Conosco (link normalizado)
+    const rawTrabalheLink =
+      (data.controles_visuais && data.controles_visuais.trabalhe_link) || data.link_trabalhe_conosco;
+    const safeTrabalheLink = normalizeMenuUrl(rawTrabalheLink);
+    if (safeTrabalheLink) {
       document.querySelectorAll('[data-config-trabalhe-conosco]').forEach((el) => {
-        el.setAttribute('href', data.link_trabalhe_conosco);
-        if (data.link_trabalhe_conosco.startsWith('http')) {
+        el.setAttribute('href', safeTrabalheLink);
+        if (safeTrabalheLink.startsWith('http')) {
           el.setAttribute('target', '_blank');
           el.setAttribute('rel', 'noopener');
+        } else {
+          el.removeAttribute('target');
+          el.removeAttribute('rel');
         }
       });
     }

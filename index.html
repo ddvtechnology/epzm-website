@@ -50,23 +50,19 @@
       <div class="container-custom">
         <div class="topbar-welcome d-none d-lg-flex">
           <i class="bi bi-heart-fill"></i>
-          <span>Seja bem-vindo à Escola Presbiteriana Zenaide Magalhães!</span>
+          <span data-config-welcome-text>Seja bem-vindo à Escola Presbiteriana Zenaide Magalhães!</span>
         </div>
         <div class="topbar-links">
-          <div class="d-inline-flex align-items-center gap-2" data-dynamic-topbar-buttons>
-            <a href="javascript:void(0)" onclick="return false;" data-config-portal-estudante data-toggle-item="portal-estudante" class="topbar-item btn-portal-estudante" title="Portal do Estudante" style="cursor: default;"><i
-                class="bi bi-mortarboard-fill"></i><span class="topbar-label">Portal do Estudante</span></a>
-            <a href="mailto:contato@epzm.com.br?subject=Trabalhe%20Conosco" data-config-trabalhe-conosco data-toggle-item="trabalhe-conosco" class="topbar-item" title="Trabalhe Conosco"><i class="bi bi-briefcase-fill"></i><span
-                class="topbar-label">Trabalhe Conosco</span></a>
-          </div>
+          <a href="javascript:void(0)" onclick="return false;" class="topbar-item btn-portal-estudante" title="Portal do Estudante" style="cursor: default;"><i
+              class="bi bi-mortarboard-fill"></i><span class="topbar-label">Portal do Estudante</span></a>
 
           <!-- PORTAL DO PROFESSOR DROPDOWN -->
-          <div class="dropdown d-inline-block" data-toggle-item="portal-professor">
+          <div class="dropdown d-inline-block">
             <a href="#" class="topbar-item btn-portal-professor dropdown-toggle" data-bs-toggle="dropdown"
               aria-expanded="false" title="Portal do Professor">
               <i class="bi bi-person-workspace"></i><span class="topbar-label">Portal do Professor</span>
             </a>
-            <ul class="dropdown-menu dropdown-menu-custom shadow border-0" data-dynamic-portal-professor>
+            <ul class="dropdown-menu dropdown-menu-custom shadow border-0">
               <li>
                 <a class="dropdown-item d-flex align-items-center gap-2 py-2"
                   href="https://www.sponteeducacional.net.br/Default.aspx" target="_blank" rel="noopener">
@@ -81,6 +77,9 @@
               </li>
             </ul>
           </div>
+
+          <a href="mailto:contato@epzm.com.br?subject=Trabalhe%20Conosco" data-config-trabalhe-conosco class="topbar-item btn-trabalhe-conosco" title="Trabalhe Conosco"><i
+              class="bi bi-briefcase-fill"></i><span class="topbar-label">Trabalhe Conosco</span></a>
 
           <div class="topbar-divider d-none d-md-block"></div>
           <a href="tel:+558196772053" data-config-tel-link class="topbar-item topbar-phone" title="WhatsApp / Atendimento"><i
@@ -304,9 +303,9 @@
               <div class="hero-quote-card">
                 <i class="bi bi-quote"></i>
                 <div>
-                  <blockquote>&ldquo;Ensina a criança no caminho em que deve andar, e ainda quando for velho não se
+                  <blockquote data-config-hero-quote>&ldquo;Ensina a criança no caminho em que deve andar, e ainda quando for velho não se
                     desviará dele.&rdquo;</blockquote>
-                  <cite>— Provérbios 22:6</cite>
+                  <cite data-config-hero-cite>— Provérbios 22:6</cite>
                 </div>
               </div>
             </div>

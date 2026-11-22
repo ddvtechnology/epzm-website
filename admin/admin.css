@@ -1092,6 +1092,178 @@ body {
   cursor: pointer;
 }
 
+/* Preview da Topbar (Botão Opcional) */
+.topbar-btn-preview-bar {
+  background: #0F5A45;
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Preview do Card de Versículo / Citação (idêntico ao Hero do site) */
+.quote-live-preview {
+  background: #0F5A45;
+  color: #FFFFFF;
+  border-radius: 14px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.quote-live-preview i {
+  font-size: 26px;
+  line-height: 1;
+  opacity: 0.9;
+  flex-shrink: 0;
+}
+
+.quote-live-preview blockquote {
+  font-size: 13.5px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0 0 6px;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.quote-live-preview blockquote strong {
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.quote-live-preview blockquote em {
+  font-style: italic;
+}
+
+.quote-live-preview blockquote u {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.quote-live-preview blockquote s {
+  text-decoration: line-through;
+  opacity: 0.85;
+}
+
+.rich-format-toolbar {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 5px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.fmt-btn {
+  min-width: 32px;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  background: #FFFFFF;
+  color: var(--text-main);
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--ease);
+}
+
+.fmt-btn-wide {
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.fmt-btn:hover {
+  border-color: var(--epzm-primary);
+  color: var(--epzm-primary);
+  background: rgba(15, 90, 69, 0.06);
+}
+
+.fmt-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--border);
+  margin: 0 2px;
+}
+
+.quote-live-preview cite {
+  font-size: 12.5px;
+  font-style: normal;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.topbar-preview-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 50px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #FFFFFF;
+  transition: var(--ease);
+}
+
+.topbar-preview-pill.preview-estudante {
+  background: #F59E0B;
+}
+
+.topbar-preview-pill.preview-professor {
+  background: #280047;
+}
+
+.topbar-preview-pill.preview-trabalhe:hover {
+  filter: brightness(0.92);
+  transform: translateY(-2px);
+}
+
+.topbar-preview-pill.is-disabled {
+  opacity: 0.35;
+  text-decoration: line-through;
+}
+
+.icon-picker-compact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.icon-pick-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #FFFFFF;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  cursor: pointer;
+  transition: var(--ease);
+}
+
+.icon-pick-btn:hover {
+  border-color: var(--epzm-primary);
+  color: var(--epzm-primary);
+}
+
+.icon-pick-btn.active {
+  background: var(--epzm-primary);
+  border-color: var(--epzm-primary);
+  color: #FFFFFF;
+}
+
 /* Toggle List (Seções) */
 .toggle-list {
   display: flex;

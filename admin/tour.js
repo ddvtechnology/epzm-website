@@ -12,13 +12,13 @@
     {
       tab: 'visao-geral',
       selector: '#tab-visao-geral .kpi-grid',
-      title: 'Bem-vindo ao Painel da EPZM!',
+      title: 'Bem-vindo ao Painel da Adminstração!',
       desc: 'Aqui na Visão Geral você acompanha os números principais do site: total de acessos nos últimos 30 dias, servidores ativos e notícias publicadas.',
     },
     {
       tab: 'visao-geral',
       selector: '#accessChartBars',
-      title: 'Acessos ao Site (100% LGPD)',
+      title: 'Acessos ao Site',
       desc: 'Este gráfico mostra a evolução diária das visitas nos últimos 7 dias e, ao lado, as páginas mais acessadas. A contagem é totalmente anônima e o histórico se renova automaticamente a cada 30 dias.',
     },
     {
@@ -56,9 +56,23 @@
     {
       tab: 'aparencia',
       pane: 'pane-secoes',
-      selector: '#pane-secoes',
+      selector: '#cardSecoesHome',
       title: 'Seções & Botão de Matrícula',
-      desc: 'Ative ou oculte seções inteiras da página inicial sem risco de desalinhar o site, e personalize o texto, o ano e o link do botão de matrícula.',
+      desc: 'Ative ou oculte blocos inteiros da página inicial sem risco de desalinhar o site e, logo abaixo, personalize o texto, o ano e o link do botão de matrícula.',
+    },
+    {
+      tab: 'aparencia',
+      pane: 'pane-secoes',
+      selector: '#cardBotaoOpcional',
+      title: 'Botão Opcional na Barra Superior',
+      desc: 'Ative ou desative um botão extra ao lado do Portal do Professor, escolhendo texto curto (até 18 caracteres), link, cor livre e ícone com pré-visualização em tempo real.',
+    },
+    {
+      tab: 'aparencia',
+      pane: 'pane-secoes',
+      selector: '#cardVersiculoHero',
+      title: 'Versículo / Citação com Formatação',
+      desc: 'Edite o versículo e a referência sobre a foto principal. Selecione qualquer trecho com o mouse e aplique Negrito, Itálico, Sublinhado ou Tachado (e use Limpar quando quiser remover).',
     },
     {
       tab: 'escola',
